@@ -38,7 +38,7 @@ coveralls:
 
 # Clean up.
 clean:
-	rm -rf node_modules package-lock.json
+	rm -rf node_modules package-lock.json doc .nyc_output coverage
 
 # Do nothing target to ensure the test and coverage targets run
 # everytime despite the presence of directory with same names.

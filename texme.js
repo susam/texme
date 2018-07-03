@@ -23,14 +23,14 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-// TexMe - Self-rendering Markdown + LaTeX documents
+// TeXMe - Self-rendering Markdown + LaTeX documents
 
 (function () {
   'use strict'
 
   /**
-   * Private namespace of TexMe. The members of the inner namespace
-   * are inaccessible outside TexMe.
+   * Private namespace of TeXMe. The members of the inner namespace
+   * are inaccessible outside TeXMe.
    *
    * @namespace inner
    */
@@ -56,7 +56,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   }
 
   /**
-   * Exported module of TexMe.
+   * Exported module of TeXMe.
    *
    * @exports texme
    */

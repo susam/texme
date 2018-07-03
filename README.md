@@ -1,6 +1,6 @@
-TexMe
+TeXMe
 =====
-TexMe is a lightweight JavaScript-based utility to create self-rendering
+TeXMe is a lightweight JavaScript-based utility to create self-rendering
 Markdown + LaTeX documents.
 
 
