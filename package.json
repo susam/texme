@@ -1,0 +1,47 @@
+{
+  "name": "texme",
+  "version": "0.2.0",
+  "description": "Self-rendering Markdown + LaTeX documents",
+  "main": "texme.js",
+  "files": [
+    "texme.js"
+  ],
+  "keywords": [
+    "markdown",
+    "commonmark",
+    "tex",
+    "latex",
+    "browser"
+  ],
+  "homepage": "http://github.com/susam/texme",
+  "bugs": "http://github.com/susam/texme/issues",
+  "license": "MIT",
+  "author": "Susam Pal <susam@susam.in> (http://susam.in/)",
+  "repository": "github:susam/texme",
+  "dependencies": {
+    "commonmark": "latest"
+  },
+  "devDependencies": {
+    "jsdoc": "latest",
+    "jsdom": "latest",
+    "mocha": "latest",
+    "nyc": "latest",
+    "standard": "latest",
+    "uglify-js": "latest"
+  },
+  "scripts": {
+    "test": "standard && mocha",
+    "coverage": "nyc --reporter=html --reporter=text mocha",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "min": "uglifyjs texme.js --compress --mangle --output texme.min.js",
+    "doc": "jsdoc -c jsdoc.json"
+  },
+  "standard": {
+    "env": [
+      "mocha"
+    ],
+    "global": [
+      "MathJax"
+    ]
+  }
+}

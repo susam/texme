@@ -1,0 +1,68 @@
+<!DOCTYPE html><script src="../texme.js"></script><textarea>
+
+TeXMe Demo
+==========
+Binomial theorem
+----------------
+$$ (x+y)^n = \sum_{k=0}^n {n \choose k} x^{n - k} y^k $$
+
+Exponential function
+--------------------
+$$ e^x = \lim_{n \to \infty} \left( 1+ \frac{x}{n} \right)^n $$
+
+Cauchy&ndash;Schwarz inequality
+-------------------------------
+$$
+    \left( \sum_{k=1}^n a_k b_k \right)^2 \leq
+    \left( \sum_{k=1}^n a_k^2 \right)
+    \left( \sum_{k=1}^n b_k^2 \right)
+$$
+
+Bayes' theorem
+--------------
+$$ P(A \mid B) = \frac{P(B \mid A) \, P(A)}{P(B)} $$
+
+Euler's summation formula
+-------------------------
+**Theorem** (Euler's summation formula). _If $f$ has a continuous
+derivative $f'$ on the interval $[y, x]$, where $0 < y < x$, then_
+
+\begin{align}
+\sum_{y < n \le x} f(n) = & \int_y^x f(t) dt +
+                            \int_y^x (t - [t]) f'(t) dt \notag \\
+                          & + f(x)([x] - x) - f(y)([y] - y).
+\label{theorem}
+\end{align}
+
+_Proof._ Let $m = [y]$, $k = [x]$. For integers $n$ and $n - 1$
+in $[y, x]$ we have
+\begin{align*}
+\int_{n-1}^n [t] f'(t) dt & = \int_{n-1}^n f'(t) dt \\
+                          & = (n - 1) \bigl( f(n) - f(n - 1)
+                                      \bigr) \\
+                          & = \bigl(
+                                n f(n) - (n - 1) f(n - 1)
+                              \bigr) - f(n).
+\end{align*}
+Summing from $n = m + 1$ to $n = k$ we find
+\begin{align*}
+\int_{m}^k [t] f'(t) dt & = \sum_{n = m + 1}^k \bigl(
+                                n f(n) - (n - 1) f(n - 1) 
+                            \bigr) - \sum_{y < n \le x} f(n) \\
+                        & = k f(k) - m f(m) -
+                            \sum_{y < n \le x} f(n).
+\end{align*}
+Hence,
+\begin{align}
+\sum_{y < n \le x} f(n) & = - \int_{m}^k [t] f'(t) dt +
+                              k f(k) - m f(m) \notag \\
+                        & = - \int_{y}^x [t] f'(t) dt +
+                              k f(x) - m f(y).
+\label{summation}
+\end{align}
+Integration by parts gives us
+\begin{equation*}
+\int_y^x f(t) dt = x f(x) - y f(y) - \int_y^x t f'(t) dt.
+\end{equation*}
+When this is combined with \eqref{summation} we obtain
+\eqref{theorem}.

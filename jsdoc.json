@@ -1,0 +1,12 @@
+{
+    "source": {
+        "include": "texme.js"
+    },
+    "opts": {
+        "destination": "doc",
+        "readme": "README.md"
+    },
+    "plugins": [
+        "plugins/markdown"
+    ]
+}
