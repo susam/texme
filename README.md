@@ -9,7 +9,7 @@ Get Started
 Copy and paste the code below into an HTML file with `.html` as the
 extension name.
 
-    <!DOCTYPE html><script src="texme.js"></script><textarea>
+    <!DOCTYPE html><script src="https://unpkg.com/texme"></script><textarea>
 
     # Euler's Identity
     In mathematics, **Euler's identity** is the equality
