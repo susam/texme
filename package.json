@@ -26,6 +26,7 @@
     "jsdom": "latest",
     "mocha": "latest",
     "nyc": "latest",
+    "coveralls": "latest",
     "standard": "latest",
     "uglify-js": "latest"
   },

@@ -1,0 +1,9 @@
+language: node_js
+
+node_js:
+    - "7"
+    - "10"
+
+script:
+    - npm run coverage
+    - npm run coveralls
