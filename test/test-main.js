@@ -7,7 +7,7 @@ describe('main', function () {
     var html = '<!DOCTYPE html><textarea>Foo'
     global.window = new jsdom.JSDOM(html).window
     global.window.commonmark = commonmark
-    global.MathJax = {'Hub': {'Queue': function () {}}} // mock
+    global.MathJax = { 'Hub': { 'Queue': function () {} } } // mock
   })
 
   afterEach(function () {

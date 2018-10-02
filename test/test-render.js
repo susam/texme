@@ -7,26 +7,26 @@ describe('render', function () {
   it('render: markdown', function () {
     var input = '*Foo* **Bar** `Baz`'
     var expected = '<p><em>Foo</em> <strong>Bar</strong> <code>Baz</code></p>\n'
-    assert.deepEqual(texme.render(input), expected)
+    assert.deepStrictEqual(texme.render(input), expected)
   })
 
   it('render: math', function () {
     var input = '$ 1 + 1 = 2 $'
     var expected = '<p>$ 1 + 1 = 2 $</p>\n'
-    assert.deepEqual(texme.render(input), expected)
+    assert.deepStrictEqual(texme.render(input), expected)
   })
 
   it('render: mask literal', function () {
     var input = MASK_LITERAL
     var expected = '<p>' + MASK_LITERAL + '</p>\n'
-    assert.deepEqual(texme.render(input), expected)
+    assert.deepStrictEqual(texme.render(input), expected)
   })
 
   it('render: mixed', function () {
     var input = '*Foo* $ 1 + 1 = 2 $ **Bar** $$ 2 + 2 = 4 $$'
     var expected = '<p><em>Foo</em> $ 1 + 1 = 2 $ <strong>Bar</strong> ' +
              '$$ 2 + 2 = 4 $$</p>\n'
-    assert.deepEqual(texme.render(input), expected)
+    assert.deepStrictEqual(texme.render(input), expected)
   })
 
   it('render: multiple lines', function () {
@@ -46,6 +46,6 @@ describe('render', function () {
       '<h2>Exponential Function</h2>\n' +
       '<p>\\[ e^x = \\lim_{n \\to \\infty} ' +
       '\\left( 1+ \\frac{x}{n} \\right)^n \\]</p>\n'
-    assert.deepEqual(texme.render(input), expected)
+    assert.deepStrictEqual(texme.render(input), expected)
   })
 })

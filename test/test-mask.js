@@ -8,22 +8,22 @@ var MASK_LITERAL = texme.tokenLiteral.MASK
 describe('mask', function () {
   it('markdown', function () {
     var tokens = [[MARK, 'Foo']]
-    var expected = {text: 'Foo', tokenValues: []}
-    assert.deepEqual(texme.mask(tokens), expected)
+    var expected = { text: 'Foo', tokenValues: [] }
+    assert.deepStrictEqual(texme.mask(tokens), expected)
   })
 
   it('math', function () {
     var input = '$ 1 + 1 = 2 $'
     var tokens = [[MASK, input]]
-    var expected = {text: MASK_LITERAL, tokenValues: [input]}
-    assert.deepEqual(texme.mask(tokens), expected)
+    var expected = { text: MASK_LITERAL, tokenValues: [input] }
+    assert.deepStrictEqual(texme.mask(tokens), expected)
   })
 
   it('mask literal', function () {
     var input = MASK_LITERAL
     var tokens = [[MASK, input]]
-    var expected = {text: MASK_LITERAL, tokenValues: [input]}
-    assert.deepEqual(texme.mask(tokens), expected)
+    var expected = { text: MASK_LITERAL, tokenValues: [input] }
+    assert.deepStrictEqual(texme.mask(tokens), expected)
   })
 
   it('mixed', function () {
@@ -38,6 +38,6 @@ describe('mask', function () {
       tokenValues: ['$ 1 $', MASK_LITERAL]
     }
 
-    assert.deepEqual(texme.mask(tokens), expected)
+    assert.deepStrictEqual(texme.mask(tokens), expected)
   })
 })
