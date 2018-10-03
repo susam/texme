@@ -295,7 +295,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     // Load rendering engines.
     if (typeof window !== 'undefined') {
       loadjs('https://cdnjs.cloudflare.com/ajax/libs/commonmark/0.28.1/commonmark.js')
-      loadjs('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML')
+      loadjs('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML')
 
       // MathJax configuration.
       window.MathJax = {
