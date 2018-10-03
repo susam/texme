@@ -292,11 +292,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    * Set up dependencies and set page.
    */
   texme.main = function () {
-    // Load rendering engines.
     if (typeof window !== 'undefined') {
-      loadjs('https://cdnjs.cloudflare.com/ajax/libs/commonmark/0.28.1/commonmark.js')
-      loadjs('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML')
-
       // MathJax configuration.
       window.MathJax = {
         tex2jax: {
@@ -315,6 +311,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         // We typeset LaTeX ourselves with a MathJax.Hub.Queue call.
         skipStartupTypeset: true
       }
+
+      // Load rendering engines.
+      loadjs('https://cdnjs.cloudflare.com/ajax/libs/commonmark/0.28.1/commonmark.js')
+      loadjs('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML')
 
       // Render CommonMark + LaTeX after the document loads.
       window.onload = setPage
