@@ -1,11 +1,28 @@
 TeXMe
 =====
+
 TeXMe is a lightweight JavaScript-based utility to create self-rendering
 Markdown + LaTeX documents.
+
+[![Build Status][Travis CI SVG]][Travis CI URL]
+[![Coverage Status][Coveralls SVG]][Coveralls URL]
+[![NPM Version][Version SVG]][NPM URL]
+[![NPM Downloads][Downloads SVG]][NPM URL]
+[![MIT License][License SVG]][L]
+
+[Travis CI SVG]: https://travis-ci.com/susam/texme.svg?branch=master
+[Travis CI URL]: https://travis-ci.com/susam/texme
+[Coveralls SVG]: https://coveralls.io/repos/github/susam/texme/badge.svg?branch=master
+[Coveralls URL]: https://coveralls.io/github/susam/texme?branch=master
+[Version SVG]: https://img.shields.io/npm/v/texme.svg
+[Downloads SVG]: https://img.shields.io/npm/dt/texme.svg
+[NPM URL]: https://www.npmjs.com/package/texme
+[License SVG]: https://img.shields.io/badge/license-MIT-blue.svg
 
 
 Get Started
 -----------
+
 Copy and paste the code below into an HTML file with `.html` as the
 extension name.
 
@@ -27,6 +44,7 @@ See the [examples](examples) directory for more examples.
 
 License
 -------
+
 This is free and open source software. You can use, copy, modify,
 merge, publish, distribute, sublicense, and/or sell copies of it,
 under the terms of the MIT License. See [LICENSE.md][L] for details.
@@ -39,6 +57,7 @@ express or implied. See [LICENSE.md][L] for details.
 
 Support
 -------
+
 To report bugs, suggest improvements, or ask questions,
 [create issues][ISSUES].
 
