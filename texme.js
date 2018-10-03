@@ -178,7 +178,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   /**
    * Construct Markdown text from the specified tokens such that any
    * LaTeX tokens and mask-literal tokens are masked. The returned
-   * string is a masked string contains only Markdown text and no
+   * string is a masked string containing only Markdown text and no
    * LaTeX code at all. All LaTeX code in it is masked with
    * mask-literal. So the returned text can now be used to render the
    * Markdown content in it to HTML without affecting any LaTeX code.
@@ -204,7 +204,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
       if (tokenType === texme.tokenType.MARK) {
         maskedText.push(tokenValue)
-      } else if (tokenType === texme.tokenType.MASK) {
+      } else { // if (tokenType === texme.tokenType.MASK)
         maskedText.push(texme.tokenLiteral.MASK)
         maskedTokenValues.push(tokenValue)
       }
