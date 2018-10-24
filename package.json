@@ -36,7 +36,7 @@
     "coverage": "nyc --reporter=html --reporter=text mocha",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "min": "uglifyjs texme.js --compress --mangle --output texme.min.js",
-    "doc": "jsdoc -c jsdoc.json"
+    "docs": "jsdoc -c jsdoc.json"
   },
   "standard": {
     "env": [

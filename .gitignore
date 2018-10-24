@@ -4,7 +4,7 @@
 # Ignore generated files and directories.
 /package-lock.json
 /node_modules/
-/doc/
+/docs/
 /.nyc_output/
 /coverage/
 
