@@ -25,6 +25,7 @@
     "jsdoc": "latest",
     "jsdom": "latest",
     "mocha": "latest",
+    "sinon": "latest",
     "nyc": "latest",
     "coveralls": "latest",
     "standard": "latest",
