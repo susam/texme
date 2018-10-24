@@ -44,6 +44,60 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   var commonmark
 
   /**
+   * Exported module of TeXMe.
+   *
+   * @exports texme
+   */
+  var texme = {}
+
+  /**
+   * Configuration options object. Each configuration option is set as a
+   * property of this object.
+   *
+   * @type object
+   * @memberof inner
+   */
+  var options = {}
+
+  /**
+   * Set default configuration options.
+   */
+  texme.setDefaultOptions = function () {
+    options.renderOnLoad = true
+    options.useMathJax = true
+    options.protectMath = true
+    options.style = 'viewer'
+    options.onRenderPage = undefined
+  }
+
+  /**
+   * Read configuration options specified in `window.texme` and
+   * configure TeXMe.
+   *
+   * @memberof inner
+   */
+  var setWindowOptions = function () {
+    var key
+    for (key in options) {
+      if (typeof window !== 'undefined' &&
+          typeof window.texme !== 'undefined' &&
+          typeof window.texme[key] !== 'undefined') {
+        options[key] = window.texme[key]
+      }
+    }
+  }
+
+  /**
+   * Set configuration option.
+   *
+   * @param {string} key - Configuration option name
+   * @param {object} val - Configuration value object
+   */
+  texme.setOption = function (key, val) {
+    options[key] = val
+  }
+
+  /**
    * Load JS in browser environment.
    *
    * @param {string} url - URL of JavaScript file.
@@ -54,13 +108,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     script.src = url
     window.document.head.appendChild(script)
   }
-
-  /**
-   * Exported module of TeXMe.
-   *
-   * @exports texme
-   */
-  var texme = {}
 
   /**
    * Enumeration of texme.tokenTypes.
@@ -93,39 +140,58 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   }
 
   /**
-   * Stylesheet to use for the rendered page.
+   * A map of available CSS styles.
    *
-   * @type string
+   * @enum {string}
+   * @memberof inner
    */
-  texme.css = [
-    'body {',
-    '  color: #333333;',
-    '}',
-    'h1, h2, h3, h4, h5, h6, h7 {',
-    '  margin-bottom: 0.5em;',
-    '}',
-    'a:link, a:visited {',
-    '  color: #0000e0;',
-    '  text-decoration: underline;',
-    '}',
-    'a:hover, a:active {',
-    '  color: #0000ff;',
-    '  text-decoration: underline;',
-    '}',
-    '@media screen and (min-width: 40em) {',
-    '  body {',
-    '    background: #444;',
-    '  }',
-    '  main {',
-    '    color: #333;',
-    '    background: white;',
-    '    padding: 5em 6em;',
-    '    max-width: 40em;',
-    '    margin: 1em auto;',
-    '    box-shadow: 5px 5px 5px #222;',
-    '  }',
-    '}'
-  ].join('\n')
+  var styles = {
+    /** White pane on gray background */
+    viewer: [
+      'body {',
+      '  color: #333333;',
+      '}',
+      'h1, h2, h3, h4, h5, h6, h7 {',
+      '  margin-bottom: 0.5em;',
+      '}',
+      'a:link, a:visited {',
+      '  color: #0000e0;',
+      '  text-decoration: underline;',
+      '}',
+      'a:hover, a:active {',
+      '  color: #0000ff;',
+      '  text-decoration: underline;',
+      '}',
+      '@media screen and (min-width: 40em) {',
+      '  body {',
+      '    background: #444;',
+      '  }',
+      '  main {',
+      '    color: #333;',
+      '    background: white;',
+      '    padding: 5em 6em;',
+      '    max-width: 40em;',
+      '    margin: 1em auto;',
+      '    box-shadow: 5px 5px 5px #222;',
+      '  }',
+      '}'
+    ].join('\n'),
+
+    /** Plain white background */
+    plain: [
+      '@media screen and (min-width: 40em) {',
+      '  main {',
+      '    color: #333;',
+      '    max-width: 40em;',
+      '    margin-left: auto;',
+      '    margin-right: auto;',
+      '  }',
+      '}'
+    ].join('\n'),
+
+    /** No style whatsoever (browser defaults) */
+    none: ''
+  }
 
   /**
    * Tokenize input text containing Markdown and LaTeX code.
@@ -248,13 +314,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   }
 
   /**
-   * Render Markdown + LaTeX content to HTML.
+   * Render Markdown content while being careful that LaTeX content is
+   * not interpreted and rendered as Markdown.
    *
    * @param {string} s - Markdown + LaTeX content.
    *
    * @returns {string} Rendered HTML.
    */
-  texme.render = function (s) {
+  texme.protectMathAndRenderCommonMark = function (s) {
     var tokens = texme.tokenize(s)
     var masked = texme.mask(tokens)
     var rendered = texme.renderCommonMark(masked.text)
@@ -263,13 +330,36 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   }
 
   /**
+   * Render Markdown and/or LaTeX content into HTML.
+   *
+   * If the configuration option `protectMath` is `true` (the default),
+   * then LaTeX content is protected from Markdown renderer. Otherwise,
+   * the entire content is rendered as Markdown.
+   */
+  texme.render = function (s) {
+    if (options.protectMath) {
+      return texme.protectMathAndRenderCommonMark(s)
+    } else {
+      return texme.renderCommonMark(s)
+    }
+  }
+
+  /**
    * Set page to display the rendered content as HTML.
    */
-  var setPage = function () {
+  texme.renderPage = function () {
     // Read input text.
     var inputElement = window.document.getElementsByTagName('textarea')[0]
-    var inputText = inputElement.value
+    var inputText = inputElement.value.trim()
     var outputElement = window.document.createElement('main')
+    var title
+
+    // Set title if it is not specified explicitly.
+    if (typeof window.document.title === 'undefined' ||
+        window.document.title === '') {
+      title = inputText.split('\n', 1)[0].replace(/^\s*#*\s*|\s*#*\s*$/g, '')
+      window.document.title = title
+    }
 
     // Replace the input element with the output element.
     inputElement.remove()
@@ -277,47 +367,68 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     // Set stylesheet.
     var styleElement = window.document.createElement('style')
-    styleElement.appendChild(window.document.createTextNode(texme.css))
+    var css = styles[options.style]
+    styleElement.appendChild(window.document.createTextNode(css))
     window.document.head.appendChild(styleElement)
 
-    // Ensure commonmark module is loaded.
+    // Make commonmark available as a local variable. This ensures that
+    // we can use this local variable in browser as well as in Node.js.
     commonmark = window.commonmark
 
     // Render the output.
     outputElement.innerHTML = texme.render(inputText)
-    MathJax.Hub.Queue(['Typeset', MathJax.Hub, outputElement])
+
+    // Typeset LaTeX.
+    if (options.useMathJax) {
+      window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub, outputElement])
+    }
+
+    // Invoke onRenderPage callback (if configured).
+    if (typeof options.onRenderPage !== 'undefined') {
+      options.onRenderPage()
+    }
   }
 
   /**
    * Set up dependencies and set page.
    */
   texme.main = function () {
+    texme.setDefaultOptions()
+
     if (typeof window !== 'undefined') {
-      // MathJax configuration.
-      window.MathJax = {
-        tex2jax: {
-          // Enable $...$ as delimiter for inline math.
-          inlineMath: [['$', '$'], ['\\(', '\\)']],
-          processEscapes: true
-        },
+      setWindowOptions()
 
-        TeX: {
-          // Enable equation numbering.
-          equationNumbers: {
-            autoNumber: 'AMS'
-          }
-        },
+      loadjs('https://cdnjs.cloudflare.com/ajax/libs/commonmark/0.28.1/commonmark.js')
 
-        // We typeset LaTeX ourselves with a MathJax.Hub.Queue call.
-        skipStartupTypeset: true
+      if (options.useMathJax) {
+        // MathJax configuration.
+        window.MathJax = {
+          tex2jax: {
+            // Enable $...$ as delimiter for inline math.
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            processEscapes: true
+          },
+
+          TeX: {
+            // Enable equation numbering.
+            equationNumbers: {
+              autoNumber: 'AMS'
+            }
+          },
+
+          // We typeset LaTeX ourselves with a MathJax.Hub.Queue call.
+          skipStartupTypeset: true
+        }
+
+        loadjs('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/' +
+               'MathJax.js?config=TeX-MML-AM_CHTML')
       }
 
-      // Load rendering engines.
-      loadjs('https://cdnjs.cloudflare.com/ajax/libs/commonmark/0.28.1/commonmark.js')
-      loadjs('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML')
+      if (options.renderOnLoad) {
+        // Render CommonMark + LaTeX after the document loads.
+        window.onload = texme.renderPage
+      }
 
-      // Render CommonMark + LaTeX after the document loads.
-      window.onload = setPage
       window.texme = texme
     } else {
       commonmark = require('commonmark')

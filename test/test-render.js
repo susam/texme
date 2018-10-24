@@ -4,32 +4,48 @@ var texme = require('../texme.js')
 var MASK_LITERAL = texme.tokenLiteral.MASK
 
 describe('render', function () {
-  it('render: markdown', function () {
+  it('markdown', function () {
     var input = '*Foo* **Bar** `Baz`'
     var expected = '<p><em>Foo</em> <strong>Bar</strong> <code>Baz</code></p>\n'
     assert.deepStrictEqual(texme.render(input), expected)
   })
 
-  it('render: math', function () {
+  it('math', function () {
     var input = '$ 1 + 1 = 2 $'
     var expected = '<p>$ 1 + 1 = 2 $</p>\n'
     assert.deepStrictEqual(texme.render(input), expected)
   })
 
-  it('render: mask literal', function () {
+  it('mask literal', function () {
     var input = MASK_LITERAL
     var expected = '<p>' + MASK_LITERAL + '</p>\n'
     assert.deepStrictEqual(texme.render(input), expected)
   })
 
-  it('render: mixed', function () {
+  it('mixed', function () {
     var input = '*Foo* $ 1 + 1 = 2 $ **Bar** $$ 2 + 2 = 4 $$'
     var expected = '<p><em>Foo</em> $ 1 + 1 = 2 $ <strong>Bar</strong> ' +
              '$$ 2 + 2 = 4 $$</p>\n'
     assert.deepStrictEqual(texme.render(input), expected)
   })
 
-  it('render: multiple lines', function () {
+  it('protected math', function () {
+    var input = '$$ {a}_{1} {a}_{2} $$'
+    var expected = '<p>$$ {a}_{1} {a}_{2} $$</p>\n'
+    texme.setOption('protectMath', true)
+    assert.deepStrictEqual(texme.render(input), expected)
+    texme.setDefaultOptions()
+  })
+
+  it('unprotected math', function () {
+    var input = '$$ {a}_{1} {a}_{2} $$'
+    var expected = '<p>$$ {a}<em>{1} {a}</em>{2} $$</p>\n'
+    texme.setOption('protectMath', false)
+    assert.deepStrictEqual(texme.render(input), expected)
+    texme.setDefaultOptions()
+  })
+
+  it('multiple lines', function () {
     var input =
       'Binomial Theorem\n' +
       '----------------\n' +
