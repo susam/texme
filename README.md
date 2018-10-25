@@ -158,13 +158,14 @@ regular CSS code. Here is an example:
     <script src="https://unpkg.com/texme"></script>
     <style>
     body {
-      background: lightgray;
+      background: lightcyan;
     }
     main {
       max-width: 20em;
       padding: 1em;
       border: medium double gray;
-      margin: 1em auto;
+      margin: 2em auto;
+      background: lightyellow;
     }
     </style>
     <textarea>
