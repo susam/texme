@@ -4,12 +4,15 @@ TeXMe
 TeXMe is a lightweight JavaScript-based utility to create self-rendering
 Markdown + LaTeX documents.
 
+[![View Demo][Demo SVG]][Demo URL]
 [![Build Status][Travis CI SVG]][Travis CI URL]
 [![Coverage Status][Coveralls SVG]][Coveralls URL]
 [![NPM Version][Version SVG]][NPM URL]
 [![NPM Downloads][Downloads SVG]][NPM URL]
 [![MIT License][License SVG]][L]
 
+[Demo SVG]: https://img.shields.io/badge/view-demo-brightgreen.svg
+[Demo URL]: https://opendocs.github.io/texme/examples/e00-demo.html
 [Travis CI SVG]: https://travis-ci.com/susam/texme.svg?branch=master
 [Travis CI URL]: https://travis-ci.com/susam/texme
 [Coveralls SVG]: https://coveralls.io/repos/github/susam/texme/badge.svg?branch=master
@@ -61,15 +64,15 @@ This file contains one line of HTML code followed by Markdown + LaTeX
 content.
 
 Open this HTML file with a web browser. It renders itself to produce
-beautiful HTML output. The rendered document demonstrates two
-interesting features of TeXMe:
+look like this:
+[e01-get-started.html](https://opendocs.github.io/texme/examples/e01-get-started.html).
+
+The rendered document demonstrates two interesting features of TeXMe:
 
   - It removes any leading and trailing whitespace in the content
     specified in `<textarea>` before rendering the document.
   - It uses the first non-empty line of the content in `<textarea>` to
     set the page title if no explicit `<title>` element is specified.
-
-See the [examples](examples) directory for more examples.
 
 
 Valid HTML5
@@ -102,6 +105,9 @@ complete and valid HTML5 example:
     $$ e^{ix} = \cos x + i \sin x. $$
 
     </textarea>
+
+Here is the output:
+[e02-valid-html5.html](https://opendocs.github.io/texme/examples/e02-valid-html5.html).
 
 It has a few more lines of code to ensure that this HTML5 code validates
 successfully at [validator.w3.org][VALIDATOR]. As a result, this example
@@ -148,6 +154,9 @@ an example:
     analysis, which states that for any real number $ x $,
     $$ e^{ix} = \cos x + i \sin x. $$
 
+Here is the output:
+[e03-style-plain.html](https://opendocs.github.io/texme/examples/e03-style-plain.html).
+
 To render the document with absolutely no style, set `style` to
 `'none'`. The `'none'` style option is useful to disable the default
 `'viewer'` style set by TeXMe before defining a custom style with
@@ -181,6 +190,9 @@ regular CSS code. Here is an example:
     analysis, which states that for any real number $ x $,
     $$ e^{ix} = \cos x + i \sin x. $$
 
+Here is the output:
+[e04-style-custom.html](https://opendocs.github.io/texme/examples/e04-style-custom.html).
+
 Note that the rendered content is displayed within a `<main>` element
 inside the `<body>`. That is why these elements are being styled in the
 above example.
@@ -208,6 +220,9 @@ eliminated by setting both `useMathJax` and `protectMath` options to
     mainstream in the early 19th century when discoveries in the field of
     chemistry showed that matter did indeed behave as if it were made up of
     atoms.
+
+Here is the output:
+[e05-markdown-only.html](https://opendocs.github.io/texme/examples/e05-markdown-only.html).
 
 
 ### Skip Automatic Rendering on Load
@@ -244,6 +259,9 @@ invokes rendering later on the click of a button by using the
     $$ e^{ix} = \cos x + i \sin x. $$
     </textarea>
     <div><button id="button">Render</button></div>
+
+Here is the output:
+[e06-skip-render.html](https://opendocs.github.io/texme/examples/e06-skip-render.html).
 
 
 ### Set Options After Loading
@@ -291,6 +309,9 @@ style to `'plain'` using this function:
     $$ e^{ix} = \cos x + i \sin x. $$
     </textarea>
     <div><button id="button">Render</button></div>
+
+Here is the output:
+[e07-set-options.html](https://opendocs.github.io/texme/examples/e07-set-options.html).
 
 
 Use TeXMe as a Library
