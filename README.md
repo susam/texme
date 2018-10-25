@@ -256,6 +256,7 @@ invokes rendering later on the click of a button by using the
     Euler's identity is a special case of Euler's formula from complex
     analysis, which states that for any real number $ x $,
     $$ e^{ix} = \cos x + i \sin x. $$
+
     </textarea>
     <div><button id="button">Render</button></div>
 
@@ -306,6 +307,7 @@ style to `'plain'` using this function:
     Euler's identity is a special case of Euler's formula from complex
     analysis, which states that for any real number $ x $,
     $$ e^{ix} = \cos x + i \sin x. $$
+
     </textarea>
     <div><button id="button">Render</button></div>
 
