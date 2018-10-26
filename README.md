@@ -92,6 +92,11 @@ version of TeXMe:
 
     https://cdn.jsdelivr.net/npm/texme
 
+If you need something really easy to remember, use this URL to load the
+latest version of TeXMe:
+
+    http://unpkg.com/texme
+
 
 Valid HTML5
 -----------
