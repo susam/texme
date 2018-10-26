@@ -27,6 +27,7 @@ Contents
 --------
 
 * [Get Started](#get-started)
+* [CDN URLs](#cdn-urls)
 * [Valid HTML5](#valid-html5)
 * [Use TeXMe in Web Pages](#use-texme-in-web-pages)
   * [Style](#style)
@@ -46,7 +47,7 @@ Get Started
 Copy and paste the code below into an HTML file with `.html` as the
 extension name:
 
-    <!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.3.0"></script><textarea>
+    <!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.4.0"></script><textarea>
 
     # Euler's Identity
 
@@ -74,6 +75,20 @@ The rendered document demonstrates two interesting features of TeXMe:
     set the page title if no explicit `<title>` element is specified.
 
 
+CDN URLs
+--------
+
+Use the following URL in the `<script>` tag to load version 0.3.0 (the
+current version at this time) of TeXMe:
+
+    https://cdn.jsdelivr.net/npm/texme@0.3.0
+
+Use the following URL in the `<script>` tag to always load the latest
+version of TeXMe.
+
+    https://cdn.jsdelivr.net/npm/texme
+
+
 Valid HTML5
 -----------
 
@@ -89,7 +104,7 @@ complete and valid HTML5 example:
     <!DOCTYPE html>
     <html lang="en">
     <title>Notes on Euler's Identity</title>
-    <script src="https://cdn.jsdelivr.net/npm/texme@0.3.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/texme@0.4.0"></script>
     <textarea>
 
     # Euler's Identity
@@ -140,7 +155,7 @@ an example:
 
     <!DOCTYPE html>
     <script>window.texme = { style: 'plain' }</script>
-    <script src="https://cdn.jsdelivr.net/npm/texme@0.3.0"></script><textarea>
+    <script src="https://cdn.jsdelivr.net/npm/texme@0.4.0"></script><textarea>
 
     # Euler's Identity
 
@@ -163,7 +178,7 @@ regular CSS code. Here is an example:
 
     <!DOCTYPE html>
     <script>window.texme = { style: 'none' }</script>
-    <script src="https://cdn.jsdelivr.net/npm/texme@0.3.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/texme@0.4.0"></script>
     <style>
     body {
       background: lightcyan;
@@ -209,7 +224,7 @@ eliminated by setting both `useMathJax` and `protectMath` options to
 
     <!DOCTYPE html>
     <script>window.texme = { useMathJax: false, protectMath: false }</script>
-    <script src="https://cdn.jsdelivr.net/npm/texme@0.3.0"></script><textarea>
+    <script src="https://cdn.jsdelivr.net/npm/texme@0.4.0"></script><textarea>
 
     ### Atomic Theory
 
@@ -234,7 +249,7 @@ invokes rendering later on the click of a button by using the
 
     <!DOCTYPE html>
     <script>window.texme = { renderOnLoad: false }</script>
-    <script src="https://cdn.jsdelivr.net/npm/texme@0.3.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/texme@0.4.0"></script>
     <script>
     window.onload = function () {
       var button = document.getElementById('button')
@@ -284,7 +299,7 @@ style to `'plain'` using this function:
 
     <!DOCTYPE html>
     <script>window.texme = { renderOnLoad: false }</script>
-    <script src="https://cdn.jsdelivr.net/npm/texme@0.3.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/texme@0.4.0"></script>
     <script>
     window.onload = function () {
       var button = document.getElementById('button')
