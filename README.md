@@ -78,10 +78,10 @@ The rendered document demonstrates two interesting features of TeXMe:
 CDN URLs
 --------
 
-Use the following URL in the `<script>` tag to load version 0.3.0 (the
+Use the following URL in the `<script>` tag to load version 0.4.0 (the
 current version at this time) of TeXMe:
 
-    https://cdn.jsdelivr.net/npm/texme@0.3.0
+    https://cdn.jsdelivr.net/npm/texme@0.4.0
 
 Use the following URL in the `<script>` tag to always load the latest
 version of TeXMe.
