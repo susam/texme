@@ -41,7 +41,6 @@ Contents
   * [Set Options After Loading](#set-options-after-loading)
 * [Use TeXMe as a Library](#use-texme-as-a-library)
   * [Render Markdown and LaTeX](#render-markdown-and-latex)
-  * [Render Markdown Only](#render-markdown-only)
 * [Configuration Options](#configuration-options)
 * [License](#license)
 * [Support](#support)
@@ -220,28 +219,48 @@ above example.
 ### Render Markdown Without MathJax
 
 To render Markdown-only content without any mathematical content at all,
-it might be a good idea to eliminate the overhead of the additional
-parsing and processing that TeXMe does to prevent the Markdown renderer
-from seeing mathematical content as well as the overhead of loading and
-running MathJax. This additional overhead for math support can be
-eliminated by setting both `useMathJax` and `protectMath` options to
-`false`. Here is an example:
+use [MdMe]. MdMe is a fork of TeXMe that does not have the code or
+overhead associated with additional parsing and processing that TeXMe
+does to prevent the Markdown renderer from seeing mathematical content
+as well as the overhead of loading and running MathJax. Here is an
+example:
+
+    <!DOCTYPE html>
+    <script src="https://cdn.jsdelivr.net/npm/mdme"></script><textarea>
+
+    # Atomic Theory
+
+    **Atomic theory** is a scientific theory of the nature of matter, which
+    states that matter is composed of discrete units called *atoms*. It
+    began as a philosophical concept in ancient Greece and entered the
+    scientific mainstream in the early 19th century when discoveries in the
+    field of chemistry showed that matter did indeed behave as if it were
+    made up of atoms.
+
+Here is the output:
+[e05-mdme.html](https://opendocs.github.io/texme/examples/e05-mdme.html).
+
+A similar result can be achieved in TeXMe itself by eliminating the
+additional overhead for math support by setting `useMathJax` and
+`protectMath` options to `false`. The code for math support would still
+be loaded though. Only its execution would be eliminated. Here is an
+example:
 
     <!DOCTYPE html>
     <script>window.texme = { useMathJax: false, protectMath: false }</script>
     <script src="https://cdn.jsdelivr.net/npm/texme@0.4.0"></script><textarea>
 
-    ### Atomic Theory
+    # Atomic Theory
 
-    Atomic theory is a scientific theory of the nature of matter, which
-    states that matter is composed of discrete units called atoms. It began
-    as a philosophical concept in ancient Greece and entered the scientific
-    mainstream in the early 19th century when discoveries in the field of
-    chemistry showed that matter did indeed behave as if it were made up of
-    atoms.
+    **Atomic theory** is a scientific theory of the nature of matter, which
+    states that matter is composed of discrete units called *atoms*. It
+    began as a philosophical concept in ancient Greece and entered the
+    scientific mainstream in the early 19th century when discoveries in the
+    field of chemistry showed that matter did indeed behave as if it were
+    made up of atoms.
 
 Here is the output:
-[e05-markdown-only.html](https://opendocs.github.io/texme/examples/e05-markdown-only.html).
+[e06-markdown-only.html](https://opendocs.github.io/texme/examples/e06-markdown-only.html).
 
 
 ### Skip Automatic Rendering on Load
@@ -281,7 +300,7 @@ invokes rendering later on the click of a button by using the
     <div><button id="button">Render</button></div>
 
 Here is the output:
-[e06-skip-render.html](https://opendocs.github.io/texme/examples/e06-skip-render.html).
+[e07-skip-render.html](https://opendocs.github.io/texme/examples/e07-skip-render.html).
 
 
 ### Set Options After Loading
@@ -332,7 +351,7 @@ style to `'plain'` using this function:
     <div><button id="button">Render</button></div>
 
 Here is the output:
-[e07-set-options.html](https://opendocs.github.io/texme/examples/e07-set-options.html).
+[e08-set-options.html](https://opendocs.github.io/texme/examples/e08-set-options.html).
 
 
 Use TeXMe as a Library
@@ -365,45 +384,6 @@ a string and returns the rendered HTML as a string. Here is an example:
     console.log(output)
 
 The above example produces the following output:
-
-    <p><strong>Foo</strong> $$ {a}_{1} {a}_{2} $$</p>
-
-
-### Render Markdown Only
-
-To render Markdown-only content, use the `texme.renderCommonMark()`
-function to avoid the overhead of looking for and protecting LaTeX
-content from being rendered as Markdown. Here is an example:
-
-    var texme = require('texme')
-    var input = '**Foo** *Bar* `Baz`'
-    var output = texme.renderCommonMark(input)
-    console.log(output)
-
-The above example produces the following output:
-
-    <p><strong>Foo</strong> <em>Bar</em> <code>Baz</code></p>
-
-The behaviour of the above example is equivalent to the following:
-
-    var texme = require('texme')
-    texme.setOption('protectMath', false)
-    var input = '**Foo** *Bar* `Baz`'
-    var output = texme.render(input)
-    console.log(output)
-
-Note that the `texme.renderCommonMark()` function does not look for
-LaTeX content at all. It treats the entire input as Markdown code. As a
-result, this function renders an input like
-
-    **Foo** $$ {a}_{1} {a}_{2} $$
-
-as
-
-    <p><strong>Foo</strong> $$ {a}<em>{1} {a}</em>{2} $$</p>
-
-whereas `texme.render()` function looks for and protects LaTeX content
-thus rendering the same input as
 
     <p><strong>Foo</strong> $$ {a}_{1} {a}_{2} $$</p>
 
