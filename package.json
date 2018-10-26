@@ -1,6 +1,6 @@
 {
   "name": "texme",
-  "version": "0.4.0",
+  "version": "0.4.1-dev",
   "description": "Self-rendering Markdown + LaTeX documents",
   "main": "texme.js",
   "files": [
@@ -11,7 +11,8 @@
     "commonmark",
     "tex",
     "latex",
-    "browser"
+    "browser",
+    "node"
   ],
   "homepage": "http://github.com/susam/texme",
   "bugs": "http://github.com/susam/texme/issues",
