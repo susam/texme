@@ -22,6 +22,11 @@ Markdown + LaTeX documents.
 [NPM URL]: https://www.npmjs.com/package/texme
 [License SVG]: https://img.shields.io/badge/license-MIT-blue.svg
 
+**Note:** If you are looking for a tool that renders only Markdown (no
+LaTeX), see **[MdMe]**, a stripped down fork of this project.
+
+[MdMe]: https://github.com/susam/mdme
+
 
 Contents
 --------
