@@ -52,7 +52,7 @@ extension name:
     # Euler's Identity
 
     In mathematics, **Euler's identity** is the equality
-    $$ e^{i \pi + 1} = 0. $$
+    $$ e^{i \pi} + 1 = 0. $$
 
     ## Explanation
 
@@ -63,8 +63,8 @@ extension name:
 This file contains one line of HTML code followed by Markdown + LaTeX
 content.
 
-Open this HTML file with a web browser. It renders itself to produce
-look like this:
+Open this HTML file with a web browser. It renders itself to look like
+this:
 [e01-get-started.html](https://opendocs.github.io/texme/examples/e01-get-started.html).
 
 The rendered document demonstrates two interesting features of TeXMe:
@@ -110,7 +110,7 @@ complete and valid HTML5 example:
     # Euler's Identity
 
     In mathematics, **Euler's identity** is the equality
-    $$ e^{i \pi + 1} = 0. $$
+    $$ e^{i \pi} + 1 = 0. $$
 
     ## Explanation
 
@@ -160,7 +160,7 @@ an example:
     # Euler's Identity
 
     In mathematics, **Euler's identity** is the equality
-    $$ e^{i \pi + 1} = 0. $$
+    $$ e^{i \pi} + 1 = 0. $$
 
     ## Explanation
 
@@ -196,7 +196,7 @@ regular CSS code. Here is an example:
     # Euler's Identity
 
     In mathematics, **Euler's identity** is the equality
-    $$ e^{i \pi + 1} = 0. $$
+    $$ e^{i \pi} + 1 = 0. $$
 
     ## Explanation
 
@@ -264,7 +264,7 @@ invokes rendering later on the click of a button by using the
     # Euler's Identity
 
     In mathematics, **Euler's identity** is the equality
-    $$ e^{i \pi + 1} = 0. $$
+    $$ e^{i \pi} + 1 = 0. $$
 
     ## Explanation
 
@@ -315,7 +315,7 @@ style to `'plain'` using this function:
     # Euler's Identity
 
     In mathematics, **Euler's identity** is the equality
-    $$ e^{i \pi + 1} = 0. $$
+    $$ e^{i \pi} + 1 = 0. $$
 
     ## Explanation
 
