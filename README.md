@@ -84,7 +84,7 @@ current version at this time) of TeXMe:
     https://cdn.jsdelivr.net/npm/texme@0.4.0
 
 Use the following URL in the `<script>` tag to always load the latest
-version of TeXMe.
+version of TeXMe:
 
     https://cdn.jsdelivr.net/npm/texme
 
