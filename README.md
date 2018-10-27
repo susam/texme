@@ -1,7 +1,7 @@
 TeXMe
 =====
 
-TeXMe is a lightweight JavaScript-based utility to create self-rendering
+TeXMe is a lightweight JavaScript utility to create self-rendering
 Markdown + LaTeX documents.
 
 [![View Demo][Demo SVG]][Demo URL]
@@ -75,6 +75,15 @@ Open this HTML file with a web browser.
 It renders itself to look like this:
 [content-in-textarea.html](https://opendocs.github.io/texme/examples/content-in-textarea.html).
 
+There are two simple rules to remember while using TeXMe:
+
+  - TeXMe removes any leading and trailing whitespace in the content
+    before rendering the content to HTML.
+  - TeXMe uses the first non-empty line of the content set the page
+    title if no explicit `<title>` element is specified. Any leading and
+    trailing whitespace and hash (`#`) characters are removed while
+    setting the page title.
+
 
 ### Content in Body
 
@@ -96,42 +105,24 @@ this:
     <script src="https://cdn.jsdelivr.net/npm/texme@0.5.0"></script>
 
 Here is the output:
-[valid-html5.html](https://opendocs.github.io/texme/examples/valid-html5.html).
+[content-in-body.html](https://opendocs.github.io/texme/examples/content-in-body.html).
 
 Although, the code looks neater in this example, there is a limitation
-associated with this method: Since the content is part of the HTML
-`<body>` element (there is no `<textarea>` element in this code), the
-content should not have an HTML syntax error.
+associated with this form of writing content: Since the content is part
+of the HTML `<body>` element (there is no `<textarea>` element in this
+code), the content should be written carefully, so that it does not have
+any HTML syntax error.
 
 [content-in-textarea]: #content-in-textarea
 [content-in-body]: #content-in-body
 
+#### Caveats
 
-### Special Rules
-
-If you follow the first example ([content-in-textarea])
-example, then there are only two very simple special rules to remember:
-
-  - Any leading and trailing whitespace in the content is removed before
-    rendering the content to HTML.
-  - Also, the first non-empty line of the content is used to set the
-    page title if no explicit `<title>` element is specified. Any
-    leading and trailing whitespace and hash (`#`) characters are
-    removed while setting the page title.
-
-In other words, if you follow the first example, you only need to add a
-single line of HTML code and then start writing your Markdown + LaTeX
-content freely.
-
-However if you follow the second example ([content-in-body]), then there
-are two more special rules to follow:
-
-  - Do not follow a less-than sign (`<`) immediately with a letter.
-  - If it turns out that a less-than sign must be followed by a letter,
-    use the HTML entity `&lt;` instead of `<`.
-
-The following input is not fine because the content is in the `<body>`
-element and `<` is immediately followed by a letter.
+While using the content-in-body method of using TeXMe, an HTML syntax
+error in the content can produced mangled output. For example, the
+following input is not rendered as expected because the content is in
+the `<body>` element, so the browser interprets this content as HTML and
+encounters the beginning of a start tag that is not closed properly:
 
     Here is some unusual code:
 
@@ -139,18 +130,19 @@ element and `<` is immediately followed by a letter.
 
     <script src="https://cdn.jsdelivr.net/npm/texme@0.5.0"></script>
 
-Here is the output:
+Here is the broken output:
 [unusual-code-body-broken.html](https://opendocs.github.io/texme/examples/unusual-code-body-broken.html).
 
-The `<string` in the above code is interpreted as the opening of an HTML
-start tag by the browser. So what looks like a fragment of Python code
-to a human ends up being parsed as an HTML tag by the browser that looks
-like this:
+The `<string` part of the code is interpreted as the opening of a start
+tag by the browser. What looks like a fragment of Python code to a human
+ends up being parsed as an HTML tag by the browser that looks like this:
 `<string') <script="" src="https://cdn.jsdelivr.net/npm/texme@0.5.0">`.
+This mangled form of the input is then rendered leading to unexpected
+results.
 
-There are two ways to resolve this. The first way of course is to put
-the content within a `<textarea>` element (as explained in the very
-first example in this document). The following input is fine because the
+There are two ways to resolve this. The first way, of course, is to put
+the content within a `<textarea>` element (as shown in the very first
+example in this document). The following input is fine because the
 content is put inside a `<textarea>` element.
 
     <!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.5.0"></script><textarea>
@@ -165,9 +157,9 @@ Here is the output:
 Since the content occurs within `<textarea>` element, the browser does
 not try to parse it as HTML and therefore does not mangle it.
 
-The second way is to follow one of the two additional special
-rules for writing content in body, i.e., do not put a letter immediately
-after `<` or use `&lt;` instead. Here is an example:
+The second way to resolve this involves using `&lt;` instead of `<`, so
+that the input no longer appears to have a partial start tag. Here is an
+example:
 
     Here is some unusual code:
 
