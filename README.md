@@ -12,7 +12,7 @@ Markdown + LaTeX documents.
 [![MIT License][License SVG]][L]
 
 [Demo SVG]: https://img.shields.io/badge/view-demo-brightgreen.svg
-[Demo URL]: https://opendocs.github.io/texme/examples/e00-demo.html
+[Demo URL]: https://opendocs.github.io/texme/examples/demo.html
 [Travis CI SVG]: https://travis-ci.com/susam/texme.svg?branch=master
 [Travis CI URL]: https://travis-ci.com/susam/texme
 [Coveralls SVG]: https://coveralls.io/repos/github/susam/texme/badge.svg?branch=master
@@ -69,7 +69,7 @@ content.
 
 Open this HTML file with a web browser. It renders itself to look like
 this:
-[e01-get-started.html](https://opendocs.github.io/texme/examples/e01-get-started.html).
+[get-started.html](https://opendocs.github.io/texme/examples/get-started.html).
 
 The rendered document demonstrates two interesting features of TeXMe:
 
@@ -95,7 +95,7 @@ version of TeXMe:
 If you need something really easy to remember, use this URL to load the
 latest version of TeXMe:
 
-    http://unpkg.com/texme
+    https://unpkg.com/texme
 
 
 Valid HTML5
@@ -130,7 +130,7 @@ complete and valid HTML5 example:
     </textarea>
 
 Here is the output:
-[e02-valid-html5.html](https://opendocs.github.io/texme/examples/e02-valid-html5.html).
+[valid-html5.html](https://opendocs.github.io/texme/examples/valid-html5.html).
 
 It has a few more lines of code to ensure that this HTML5 code validates
 successfully at [validator.w3.org][VALIDATOR]. As a result, this example
@@ -178,7 +178,7 @@ an example:
     $$ e^{ix} = \cos x + i \sin x. $$
 
 Here is the output:
-[e03-style-plain.html](https://opendocs.github.io/texme/examples/e03-style-plain.html).
+[style-plain.html](https://opendocs.github.io/texme/examples/style-plain.html).
 
 To render the document with absolutely no style, set `style` to
 `'none'`. The `'none'` style option is useful to disable the default
@@ -214,7 +214,7 @@ regular CSS code. Here is an example:
     $$ e^{ix} = \cos x + i \sin x. $$
 
 Here is the output:
-[e04-style-custom.html](https://opendocs.github.io/texme/examples/e04-style-custom.html).
+[style-custom.html](https://opendocs.github.io/texme/examples/style-custom.html).
 
 Note that the rendered content is displayed within a `<main>` element
 inside the `<body>`. That is why these elements are being styled in the
@@ -243,7 +243,7 @@ example:
     made up of atoms.
 
 Here is the output:
-[e05-mdme.html](https://opendocs.github.io/texme/examples/e05-mdme.html).
+[mdme.html](https://opendocs.github.io/texme/examples/mdme.html).
 
 A similar result can be achieved in TeXMe itself by eliminating the
 additional overhead for math support by setting `useMathJax` and
@@ -265,7 +265,7 @@ example:
     made up of atoms.
 
 Here is the output:
-[e06-markdown-only.html](https://opendocs.github.io/texme/examples/e06-markdown-only.html).
+[markdown-only.html](https://opendocs.github.io/texme/examples/markdown-only.html).
 
 
 ### Skip Automatic Rendering on Load
@@ -305,7 +305,7 @@ invokes rendering later on the click of a button by using the
     <div><button id="button">Render</button></div>
 
 Here is the output:
-[e07-skip-render.html](https://opendocs.github.io/texme/examples/e07-skip-render.html).
+[skip-render.html](https://opendocs.github.io/texme/examples/skip-render.html).
 
 
 ### Set Options After Loading
@@ -356,7 +356,7 @@ style to `'plain'` using this function:
     <div><button id="button">Render</button></div>
 
 Here is the output:
-[e08-set-options.html](https://opendocs.github.io/texme/examples/e08-set-options.html).
+[set-options.html](https://opendocs.github.io/texme/examples/set-options.html).
 
 
 Use TeXMe as a Library
