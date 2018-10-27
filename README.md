@@ -8,7 +8,6 @@ Markdown + LaTeX documents.
 [![Build Status][Travis CI SVG]][Travis CI URL]
 [![Coverage Status][Coveralls SVG]][Coveralls URL]
 [![NPM Version][Version SVG]][NPM URL]
-[![NPM Downloads][Downloads SVG]][NPM URL]
 [![MIT License][License SVG]][L]
 
 [Demo SVG]: https://img.shields.io/badge/view-demo-brightgreen.svg
@@ -18,7 +17,6 @@ Markdown + LaTeX documents.
 [Coveralls SVG]: https://coveralls.io/repos/github/susam/texme/badge.svg?branch=master
 [Coveralls URL]: https://coveralls.io/github/susam/texme?branch=master
 [Version SVG]: https://img.shields.io/npm/v/texme.svg
-[Downloads SVG]: https://img.shields.io/npm/dt/texme.svg
 [NPM URL]: https://www.npmjs.com/package/texme
 [License SVG]: https://img.shields.io/badge/license-MIT-blue.svg
 
