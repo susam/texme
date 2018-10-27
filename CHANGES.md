@@ -1,6 +1,15 @@
 Changelog
 =========
 
+0.5.0 (2018-10-27)
+------------------
+
+### Added
+
+- Allow content to be written directly in the body without `<textarea>`.
+- Support TeXMe `<script>` tag at the end of the document.
+
+
 0.4.0 (2018-10-26)
 ------------------
 
