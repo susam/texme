@@ -348,11 +348,19 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    * Set page to display the rendered content as HTML.
    */
   texme.renderPage = function () {
-    // Read input text.
-    var inputElement = window.document.getElementsByTagName('textarea')[0]
-    var inputText = inputElement.value.trim()
+    var textareaElements = window.document.getElementsByTagName('textarea')
     var outputElement = window.document.createElement('main')
+    var inputText
     var title
+
+    // Remove input from page after reading it into a local variable.
+    if (textareaElements.length > 0) {
+      inputText = textareaElements[0].value.trim()
+      textareaElements[0].remove()
+    } else {
+      inputText = document.body.innerHTML.trim()
+      document.body.innerHTML = ''
+    }
 
     // Set title if it is not specified explicitly.
     if (typeof window.document.title === 'undefined' ||
@@ -361,8 +369,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       window.document.title = title
     }
 
-    // Replace the input element with the output element.
-    inputElement.remove()
+    // Create the output element.
     window.document.body.appendChild(outputElement)
 
     // Set stylesheet.
