@@ -27,15 +27,7 @@ describe('main', function () {
     global.window.texme = {
       useMathJax: false,
       onRenderPage: function () {
-        var textareaList = window.document.getElementsByTagName('textarea')
-        var mainList = window.document.getElementsByTagName('main')
-
-        assert.strictEqual(textareaList.length, 0)
-        assert.strictEqual(mainList.length, 1)
-
         delete global.window
-        delete global.MathJax
-
         done()
       }
     }
@@ -53,14 +45,7 @@ describe('main', function () {
     texme.main()
 
     setTimeout(function () {
-      var textareaList = window.document.getElementsByTagName('textarea')
-      var mainList = window.document.getElementsByTagName('main')
-
-      assert.strictEqual(textareaList.length, 1)
-      assert.strictEqual(mainList.length, 0)
-
       delete global.window
-
       done()
     }, 25)
   })

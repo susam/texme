@@ -5,6 +5,34 @@ var sinon = require('sinon')
 var texme = require('../texme.js')
 
 describe('renderPage', function () {
+  it('content in textarea', function () {
+    var html = '<textarea>Foo'
+
+    global.window = new jsdom.JSDOM(html).window
+    global.window.commonmark = commonmark
+    global.window.MathJax = { Hub: { Queue: sinon.fake() } }
+
+    texme.renderPage()
+    assert.strictEqual(global.window.document.body.innerHTML,
+      '<main><p>Foo</p>\n</main>')
+
+    delete global.window
+  })
+
+  it('content in body', function () {
+    var html = 'Foo'
+
+    global.window = new jsdom.JSDOM(html).window
+    global.window.commonmark = commonmark
+    global.window.MathJax = { Hub: { Queue: sinon.fake() } }
+
+    texme.renderPage()
+    assert.strictEqual(global.window.document.body.innerHTML,
+      '<main><p>Foo</p>\n</main>')
+
+    delete global.window
+  })
+
   it('mathjax typeset', function () {
     var html = '<!DOCTYPE html><textarea>Foo'
     var fakeQueueFunction = sinon.fake()
@@ -14,8 +42,9 @@ describe('renderPage', function () {
     global.window.MathJax = { Hub: { Queue: fakeQueueFunction } }
 
     texme.renderPage()
-
     assert(fakeQueueFunction.called)
+
+    delete global.window
   })
 
   it('implicit title from content', function () {
@@ -26,8 +55,9 @@ describe('renderPage', function () {
     global.window.MathJax = { Hub: { Queue: sinon.fake() } }
 
     texme.renderPage()
-
     assert.strictEqual(global.window.document.title, 'Foo')
+
+    delete global.window
   })
 
   it('remove leading and trailing spaces in implicit title', function () {
@@ -38,8 +68,9 @@ describe('renderPage', function () {
     global.window.MathJax = { Hub: { Queue: sinon.fake() } }
 
     texme.renderPage()
-
     assert.strictEqual(global.window.document.title, 'Foo')
+
+    delete global.window
   })
 
   it('remove leading and trailing hashes in implicit title', function () {
@@ -50,8 +81,9 @@ describe('renderPage', function () {
     global.window.MathJax = { Hub: { Queue: sinon.fake() } }
 
     texme.renderPage()
-
     assert.strictEqual(global.window.document.title, 'Foo')
+
+    delete global.window
   })
 
   it('explicit title intact', function () {
@@ -62,8 +94,9 @@ describe('renderPage', function () {
     global.window.MathJax = { Hub: { Queue: sinon.fake() } }
 
     texme.renderPage()
-
     assert.strictEqual(global.window.document.title, 'Qux')
+
+    delete global.window
   })
 
   it('spaces and hashes intact in explicit title', function () {
@@ -74,8 +107,9 @@ describe('renderPage', function () {
     global.window.MathJax = { Hub: { Queue: sinon.fake() } }
 
     texme.renderPage()
-
     assert.strictEqual(global.window.document.title, '### Qux ###')
+
+    delete global.window
   })
 
   it('explicit title intact', function () {
@@ -86,44 +120,8 @@ describe('renderPage', function () {
     global.window.MathJax = { Hub: { Queue: sinon.fake() } }
 
     texme.renderPage()
-
     assert.strictEqual(global.window.document.title, 'Qux')
+
+    delete global.window
   })
-
-  /*
-  it('in browser with render on load', function (done) {
-    var html = '<!DOCTYPE html><textarea>Foo'
-    global.window = new jsdom.JSDOM(html).window
-    global.window.commonmark = commonmark
-    global.window.MathJax = { Hub: { Queue: function () {} } } // mock
-    global.window.texme = {
-      renderOnLoad: true,
-      onRenderPage: function () {
-        assert.notStrictEqual(typeof global.window.texme, 'undefined')
-
-        delete global.window
-        delete global.MathJax
-
-        done()
-      }
-    }
-
-    texme.renderPage()
-  })
-
-  it('in browser use mathjax', function (done) {
-    var html = '<!DOCTYPE html><textarea>Foo'
-    global.window = new jsdom.JSDOM(html).window
-    global.window.commonmark = commonmark
-    global.window.MathJax = { Hub: { Queue: function () {} } } // mock
-    global.window.texme = {
-      onRenderPage: function () {
-        delete global.window
-        delete global.MathJax
-        done()
-      }
-    }
-    texme.renderPage()
-  })
-  */
 })

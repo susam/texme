@@ -358,8 +358,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       inputText = textareaElements[0].value.trim()
       textareaElements[0].remove()
     } else {
-      inputText = document.body.innerHTML.trim()
-      document.body.innerHTML = ''
+      inputText = window.document.body.innerHTML.trim()
+      window.document.body.innerHTML = ''
     }
 
     // Set title if it is not specified explicitly.
