@@ -103,9 +103,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    * @param {string} url - URL of JavaScript file.
    * @memberof inner
    */
-  var loadjs = function (url) {
+  var loadjs = function (url, callback) {
     var script = window.document.createElement('script')
     script.src = url
+    script.onload = callback
     window.document.head.appendChild(script)
   }
 
@@ -378,10 +379,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     styleElement.appendChild(window.document.createTextNode(css))
     window.document.head.appendChild(styleElement)
 
-    // Make commonmark available as a local variable. This ensures that
-    // we can use this local variable in browser as well as in Node.js.
-    commonmark = window.commonmark
-
     // Render the output.
     outputElement.innerHTML = texme.render(inputText)
 
@@ -405,7 +402,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     if (typeof window !== 'undefined') {
       setWindowOptions()
 
-      loadjs('https://cdnjs.cloudflare.com/ajax/libs/commonmark/0.28.1/commonmark.js')
+      loadjs('https://cdnjs.cloudflare.com/ajax/libs/commonmark/0.28.1/commonmark.js',
+        function () {
+          commonmark = window.commonmark
+        })
 
       if (options.useMathJax) {
         // MathJax configuration.
