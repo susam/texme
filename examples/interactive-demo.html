@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<script src="../texme.js"></script>
+<script>
+  window.onload = function () {
+    var render = document.getElementById('render')
+    var clear = document.getElementById('clear')
+    var reset = document.getElementById('reset')
+
+    var input = document.getElementById('input')
+    var html = document.getElementById('html')
+    var preview = document.getElementById('preview')
+    var defaultInput = input.value
+
+    render.onclick = function () {
+      var output = texme.render(input.value)
+      html.value = output
+      preview.innerHTML = output
+      window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub, preview])
+    }
+
+    clear.onclick = function () {
+      input.value = ''
+      html.value = ''
+      preview.innerHTML = ''
+    }
+
+    reset.onclick = function () {
+      input.value = defaultInput
+    }
+  }
+</script>
+<style>
+  main {
+    max-width: 40em;
+  }
+  h1.io {
+    font-size: 1.2em;
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
+  }
+  textarea {
+    width: 100%;
+    height: 12em;
+  }
+  button {
+    margin-top: 0.5em;
+  }
+  #html {
+    background: #e8e8e8;
+  }
+  #preview {
+    min-height: 10em;
+    border: thin solid gray;
+    padding: 1em;
+  }
+</style>
+<main>
+
+  <h1 class="io">Markdown + LaTeX Input</h1>
+<textarea id="input">
+# Euler's Identity
+
+In mathematics, **Euler's identity** is the equality
+$$ e^{i \pi} + 1 = 0. $$
+
+## Explanation
+
+Euler's identity is a special case of Euler's formula from complex
+analysis, which states that for any real number $ x $,
+$$ e^{ix} = \cos x + i \sin x. $$
+</textarea>
+
+  <div>
+    <button id="render">Render</button>
+    <button id="clear">Clear</button>
+    <button id="reset">Reset</button>
+  </div>
+
+  <h1 class="io">Output HTML</h1>
+
+<textarea id="html" readonly>
+</textarea>
+
+  <h1 class="io">Output Preview</h1>
+
+  <div id="preview">
+  </div>
+</main>
