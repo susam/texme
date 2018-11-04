@@ -101,6 +101,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    * Load JS in browser environment.
    *
    * @param {string} url - URL of JavaScript file.
+   * @param {function} callback - Callback to invoke after script loads.
    * @memberof inner
    */
   var loadjs = function (url, callback) {
