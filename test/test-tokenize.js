@@ -24,6 +24,18 @@ describe('tokenize', function () {
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
+  it('math with escaped single dollars 1', function () {
+    var input = '\\$ 1 + 1 = 2 $'
+    var expected = [[MARK, input]]
+    assert.deepStrictEqual(texme.tokenize(input), expected)
+  })
+
+  it('math with escaped single dollars 2', function () {
+    var input = '$ 1 + 1 = 2 \\$'
+    var expected = [[MARK, input]]
+    assert.deepStrictEqual(texme.tokenize(input), expected)
+  })
+
   it('math with parentheses', function () {
     var input = '\\( 1 + 1 = 2 \\)'
     var expected = [[MASK, input]]
