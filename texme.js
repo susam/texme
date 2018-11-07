@@ -44,6 +44,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   var commonmark
 
   /**
+   * The esrever.js module is loaded and assigned to this variable.
+   *
+   * @type object
+   * @memberof inner
+   */
+  var esrever
+
+  /**
    * Exported module of TeXMe.
    *
    * @exports texme
@@ -198,6 +206,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   /**
    * Tokenize input text containing Markdown and LaTeX code.
    *
+   * We must first reverse the entire text so that we can use regex lookahead
+   * for escaping single dollar signs. A lookbehind regex expression exists for
+   * this, but unfortunately lookbehind is currently unsupported by the
+   * majority of major browsers.
+   *
    * @param {string} s - Text with Markdown and LaTeX code.
    *
    * @returns {Array<Array<string>>} An array of tokens of the form
@@ -207,14 +220,19 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    *   value (string).
    */
   texme.tokenize = function (s) {
+    // First, reverse the entire input string
+    s = esrever.reverse(s)
+
+    // Declare regex pattern for matching Mathjax tokens for a reversed string
     var pattern = [
-      '\\\\begin{.*}[\\s\\S]*?\\\\end{.*}', // \begin{..}..\end{..}
-      '\\\\\\[[\\s\\S]*?\\\\\\]', // \[..\]
-      '\\\\\\([\\s\\S]*?\\\\\\)', // \(..\)
+      '}.*{dne\\\\[\\s\\S]*?}.*{nigeb\\\\', // \begin{..}..\end{..} (but for text that's been reversed)
+      '\\]\\\\[\\s\\S]*?\\[\\\\', // \[..\] (but for text that's been reversed)
+      '\\)\\\\[\\s\\S]*?\\(\\\\', // \(..\) (but for text that's been reversed)
       '\\$\\$[\\s\\S]*?\\$\\$', // $$..$$
-      '\\$[\\s\\S]*?\\$', // $..$
-      texme.tokenLiteral.MASK // ::MASK::
+      '\\$(?!\\\\)[\\s\\S]*?\\$(?!\\\\)', // $..$ (but excluding escaped single dollar signs)
+      esrever.reverse(texme.tokenLiteral.MASK) // ::MASK:: (but for text that's been reversed)
     ].join('|')
+
     var re = new RegExp(pattern, 'g')
 
     var result
@@ -239,6 +257,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     if (s.length > nextIndex) {
       tokens.push([texme.tokenType.MARK, markdownText])
     }
+
+    // Finally, re-reverse tokens and their texts
+    tokens.reverse()
+    tokens.forEach((token) => {
+      token[1] = esrever.reverse(token[1])
+    })
 
     return tokens
   }
@@ -408,6 +432,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
           commonmark = window.commonmark
         })
 
+      loadjs('https://cdn.jsdelivr.net/npm/esrever@0.2.0/esrever.js',
+        function () {
+          esrever = window.esrever
+        })
+
       if (options.useMathJax) {
         // MathJax configuration.
         window.MathJax = {
@@ -440,6 +469,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       window.texme = texme
     } else {
       commonmark = require('commonmark')
+      esrever = require('esrever')
       module.exports = texme
     }
   }
