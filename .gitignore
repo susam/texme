@@ -3,6 +3,7 @@
 
 # Ignore generated files and directories.
 /package-lock.json
+/yarn.lock
 /node_modules/
 /docs/
 /.nyc_output/
@@ -22,3 +23,6 @@ qux.*
 
 # Ignore personal backup files.
 *.bkp
+
+# Ignore JetBrains IDE files
+.idea/
