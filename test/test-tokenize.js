@@ -24,6 +24,61 @@ describe('tokenize', function () {
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
+  it('escaped dollar in the begining', function () {
+    var input = '\\$ 1 + 1 = 2 $'
+    var expected = [[MASK, '\\$'], [MARK, ' 1 + 1 = 2 $']]
+    assert.deepStrictEqual(texme.tokenize(input), expected)
+  })
+
+  it('escaped dollar in the end', function () {
+    var input = '$ 1 + 1 = 2 \\$'
+    var expected = [[MARK, '$ 1 + 1 = 2 '], [MASK, '\\$']]
+    assert.deepStrictEqual(texme.tokenize(input), expected)
+  })
+
+  it('escaped dollar followed by dollar in the beginning', function () {
+    var input = '\\$$ 1 + 1 = 2 $$'
+    var expected = [[MASK, '\\$'], [MASK, '$ 1 + 1 = 2 $'], [MARK, '$']]
+    assert.deepStrictEqual(texme.tokenize(input), expected)
+  })
+
+  it('escaped dollar followed by dollar in the end', function () {
+    var input = '$$ 1 + 1 = 2 \\$$'
+    var expected = [[MARK, '$'], [MASK, '$ 1 + 1 = 2 \\$$']]
+    assert.deepStrictEqual(texme.tokenize(input), expected)
+
+    // The above expected output shows a deviation from MathJax behaviour.
+    // MathJax would treat the entire input `$$ 1 + 1 = 2 \$` to be non-math.
+    // However we are parsing `$ 1 + 1 = 2 \$$` as math. There are a few things
+    // to be said here:
+    //
+    //   - This difference in behaviour is not apparent to the user. Even with
+    //     our deviant tokenization, after mask(), renderCommonMark(), and
+    //     unmask(), we present `$$ 1 + 1 = 2 \$$` to MathJax, so it would end
+    //     up treating the whole input as non-math anyway. The behaviour
+    //     visible to the user is same with both TeXMe and pure-MathJax.
+    //
+    //   - We expect the user to write `\$` instead of `$` whenever the `$`
+    //     could be confused with TeX-delimiters. Therefore, an input like this
+    //     which is meant to be purely non-math input is expected to be entered
+    //     as `\$\$ 1 + 1 = 2 \$\$` by the user. In this project, we will not
+    //     try too hard to maintain behaviour-parity with MathJax for
+    //     ill-written input. But we will try hard to do so for well-written
+    //     input.
+  })
+
+  it('escaped dollar in inline math', function () {
+    var input = '$ \\$1 $'
+    var expected = [[MASK, '$ \\$1 $']]
+    assert.deepStrictEqual(texme.tokenize(input), expected)
+  })
+
+  it('escaped dollar in displayed math', function () {
+    var input = '$$ \\$1 $$'
+    var expected = [[MASK, '$$ \\$1 $$']]
+    assert.deepStrictEqual(texme.tokenize(input), expected)
+  })
+
   it('math with parentheses', function () {
     var input = '\\( 1 + 1 = 2 \\)'
     var expected = [[MASK, input]]

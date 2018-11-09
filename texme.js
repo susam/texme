@@ -214,8 +214,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       '\\\\begin{.*}[\\s\\S]*?\\\\end{.*}', // \begin{..}..\end{..}
       '\\\\\\[[\\s\\S]*?\\\\\\]', // \[..\]
       '\\\\\\([\\s\\S]*?\\\\\\)', // \(..\)
-      '\\$\\$[\\s\\S]*?\\$\\$', // $$..$$
-      '\\$[\\s\\S]*?\\$', // $..$
+      '\\\\\\$', // \$ (literal dollar supported by processEscapes)
+      '\\$\\$(?:[^\\\\]|\\\\.)*?\\$\\$', // $$..$$
+      '\\$(?:[^$\\\\]|\\\\.)+?\\$', // $..$
       texme.tokenLiteral.MASK // ::MASK::
     ].join('|')
     var re = new RegExp(pattern, 'g')
