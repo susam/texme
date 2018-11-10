@@ -4,6 +4,11 @@ var texme = require('../texme.js')
 var MASK_LITERAL = texme.tokenLiteral.MASK
 
 describe('render', function () {
+  before(function () {
+    // Ensure that commonmark is loaded.
+    texme.main()
+  })
+
   it('markdown', function () {
     var input = '*Foo* **Bar** `Baz`'
     var expected = '<p><em>Foo</em> <strong>Bar</strong> <code>Baz</code></p>\n'

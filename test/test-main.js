@@ -1,9 +1,17 @@
 var assert = require('assert')
+var url = require('url')
 var jsdom = require('jsdom')
 var commonmark = require('commonmark')
 var texme = require('../texme.js')
 
 describe('main', function () {
+  afterEach(function () {
+    // Reset the internal commonmark variable to the commonmark object
+    // imported with the require() call to ensure that no fake
+    // commonmark object lingers around.
+    texme.main()
+  })
+
   it('texme definition in browser', function () {
     var html = '<!DOCTYPE html><textarea>Foo'
     global.window = new jsdom.JSDOM(html).window
@@ -21,11 +29,15 @@ describe('main', function () {
 
   it('commonmark definition in browser', function (done) {
     var html = '<!DOCTYPE html><textarea>Foo'
-    var options = { runScripts: 'dangerously', resources: 'usable' }
-    this.timeout(10000) // Allow some time for commonmark to load
+    var options = {
+      url: url.resolve('file:///', __filename),
+      runScripts: 'dangerously',
+      resources: 'usable'
+    }
     global.window = new jsdom.JSDOM(html, options).window
     global.window.texme = {
       useMathJax: false,
+      commonmarkURL: 'aux/fakecommonmark.js',
       onRenderPage: function () {
         assert.notStrictEqual(typeof global.window.commonmark, 'undefined')
         delete global.window

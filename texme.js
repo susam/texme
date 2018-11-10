@@ -68,6 +68,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     options.protectMath = true
     options.style = 'viewer'
     options.onRenderPage = undefined
+    options.commonmarkURL =
+      'https://cdnjs.cloudflare.com/ajax/libs/commonmark/0.28.1/commonmark.min.js'
+    options.MathJaxURL =
+      'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
   }
 
   /**
@@ -325,6 +329,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    *
    * @param {string} s - Markdown + LaTeX content.
    *
+   *
    * @returns {string} Rendered HTML.
    */
   texme.protectMathAndRenderCommonMark = function (s) {
@@ -407,10 +412,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     if (typeof window !== 'undefined') {
       setWindowOptions()
 
-      loadjs('https://cdnjs.cloudflare.com/ajax/libs/commonmark/0.28.1/commonmark.min.js',
-        function () {
-          commonmark = window.commonmark
-        })
+      loadjs(options.commonmarkURL, function () {
+        commonmark = window.commonmark
+      })
 
       if (options.useMathJax) {
         // MathJax configuration.
@@ -432,8 +436,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
           skipStartupTypeset: true
         }
 
-        loadjs('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/' +
-               'MathJax.js?config=TeX-MML-AM_CHTML')
+        loadjs(options.MathJaxURL)
       }
 
       if (options.renderOnLoad) {

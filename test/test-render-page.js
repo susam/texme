@@ -1,15 +1,18 @@
 var assert = require('assert')
 var jsdom = require('jsdom')
-var commonmark = require('commonmark')
 var sinon = require('sinon')
 var texme = require('../texme.js')
 
 describe('renderPage', function () {
+  before(function () {
+    // Ensure that commonmark is loaded.
+    texme.main()
+  })
+
   it('content in textarea', function () {
     var html = '<textarea>Foo'
 
     global.window = new jsdom.JSDOM(html).window
-    global.window.commonmark = commonmark
     global.window.MathJax = { Hub: { Queue: sinon.fake() } }
 
     texme.renderPage()
@@ -23,7 +26,6 @@ describe('renderPage', function () {
     var html = 'Foo'
 
     global.window = new jsdom.JSDOM(html).window
-    global.window.commonmark = commonmark
     global.window.MathJax = { Hub: { Queue: sinon.fake() } }
 
     texme.renderPage()
@@ -38,7 +40,6 @@ describe('renderPage', function () {
     var fakeQueueFunction = sinon.fake()
 
     global.window = new jsdom.JSDOM(html).window
-    global.window.commonmark = commonmark
     global.window.MathJax = { Hub: { Queue: fakeQueueFunction } }
 
     texme.renderPage()
@@ -51,7 +52,6 @@ describe('renderPage', function () {
     var html = '<!DOCTYPE html><textarea>Foo\nBar\nBaz'
 
     global.window = new jsdom.JSDOM(html).window
-    global.window.commonmark = commonmark
     global.window.MathJax = { Hub: { Queue: sinon.fake() } }
 
     texme.renderPage()
@@ -64,7 +64,6 @@ describe('renderPage', function () {
     var html = '<!DOCTYPE html><textarea> \n \tFoo\t \nBar\nBaz'
 
     global.window = new jsdom.JSDOM(html).window
-    global.window.commonmark = commonmark
     global.window.MathJax = { Hub: { Queue: sinon.fake() } }
 
     texme.renderPage()
@@ -77,7 +76,6 @@ describe('renderPage', function () {
     var html = '<!DOCTYPE html><textarea>### Foo ###\nBar\nBaz'
 
     global.window = new jsdom.JSDOM(html).window
-    global.window.commonmark = commonmark
     global.window.MathJax = { Hub: { Queue: sinon.fake() } }
 
     texme.renderPage()
@@ -90,7 +88,6 @@ describe('renderPage', function () {
     var html = '<!DOCTYPE html><title>Qux</title><textarea>Foo\nBar\nBaz'
 
     global.window = new jsdom.JSDOM(html).window
-    global.window.commonmark = commonmark
     global.window.MathJax = { Hub: { Queue: sinon.fake() } }
 
     texme.renderPage()
@@ -103,7 +100,6 @@ describe('renderPage', function () {
     var html = '<!DOCTYPE html><title>### Qux ###</title><textarea>Foo'
 
     global.window = new jsdom.JSDOM(html).window
-    global.window.commonmark = commonmark
     global.window.MathJax = { Hub: { Queue: sinon.fake() } }
 
     texme.renderPage()
@@ -116,7 +112,6 @@ describe('renderPage', function () {
     var html = '<!DOCTYPE html><title>Qux</title><textarea>Foo\nBar\nBaz'
 
     global.window = new jsdom.JSDOM(html).window
-    global.window.commonmark = commonmark
     global.window.MathJax = { Hub: { Queue: sinon.fake() } }
 
     texme.renderPage()
