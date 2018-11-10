@@ -21,8 +21,7 @@
   "author": "Susam Pal <susam@susam.in> (http://susam.in/)",
   "repository": "github:susam/texme",
   "dependencies": {
-    "commonmark": "latest",
-    "esrever": "^0.2.0"
+    "commonmark": "latest"
   },
   "devDependencies": {
     "coveralls": "latest",
