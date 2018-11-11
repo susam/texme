@@ -68,6 +68,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     options.protectMath = true
     options.style = 'viewer'
     options.onRenderPage = undefined
+
+    // Update "Configuration Options" section of README.md if any of the
+    // following URLs is updated.
     options.commonmarkURL =
       'https://cdnjs.cloudflare.com/ajax/libs/commonmark/0.28.1/commonmark.min.js'
     options.MathJaxURL =

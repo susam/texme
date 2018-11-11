@@ -529,6 +529,13 @@ Here is a quick reference for all the supported configuration options:
     automatic rendering on load or due to explicit call to this
     function.
 
+  - `commonmarkURL` (CDN URL of minified commonmark.js, i.e.,
+    commonmark.min.js, version 0.28.1 by default): URL to load
+    commonmark.js while running in a web browser.
+
+  - `MathJaxURL` (CDN URL of MathJax version 2.7.5): URL to load
+    MathJax.js while running in a web browser.
+
 
 License
 -------
