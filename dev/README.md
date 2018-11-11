@@ -29,8 +29,7 @@ Perform the following tasks for every release:
   - Tag the release.
 
         git tag <VERSION> -m "TeXMe <VERSION>"
-        git push
-        git push origin <VERSION>
+        git push origin master <VERSION>
 
   - Publish package.
 
