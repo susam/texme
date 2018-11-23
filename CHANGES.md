@@ -4,6 +4,7 @@ Changelog
 0.6.0 (2018-10-22)
 ------------------
 ### Added
+- Load commonmark.min.js instead of commonmark.js.
 - Support escaped dollar to represent literal dollar sign.
 - Add option `commonmarkURL` to define URL to load commonmark from.
 - Add option `MathJaxURL` to define URL to load MathJax from.
