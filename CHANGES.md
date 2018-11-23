@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.6.0 (2018-10-22)
+0.6.0 (2018-11-22)
 ------------------
 ### Added
 - Load commonmark.min.js instead of commonmark.js.
