@@ -392,6 +392,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     styleElement.appendChild(window.document.createTextNode(css))
     window.document.head.appendChild(styleElement)
 
+    // Set meta element.
+    var metaElement = window.document.createElement('meta')
+    metaElement.name = 'viewport'
+    metaElement.content = 'width=device-width; initial-scale=1.0'
+    window.document.head.appendChild(metaElement)
+
     // Render the output.
     outputElement.innerHTML = texme.render(inputText)
 
