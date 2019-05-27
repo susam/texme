@@ -79,7 +79,7 @@ There are two simple rules to remember while using TeXMe:
 
   - TeXMe removes any leading and trailing whitespace in the content
     before rendering the content to HTML.
-  - TeXMe uses the first non-empty line of the content set the page
+  - TeXMe uses the first non-empty line of the content to set the page
     title if no explicit `<title>` element is specified. Any leading and
     trailing whitespace and hash (`#`) characters are removed while
     setting the page title.
