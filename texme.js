@@ -155,48 +155,70 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    * @memberof inner
    */
   var styles = {
-    /** White pane on gray background */
-    viewer: [
+    /** Plain white background */
+    plain: [
       'body {',
-      '  color: #333333;',
+      '  color: #333;',
+      '}',
+      'main {',
+      '  max-width: 40em;',
+      '  margin-left: auto;',
+      '  margin-right: auto;',
       '}',
       'h1, h2, h3, h4, h5, h6, h7 {',
+      '  margin-top: 1.2em;',
       '  margin-bottom: 0.5em;',
       '}',
       'a:link, a:visited {',
-      '  color: #0000e0;',
-      '  text-decoration: underline;',
+      '  color: #03c;',
+      '  text-decoration: none;',
       '}',
       'a:hover, a:active {',
-      '  color: #0000ff;',
+      '  color: #03f;',
       '  text-decoration: underline;',
       '}',
       'img {',
       '  max-width: 100%;',
       '}',
+      'pre, code, samp, kbd {',
+      '  font-family: monospace,monospace;',
+      '  font-size: 0.9em;',
+      '  color: #009;',
+      '}',
+      'pre code, pre samp, pre kbd {',
+      '  font-size: 1em;',
+      '}',
+      'pre {',
+      '  padding: 0.5em;',
+      '  overflow: auto;',
+      '  background: #eee;',
+      '}',
+      'blockquote {',
+      '  border-left: medium solid #ccc;',
+      '  margin-left: 0;',
+      '  margin-right: 0;',
+      '  padding: 0.5em;',
+      '  background: #eee;',
+      '}',
+      'blockquote *:first-child {',
+      '  margin-top: 0;',
+      '}',
+      'blockquote *:last-child {',
+      '  margin-bottom: 0;',
+      '}',
+    ].join('\n'),
+
+    /** White pane on gray background */
+    viewer: [
       '@media screen and (min-width: 40em) {',
       '  body {',
       '    background: #444;',
       '  }',
       '  main {',
-      '    color: #333;',
-      '    background: white;',
+      '    background: #fff;',
       '    padding: 5em 6em;',
-      '    max-width: 40em;',
       '    margin: 1em auto;',
-      '    box-shadow: 5px 5px 5px #222;',
-      '  }',
-      '}'
-    ].join('\n'),
-
-    /** Plain white background */
-    plain: [
-      '@media screen and (min-width: 40em) {',
-      '  main {',
-      '    color: #333;',
-      '    max-width: 40em;',
-      '    margin-left: auto;',
-      '    margin-right: auto;',
+      '    box-shadow: 0.4em 0.4em 0.4em #222;',
       '  }',
       '}'
     ].join('\n'),
@@ -204,6 +226,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     /** No style whatsoever (browser defaults) */
     none: ''
   }
+  styles.viewer = styles.plain + styles.viewer
 
   /**
    * Tokenize input text containing Markdown and LaTeX code.

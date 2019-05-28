@@ -4,6 +4,11 @@ Changelog
 0.7.0 (UNRELEASED)
 ------------------
 
+### Changed
+
+- Use gray background for `<pre>` and `<blockquote>` elements.
+- Use dark blue color for `<pre>` and `<code>` elements.
+
 ### Fixed
 
 - MathJax output is too small on mobile display.
