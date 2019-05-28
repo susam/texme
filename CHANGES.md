@@ -1,13 +1,14 @@
 Changelog
 =========
 
-0.7.0 (UNRELEASED)
+0.7.0 (2019-05-28)
 ------------------
 
 ### Changed
 
 - Use gray background for `<pre>` and `<blockquote>` elements.
 - Use dark blue color for `<pre>` and `<code>` elements.
+
 
 ### Fixed
 

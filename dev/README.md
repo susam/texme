@@ -16,6 +16,10 @@ Perform the following tasks for every release:
   - Update copyright notice in LICENSE.md.
   - Update copyright notice in texme.js.
   - Update CHANGES.md.
+  - Run tests.
+
+        npm test
+
   - Update minified script.
 
         npm run min
@@ -28,8 +32,9 @@ Perform the following tasks for every release:
 
   - Tag the release.
 
-        git tag <VERSION> -m "TeXMe <VERSION>"
-        git push origin master <VERSION>
+        VERSION=<VERSION>
+        git tag $VERSION -m "TeXMe $VERSION"
+        git push origin master $VERSION 
 
   - Publish package.
 
