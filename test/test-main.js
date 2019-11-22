@@ -1,5 +1,6 @@
 var assert = require('assert')
 var url = require('url')
+var path = require('path')
 var jsdom = require('jsdom')
 var commonmark = require('commonmark')
 var texme = require('../texme.js')
@@ -30,7 +31,7 @@ describe('main', function () {
   it('commonmark definition in browser', function (done) {
     var html = '<!DOCTYPE html><textarea>Foo'
     var options = {
-      url: url.resolve('file:///', __filename),
+      url: new url.URL(path.join('file:///', __filename)),
       runScripts: 'dangerously',
       resources: 'usable'
     }
