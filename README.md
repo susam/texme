@@ -8,6 +8,7 @@ Markdown + LaTeX documents.
 [![Build Status][Travis CI SVG]][Travis CI URL]
 [![Coverage Status][Coveralls SVG]][Coveralls URL]
 [![NPM Version][Version SVG]][NPM URL]
+[![JSDelivr Hits][JSDelivr SVG]][JSDelivr URL]
 [![MIT License][License SVG]][L]
 
 [Demo SVG]: https://img.shields.io/badge/view-demo-brightgreen.svg
@@ -19,6 +20,8 @@ Markdown + LaTeX documents.
 [Version SVG]: https://img.shields.io/npm/v/texme.svg
 [NPM URL]: https://www.npmjs.com/package/texme
 [License SVG]: https://img.shields.io/badge/license-MIT-blue.svg
+[JSDelivr SVG]: https://data.jsdelivr.com/v1/package/npm/texme/badge?style=rounded
+[JSDelivr URL]: https://www.jsdelivr.com/package/npm/texme
 
 **Note:** If you are looking for a tool that renders only Markdown (no
 LaTeX), see **[MdMe]**, a stripped down fork of this project.
