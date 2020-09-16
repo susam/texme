@@ -23,11 +23,6 @@ Markdown + LaTeX documents.
 [JSDelivr SVG]: https://data.jsdelivr.com/v1/package/npm/texme/badge?style=rounded
 [JSDelivr URL]: https://www.jsdelivr.com/package/npm/texme
 
-**Note:** If you are looking for a tool that renders only Markdown (no
-LaTeX), see **[MdMe]**, a stripped down fork of this project.
-
-[MdMe]: https://github.com/susam/mdme
-
 
 Contents
 --------
@@ -319,32 +314,7 @@ above example.
 ### Render Markdown Without MathJax
 
 To render Markdown-only content without any mathematical content at all,
-use [MdMe]. MdMe is a fork of TeXMe that does not have the code or
-overhead associated with additional parsing and processing that TeXMe
-does to prevent the Markdown renderer from seeing mathematical content
-as well as the overhead of loading and running MathJax. Here is an
-example:
-
-    <!DOCTYPE html>
-    <script src="https://cdn.jsdelivr.net/npm/mdme"></script><textarea>
-
-    # Atomic Theory
-
-    **Atomic theory** is a scientific theory of the nature of matter, which
-    states that matter is composed of discrete units called *atoms*. It
-    began as a philosophical concept in ancient Greece and entered the
-    scientific mainstream in the early 19th century when discoveries in the
-    field of chemistry showed that matter did indeed behave as if it were
-    made up of atoms.
-
-Here is the output:
-[mdme.html](https://opendocs.github.io/texme/examples/mdme.html).
-
-A similar result can be achieved in TeXMe itself by eliminating the
-additional overhead for math support by setting `useMathJax` and
-`protectMath` options to `false`. The code for math support would still
-be loaded though. Only its execution would be eliminated. Here is an
-example:
+set `useMathJax` and `protectMath` options to `false`:
 
     <!DOCTYPE html>
     <script>window.texme = { useMathJax: false, protectMath: false }</script>
