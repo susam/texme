@@ -72,6 +72,9 @@ content.
 Open this HTML file with a web browser.
 It renders itself to look like this:
 [content-in-textarea.html](https://opendocs.github.io/texme/examples/content-in-textarea.html).
+Here is a screenshot of the output:
+
+![TeXMe Screenshot](https://i.imgur.com/nIUCrhB.png)
 
 There are two simple rules to remember while using TeXMe:
 
