@@ -1,6 +1,15 @@
 Changelog
 =========
 
+0.8.0 (2020-09-20)
+------------------
+
+### Changed
+
+- Update commonmark.js version to 0.29.2
+- Update MathJax version to 3.
+
+
 0.7.0 (2019-05-28)
 ------------------
 

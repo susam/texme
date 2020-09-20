@@ -53,7 +53,7 @@ Get Started
 Copy and paste the code below into an HTML file with `.html` as the
 extension name:
 
-    <!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.7.0"></script><textarea>
+    <!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.8.0"></script><textarea>
 
     # Euler's Identity
 
@@ -103,7 +103,7 @@ this:
     analysis, which states that for any real number $ x $,
     $$ e^{ix} = \cos x + i \sin x. $$
 
-    <script src="https://cdn.jsdelivr.net/npm/texme@0.7.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/texme@0.8.0"></script>
 
 Here is the output:
 [content-in-body.html](https://opendocs.github.io/texme/examples/content-in-body.html).
@@ -129,7 +129,7 @@ encounters the beginning of a start tag that is not closed properly:
 
         print('unusual <string')
 
-    <script src="https://cdn.jsdelivr.net/npm/texme@0.7.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/texme@0.8.0"></script>
 
 Here is the broken output:
 [unusual-code-body-broken.html](https://opendocs.github.io/texme/examples/unusual-code-body-broken.html).
@@ -137,7 +137,7 @@ Here is the broken output:
 The `<string` part of the code is interpreted as the opening of a start
 tag by the browser. What looks like a fragment of Python code to a human
 ends up being parsed as an HTML tag by the browser that looks like this:
-`<string') <script="" src="https://cdn.jsdelivr.net/npm/texme@0.7.0">`.
+`<string') <script="" src="https://cdn.jsdelivr.net/npm/texme@0.8.0">`.
 This mangled form of the input is then rendered leading to unexpected
 results.
 
@@ -146,7 +146,7 @@ the content within a `<textarea>` element (as shown in the very first
 example in this document). The following input is fine because the
 content is put inside a `<textarea>` element.
 
-    <!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.7.0"></script><textarea>
+    <!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.8.0"></script><textarea>
 
     Here is some unusual code:
 
@@ -166,7 +166,7 @@ example:
 
         print('unusual &lt;string')
 
-    <script src="https://cdn.jsdelivr.net/npm/texme@0.7.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/texme@0.8.0"></script>
 
 Here is the output:
 [unusual-code-body-fixed.html](https://opendocs.github.io/texme/examples/unusual-code-body-fixed.html).
@@ -175,10 +175,10 @@ Here is the output:
 CDN URLs
 --------
 
-Use the following URL in the `<script>` tag to load version 0.7.0 (the
+Use the following URL in the `<script>` tag to load version 0.8.0 (the
 current version at this time) of TeXMe:
 
-    https://cdn.jsdelivr.net/npm/texme@0.7.0
+    https://cdn.jsdelivr.net/npm/texme@0.8.0
 
 Use the following URL in the `<script>` tag to always load the latest
 version of TeXMe:
@@ -206,7 +206,7 @@ complete and valid HTML5 example:
     <!DOCTYPE html>
     <html lang="en">
     <title>Notes on Euler's Identity</title>
-    <script src="https://cdn.jsdelivr.net/npm/texme@0.7.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/texme@0.8.0"></script>
     <textarea>
 
     # Euler's Identity
@@ -257,7 +257,7 @@ an example:
 
     <!DOCTYPE html>
     <script>window.texme = { style: 'plain' }</script>
-    <script src="https://cdn.jsdelivr.net/npm/texme@0.7.0"></script><textarea>
+    <script src="https://cdn.jsdelivr.net/npm/texme@0.8.0"></script><textarea>
 
     # Euler's Identity
 
@@ -280,7 +280,7 @@ regular CSS code. Here is an example:
 
     <!DOCTYPE html>
     <script>window.texme = { style: 'none' }</script>
-    <script src="https://cdn.jsdelivr.net/npm/texme@0.7.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/texme@0.8.0"></script>
     <style>
     body {
       background: lightcyan;
@@ -321,7 +321,7 @@ set `useMathJax` and `protectMath` options to `false`:
 
     <!DOCTYPE html>
     <script>window.texme = { useMathJax: false, protectMath: false }</script>
-    <script src="https://cdn.jsdelivr.net/npm/texme@0.7.0"></script><textarea>
+    <script src="https://cdn.jsdelivr.net/npm/texme@0.8.0"></script><textarea>
 
     # Atomic Theory
 
@@ -346,7 +346,7 @@ invokes rendering later on the click of a button by using the
 
     <!DOCTYPE html>
     <script>window.texme = { renderOnLoad: false }</script>
-    <script src="https://cdn.jsdelivr.net/npm/texme@0.7.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/texme@0.8.0"></script>
     <script>
     window.onload = function () {
       var button = document.getElementById('button')
@@ -396,7 +396,7 @@ style to `'plain'` using this function:
 
     <!DOCTYPE html>
     <script>window.texme = { renderOnLoad: false }</script>
-    <script src="https://cdn.jsdelivr.net/npm/texme@0.7.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/texme@0.8.0"></script>
     <script>
     window.onload = function () {
       var button = document.getElementById('button')
