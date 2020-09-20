@@ -74,7 +74,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     options.commonmarkURL =
       'https://cdn.jsdelivr.net/npm/commonmark@0.29.2/dist/commonmark.min.js'
     options.MathJaxURL =
-      'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
+      'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
   }
 
   /**
@@ -426,7 +426,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     // Typeset LaTeX.
     if (options.useMathJax) {
-      window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub, outputElement])
+      window.MathJax.typeset()
     }
 
     // Invoke onRenderPage callback (if configured).
@@ -451,21 +451,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       if (options.useMathJax) {
         // MathJax configuration.
         window.MathJax = {
-          tex2jax: {
+          tex: {
             // Enable $...$ as delimiter for inline math.
             inlineMath: [['$', '$'], ['\\(', '\\)']],
-            processEscapes: true
+            tags: 'ams'
           },
-
-          TeX: {
-            // Enable equation numbering.
-            equationNumbers: {
-              autoNumber: 'AMS'
-            }
-          },
-
-          // We typeset LaTeX ourselves with a MathJax.Hub.Queue call.
-          skipStartupTypeset: true
+          startup: {
+            typeset: false
+          }
         }
 
         loadjs(options.MathJaxURL)
