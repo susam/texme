@@ -72,7 +72,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     // Update "Configuration Options" section of README.md if any of the
     // following URLs is updated.
     options.commonmarkURL =
-      'https://cdnjs.cloudflare.com/ajax/libs/commonmark/0.28.1/commonmark.min.js'
+      'https://cdn.jsdelivr.net/npm/commonmark@0.29.2/dist/commonmark.min.js'
     options.MathJaxURL =
       'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
   }
