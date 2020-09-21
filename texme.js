@@ -241,7 +241,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    */
   texme.tokenize = function (s) {
     var pattern = [
-      '\\\\begin{.*}[\\s\\S]*?\\\\end{.*}', // \begin{..}..\end{..}
+      '\\\\begin{(.*)}[\\s\\S]*?\\\\end{\\1}', // \begin{..}..\end{..}
       '\\\\\\[[\\s\\S]*?\\\\\\]', // \[..\]
       '\\\\\\([\\s\\S]*?\\\\\\)', // \(..\)
       '\\\\\\$', // \$ (literal dollar supported by processEscapes)

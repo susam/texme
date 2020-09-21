@@ -181,4 +181,18 @@ describe('tokenize', function () {
     var expected = [[MARK, l1], [MASK, l2], [MARK, l3], [MASK, l4]]
     assert.deepStrictEqual(texme.tokenize(l1 + l2 + l3 + l4), expected)
   })
+
+  it('nested environment', function () {
+    var input = [
+      '\\begin{align*}',
+      'A & = \\begin{bmatrix}',
+      '        1 & 0 \\\\',
+      '        0 & 1',
+      '      \\end{bmatrix} \\\\',
+      '{a}_{i} & = {b}_{i}',
+      '\\end{align*}'
+    ].join('\n')
+    var expected = [[MASK, input]]
+    assert.deepStrictEqual(texme.tokenize(input), expected)
+  })
 })
