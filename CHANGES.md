@@ -1,6 +1,14 @@
 Changelog
 =========
 
+0.9.0 (UNRELEASED)
+------------------
+
+### Fixed
+
+- Fix rendering of nested LaTeX environments.
+
+
 0.8.0 (2020-09-20)
 ------------------
 
