@@ -1,8 +1,14 @@
 Changelog
 =========
 
-0.9.0 (UNRELEASED)
+0.9.0 (2020-09-26)
 ------------------
+
+### Added
+
+- Markdown priority environment (`\begin{md}...\end{md}`) to protect
+  LaTeX delimiters within Markdown code blocks and code spans.
+
 
 ### Fixed
 

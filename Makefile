@@ -37,7 +37,7 @@ pushdocs: docs
 	# Copy examples.
 	mkdir docs/examples
 	for f in examples/*.html; do \
-	    sed 's/...texme.js/https:\/\/cdn.jsdelivr.net\/npm\/texme@0.8.0/' "$$f" > \
+	    sed 's/...texme.js/https:\/\/cdn.jsdelivr.net\/npm\/texme@0.9.0/' "$$f" > \
 	        docs/examples/"$$(basename "$$f")"; \
 	done
 	#

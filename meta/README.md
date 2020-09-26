@@ -54,11 +54,12 @@ Perform the following tasks for every release:
 
         git status
         git add .
-        git commit
 
   - Tag the release.
 
         VERSION=<VERSION>
+
+        git commit -em "Set version to $VERSION"
         git tag $VERSION -m "TeXMe $VERSION"
         git push origin master $VERSION 
 
