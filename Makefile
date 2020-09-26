@@ -58,8 +58,8 @@ pushdocs: docs
 	rm -rf $(TMP_GIT)
 	mv docs $(TMP_GIT)
 	cd $(TMP_GIT) && git init
-	cd $(TMP_GIT) && git config user.name Makesite
-	cd $(TMP_GIT) && git config user.email makesite@example.com
+	cd $(TMP_GIT) && git config user.name "Susam Pal"
+	cd $(TMP_GIT) && git config user.email susam@susam.in
 	cd $(TMP_GIT) && git add .
 	cd $(TMP_GIT) && git commit -m "Generated from $(GIT_SRC) - $$($(CAT_REV))"
 	cd $(TMP_GIT) && git remote add origin "$(GIT_DST).git"

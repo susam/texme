@@ -241,7 +241,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    */
   texme.tokenize = function (s) {
     var pattern = [
-      '\\\\begin{(.*)}[\\s\\S]*?\\\\end{\\1}', // \begin{..}..\end{..}
+      '\\\\begin{(.*)}([\\s\\S]*?)\\\\end{\\1}', // \begin{..}..\end{..}
       '\\\\\\[[\\s\\S]*?\\\\\\]', // \[..\]
       '\\\\\\([\\s\\S]*?\\\\\\)', // \(..\)
       '\\\\\\$', // \$ (literal dollar supported by processEscapes)
@@ -252,26 +252,33 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     var re = new RegExp(pattern, 'g')
 
     var result
-    var markdownText
+    var mdText
     var tokens = []
     var nextIndex = 0
 
     while ((result = re.exec(s)) !== null) {
       // Markdown text
       if (result.index > nextIndex) {
-        markdownText = s.substring(nextIndex, result.index)
-        tokens.push([texme.tokenType.MARK, markdownText])
+        mdText = s.substring(nextIndex, result.index)
+        tokens.push([texme.tokenType.MARK, mdText])
       }
-      // Masked text (LaTeX or mask-literal)
-      tokens.push([texme.tokenType.MASK, result[0]])
+
+      if (typeof result[1] !== 'undefined' && result[1].startsWith('md')) {
+        // Protected code block
+        tokens.push([texme.tokenType.MARK, result[2]])
+      } else {
+        // Masked text (LaTeX or mask-literal)
+        tokens.push([texme.tokenType.MASK, result[0]])
+      }
+
       // Start of next Markdown text
       nextIndex = re.lastIndex
     }
 
     // Trailing Markdown text
-    markdownText = s.substring(nextIndex)
+    mdText = s.substring(nextIndex)
     if (s.length > nextIndex) {
-      tokens.push([texme.tokenType.MARK, markdownText])
+      tokens.push([texme.tokenType.MARK, mdText])
     }
 
     return tokens

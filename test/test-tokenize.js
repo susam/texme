@@ -195,4 +195,79 @@ describe('tokenize', function () {
     var expected = [[MASK, input]]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
+
+  it('dollar in unprotected inline code', function () {
+    var input = '`foo = $bar` hello $ 1 + 1 = 2 $'
+    var expected = [
+      [MARK, '`foo = '],
+      [MASK, '$bar` hello $'],
+      [MARK, ' 1 + 1 = 2 $']
+    ]
+    assert.deepStrictEqual(texme.tokenize(input), expected)
+  })
+
+  it('dollar in unprotected code block', function () {
+    var input = [
+      '```',
+      'foo = $bar',
+      '```',
+      'hello',
+      '$ 1 + 1 = 2 $'
+    ].join('\n')
+    var expected = [
+      [MARK, '```\nfoo = '],
+      [MASK, '$bar\n```\nhello\n$'],
+      [MARK, ' 1 + 1 = 2 $']
+    ]
+    assert.deepStrictEqual(texme.tokenize(input), expected)
+  })
+
+  it('dollar in protected inline code', function () {
+    var input = '\\begin{md}`foo = $bar`\\end{md} hello $ 1 + 1 = 2 $'
+    var expected = [
+      [MARK, '`foo = $bar`'],
+      [MARK, ' hello '],
+      [MASK, '$ 1 + 1 = 2 $']
+    ]
+    assert.deepStrictEqual(texme.tokenize(input), expected)
+  })
+
+  it('dollar in protected code block', function () {
+    var input = [
+      '\\begin{md}',
+      '```',
+      'foo = $bar',
+      '```',
+      '\\end{md}',
+      'hello',
+      '$ 1 + 1 = 2 $'
+    ].join('\n')
+    var expected = [
+      [MARK, '\n```\nfoo = $bar\n```\n'],
+      [MARK, '\nhello\n'],
+      [MASK, '$ 1 + 1 = 2 $']
+    ]
+    assert.deepStrictEqual(texme.tokenize(input), expected)
+  })
+
+  it('unprotected nested code block', function () {
+    var input = '\\begin{md}`\\begin{md}x\\end{md} a = $b`\\end{md} $ 0 $'
+    var expected = [
+      [MARK, '`\\begin{md}x'],
+      [MARK, ' a = '],
+      [MASK, '$b`\\end{md} $'],
+      [MARK, ' 0 $']
+    ]
+    assert.deepStrictEqual(texme.tokenize(input), expected)
+  })
+
+  it('protected nested code block', function () {
+    var input = '\\begin{md*}`\\begin{md}x\\end{md} a = $b`\\end{md*} $ 0 $'
+    var expected = [
+      [MARK, '`\\begin{md}x\\end{md} a = $b`'],
+      [MARK, ' '],
+      [MASK, '$ 0 $']
+    ]
+    assert.deepStrictEqual(texme.tokenize(input), expected)
+  })
 })
