@@ -53,7 +53,7 @@ Perform the following tasks for every release:
   - Commit changes.
 
         git status
-        git add .
+        git add -p
 
   - Tag the release.
 
@@ -71,3 +71,22 @@ Perform the following tasks for every release:
   - Publish documentation and examples.
 
         make pushdocs
+
+
+Post-Release Checklist
+----------------------
+
+Perform the following tasks after every release:
+
+  - Update version in package.json to the next dev version (`X.Y.Z-dev` format).
+
+  - Commit.
+
+        git add -p
+        git status
+
+        VERSION=$(sed -n 's/.*version.*: "\(.*\)",/\1/p' package.json)
+        echo VERSION: $VERSION
+
+        git commit -em "Set version to $VERSION"
+        git push origin master
