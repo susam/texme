@@ -1,6 +1,14 @@
 Changelog
 =========
 
+1.0.0 (UNRELEASED)
+------------------
+
+### Fixed
+
+- Perform non-greedy match for LaTeX environment name.
+
+
 0.9.0 (2020-09-26)
 ------------------
 

@@ -270,4 +270,13 @@ describe('tokenize', function () {
     ]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
+
+  it('non-greedy environment name', function () {
+    var input = '\\begin{equation} *{x}* = *{y}* \\end{equation} *{x}*'
+    var expected = [
+      [MASK, '\\begin{equation} *{x}* = *{y}* \\end{equation}'],
+      [MARK, ' *{x}*']
+    ]
+    assert.deepStrictEqual(texme.tokenize(input), expected)
+  })
 })
