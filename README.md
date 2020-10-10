@@ -239,7 +239,7 @@ and interprets it as possible LaTeX code and prevents the Markdown
 parser from seeing it. As a result, the Markdown parser does not see the
 triple backticks (```` ``` ````) just after `echo $foo` and the document
 gets rendered in an unexpected manner. Here is how the output looks:
-[unprotected-shell-script.html](https://spdocs.github.io/texme/examples/unprotected-shell-script.html).
+[shell-script-unprotected.html](https://spdocs.github.io/texme/examples/shell-script-unprotected.html).
 
 A rendering issue like this can be prevented with the use of the
 markdown priority environment like this:
@@ -271,7 +271,7 @@ hello
 The `\begin{md}` and `\end{md}` delimiters create a markdown priority
 environment that prevents TeXMe from interpreting anything within it as
 LaTeX. Here is how the output looks now:
-[protected-shell-script.html](https://spdocs.github.io/texme/examples/protected-shell-script.html).
+[shell-script-protected.html](https://spdocs.github.io/texme/examples/shell-script-protected.html).
 
 
 ### Protect Dollar Sign in Image Description
@@ -300,7 +300,7 @@ image description and the next occurrence of `` `$ `` (inclusive). As a
 result, the Markdown parser does not see the closing bracket of the
 image description and does not recognize the image element. This leads
 to a broken rendering of the document. Here is how the output looks:
-[unprotected-img-alt.html](https://spdocs.github.io/texme/examples/unprotected-img-alt.html).
+[img-alt-unprotected.html](https://spdocs.github.io/texme/examples/img-alt-unprotected.html).
 
 The `md` environment can be used to fix the rendering like this:
 
@@ -320,7 +320,7 @@ named \begin{md}`$foo`\end{md} in an interactive shell session.
 ```
 
 Here is how the output looks now:
-[protected-img-alt.html](https://spdocs.github.io/texme/examples/protected-img-alt.html).
+[img-alt-protected.html](https://spdocs.github.io/texme/examples/img-alt-protected.html).
 
 
 ### Parsing Precedence
@@ -412,7 +412,7 @@ a Markdown code block.
 `````
 
 Here is the output:
-[protected-texme-code.html](https://spdocs.github.io/texme/examples/protected-texme-code.html).
+[texme-code-protected.html](https://spdocs.github.io/texme/examples/texme-code-protected.html).
 
 If we start the Markdown priority environment with `\begin{md}`, then we
 cannot have `\end{md}` anywhere within the environment because the first
