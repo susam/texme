@@ -658,7 +658,7 @@ is an example:
 ![Screenshot of variable $foo assigned and echoed in shell][1]
 
 The screenshot above shows an example usage of a metasyntactic variable
-named `$foo` in an interactive shell session.
+`$foo` in an interactive shell session.
 
 [1]: https://i.imgur.com/iQx46hd.png
 ```
@@ -683,7 +683,7 @@ The `md` environment can be used to fix the rendering like this:
 \end{md}
 
 The screenshot above shows an example usage of a metasyntactic variable
-named \begin{md}`$foo`\end{md} in an interactive shell session.
+\begin{md}`$foo`\end{md} in an interactive shell session.
 
 [1]: https://i.imgur.com/iQx46hd.png
 ```
