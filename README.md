@@ -32,6 +32,7 @@ Contents
 * [Valid HTML5](#valid-html5)
 * [Markdown Priority Environment](#markdown-priority-environment)
   * [Protect Dollar Sign in Code](#protect-dollar-sign-in-code)
+  * [Protect Dollar Sign in Image Description](#protect-dollar-sign-in-image-description)
   * [Parsing Precedence](#parsing-precedence)
   * [Unlimited Variants](#unlimited-variants)
 * [Use TeXMe in Web Pages](#use-texme-in-web-pages)
@@ -188,18 +189,27 @@ Markdown Priority Environment
 
 TeXMe provides a special LaTeX-like environment named `md`. This is the
 *markdown priority environment*. We will see what this term means in the
-next section. Let us first see some examples of when this special
-environment can be useful.
+next section. Let us first see what this environment does by looking at
+a few examples of when this special environment can be useful.
+
+TeXMe introduces the special purpose `md` environment to protect
+portions of Markdown content from being interpreted as LaTeX. In most
+documents, the use of this environment is *not required*. This
+environment is useful only in a handful of scenarios where a Markdown
+element like code span, code block, link, image, etc. may contain
+content with LaTeX delimiters that may get interpreted as LaTeX by TeXMe
+thereby leading to a broken rendering of the Markdown element. This
+environment protects the content of one or more Markdown elements from
+being interpreted as LaTeX. Let us see a few examples in the next two
+subsections.
 
 
 ### Protect Dollar Sign in Code
 
-TeXMe introduces the special purpose `md` environment to protect content
-of Markdown code spans and code blocks from being interpreted as LaTeX.
-In most documents, the use of this environment is *not required*. This
-environment is required only in the special case that a code span/block
-contains content that TeXMe might interpret as LaTeX code. Here is an
-example:
+The `md` environment is useful when Markdown code spans or code blocks
+contain LaTeX delimiters. This environment prevents the content of
+Markdown code spans and code blocks from being interpreted as LaTeX.
+Here is an example:
 
 ````html
 <!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.9.0"></script><textarea>
@@ -224,7 +234,7 @@ hello
 ````
 
 The above code fails to render as expected because the TeXMe tokenizer
-parses out everything between ``$foo`` and ``\begin{md}`$`` (inclusive)
+parses out everything between `$foo` and `` `$ `` (inclusive)
 and interprets it as possible LaTeX code and prevents the Markdown
 parser from seeing it. As a result, the Markdown parser does not see the
 triple backticks (```` ``` ````) just after `echo $foo` and the document
@@ -262,6 +272,55 @@ The `\begin{md}` and `\end{md}` delimiters create a markdown priority
 environment that prevents TeXMe from interpreting anything within it as
 LaTeX. Here is how the output looks now:
 [protected-shell-script.html](https://spdocs.github.io/texme/examples/protected-shell-script.html).
+
+
+### Protect Dollar Sign in Image Description
+
+Here is another example that shows how rendering can break when LaTeX
+delimiter is found in a Markdown element such as within image
+description and how the usage of the `md` environment can fix it. Here
+is an example:
+
+```html
+<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.9.0"></script><textarea>
+
+# Metasyntactic Variable
+
+![Screenshot of variable $foo assigned and echoed in shell][1]
+
+The screenshot above shows an example usage of a metasyntactic variable
+named `$foo` in an interactive shell session.
+
+[1]: https://i.imgur.com/iQx46hd.png
+```
+
+The above input fails to render as expected because the TeXMe tokenizer
+parses out everything between the first occurrence of `$foo` within the
+image description and the next occurrence of `` `$ `` (inclusive). As a
+result, the Markdown parser does not see the closing bracket of the
+image description and does not recognize the image element. This leads
+to a broken rendering of the document. Here is how the output looks:
+[unprotected-img-alt.html](https://spdocs.github.io/texme/examples/unprotected-img-alt.html).
+
+The `md` environment can be used to fix the rendering like this:
+
+```html
+<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.9.0"></script><textarea>
+
+# Metasyntactic Variable
+
+\begin{md}
+![Screenshot of variable $foo assigned and echoed in shell][1]
+\end{md}
+
+The screenshot above shows an example usage of a metasyntactic variable
+named \begin{md}`$foo`\end{md} in an interactive shell session.
+
+[1]: https://i.imgur.com/iQx46hd.png
+```
+
+Here is how the output looks now:
+[protected-img-alt.html](https://spdocs.github.io/texme/examples/protected-img-alt.html).
 
 
 ### Parsing Precedence
