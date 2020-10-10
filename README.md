@@ -30,11 +30,6 @@ Contents
 * [Get Started](#get-started)
 * [CDN URLs](#cdn-urls)
 * [Valid HTML5](#valid-html5)
-* [Markdown Priority Environment](#markdown-priority-environment)
-  * [Protect Dollar Sign in Code](#protect-dollar-sign-in-code)
-  * [Protect Dollar Sign in Image Description](#protect-dollar-sign-in-image-description)
-  * [Parsing Precedence](#parsing-precedence)
-  * [Unlimited Variants](#unlimited-variants)
 * [Use TeXMe in Web Pages](#use-texme-in-web-pages)
   * [Style](#style)
   * [Render Markdown Without MathJax](#render-markdown-without-mathjax)
@@ -45,6 +40,11 @@ Contents
   * [Install TeXMe](#install-texme)
   * [Render Markdown and LaTeX](#render-markdown-and-latex)
 * [Configuration Options](#configuration-options)
+* [Markdown Priority Environment](#markdown-priority-environment)
+  * [Protect Dollar Sign in Code](#protect-dollar-sign-in-code)
+  * [Protect Dollar Sign in Image Description](#protect-dollar-sign-in-image-description)
+  * [Parsing Precedence](#parsing-precedence)
+  * [Unlimited Variants](#unlimited-variants)
 * [License](#license)
 * [Support](#support)
 
@@ -182,256 +182,6 @@ section just fine.
 
 [VALIDATOR]: https://validator.w3.org/#validate_by_input
 [ROBUSTNESS]: https://en.wikipedia.org/wiki/Robustness_principle
-
-
-Markdown Priority Environment
------------------------------
-
-TeXMe provides a special LaTeX-like environment named `md`. This is the
-*markdown priority environment*. We will see what this term means in the
-next section. Let us first see what this environment does by looking at
-a few examples of when this special environment can be useful.
-
-TeXMe introduces the special purpose `md` environment to protect
-portions of Markdown content from being interpreted as LaTeX. In most
-documents, the use of this environment is *not required*. This
-environment is useful only in a handful of scenarios where a Markdown
-element like code span, code block, link, image, etc. may contain
-content with LaTeX delimiters that may get interpreted as LaTeX by TeXMe
-thereby leading to a broken rendering of the Markdown element. This
-environment protects the content of one or more Markdown elements from
-being interpreted as LaTeX. Let us see a few examples in the next two
-subsections.
-
-
-### Protect Dollar Sign in Code
-
-The `md` environment is useful when Markdown code spans or code blocks
-contain LaTeX delimiters. This environment prevents the content of
-Markdown code spans and code blocks from being interpreted as LaTeX.
-Here is an example:
-
-````html
-<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.9.0"></script><textarea>
-
-# Using Variables
-
-To expand a variable in shell script, prefix the variable name with a
-dollar sign. For example:
-
-```
-foo=hello
-echo $foo
-```
-
-The variable `$foo` is substituted with its value, if any, after the
-expansion. In the above example, `$foo` expands to the string `hello`,
-so the output looks like this:
-
-```
-hello
-```
-````
-
-The above code fails to render as expected because the TeXMe tokenizer
-parses out everything between `$foo` and `` `$ `` (inclusive)
-and interprets it as possible LaTeX code and prevents the Markdown
-parser from seeing it. As a result, the Markdown parser does not see the
-triple backticks (```` ``` ````) just after `echo $foo` and the document
-gets rendered in an unexpected manner. Here is how the output looks:
-[shell-script-unprotected.html](https://spdocs.github.io/texme/examples/shell-script-unprotected.html).
-
-A rendering issue like this can be prevented with the use of the
-markdown priority environment like this:
-
-````html
-<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.9.0"></script><textarea>
-
-# Using Variables
-
-To expand a variable in shell script, prefix the variable name with a
-dollar sign. For example:
-
-\begin{md}
-```
-foo=hello
-echo $foo
-```
-\end{md}
-
-The variable \begin{md}`$foo`\end{md} is substituted with its value, if
-any, after the expansion. In the above example, \begin{md}`$foo`\end{md}
-expands to `hello`, so the output looks like this:
-
-```
-hello
-```
-````
-
-The `\begin{md}` and `\end{md}` delimiters create a markdown priority
-environment that prevents TeXMe from interpreting anything within it as
-LaTeX. Here is how the output looks now:
-[shell-script-protected.html](https://spdocs.github.io/texme/examples/shell-script-protected.html).
-
-
-### Protect Dollar Sign in Image Description
-
-Here is another example that shows how rendering can break when LaTeX
-delimiter is found in a Markdown element such as within image
-description and how the usage of the `md` environment can fix it. Here
-is an example:
-
-```html
-<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.9.0"></script><textarea>
-
-# Metasyntactic Variable
-
-![Screenshot of variable $foo assigned and echoed in shell][1]
-
-The screenshot above shows an example usage of a metasyntactic variable
-named `$foo` in an interactive shell session.
-
-[1]: https://i.imgur.com/iQx46hd.png
-```
-
-The above input fails to render as expected because the TeXMe tokenizer
-parses out everything between the first occurrence of `$foo` within the
-image description and the next occurrence of `` `$ `` (inclusive). As a
-result, the Markdown parser does not see the closing bracket of the
-image description and does not recognize the image element. This leads
-to a broken rendering of the document. Here is how the output looks:
-[img-alt-unprotected.html](https://spdocs.github.io/texme/examples/img-alt-unprotected.html).
-
-The `md` environment can be used to fix the rendering like this:
-
-```html
-<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.9.0"></script><textarea>
-
-# Metasyntactic Variable
-
-\begin{md}
-![Screenshot of variable $foo assigned and echoed in shell][1]
-\end{md}
-
-The screenshot above shows an example usage of a metasyntactic variable
-named \begin{md}`$foo`\end{md} in an interactive shell session.
-
-[1]: https://i.imgur.com/iQx46hd.png
-```
-
-Here is how the output looks now:
-[img-alt-protected.html](https://spdocs.github.io/texme/examples/img-alt-protected.html).
-
-
-### Parsing Precedence
-
-In this subsection, we dive a little deeper into what the `md`
-environment is. First, we need to understand how TeXMe renders a
-document. TeXMe performs the following steps while rendering a document:
-
- 1. At first, the tokenizer looks for anything that looks like LaTeX and
-    masks them, that is, it substitutes all LaTeX snippets in the
-    content with mask literal. In case you are curious, the mask literal
-    is `::MASK::` but this detail should not matter to you while using
-    TeXMe.
-
- 2. Then it feeds the masked input to Markdown parser. The Markdown
-    parser cannot see any LaTeX code anymore because they are all
-    masked, so it cannot accidentally render any portion of the LaTeX
-    code accidentally as Markdown. The Markdown parser returns a
-    rendered HTML.
-
- 3. The rendered HTML is then unmasked, that is, all mask literals in
-    the rendered HTML are subsituted with the original LaTeX snippets.
-
- 4. At this point, TeXMe rendering is complete. Now TeXMe invokes
-    MathJax to render all LaTeX content in the HTML obtained from
-    the previous step.
-
-It is important to note that TeXMe does not implement a Markdown parser
-of its own. It relies on an existing popular and stable Markdown
-parser that conforms to the CommonMark specification and has stood the
-test of time. TeXMe only parses out content within LaTeX delimiters and
-masks it, so that the Markdown parser cannot see such content. As a
-result of this, step 1 can be a problem when there are LaTeX delimiters
-like `$`, `$$`, etc. within a Markdown code span/block. The TeXMe
-tokenizer interprets the delimiter and the content after it as LaTeX if
-it finds the corresponding closing delimiter too later in the document.
-This can break the Markdown rendering of the code span/block. An example
-of this was discussed in the previous section. This issue occurs because
-TeXMe parses out and masks the LaTeX snippet before invoking the
-Markdown parser. The `md` environment prevents TeXMe from looking for
-LaTeX content within the environment.
-
-The `md` environment ensures that anything within `\begin{md}` and
-`\end{md}` is not searched for LaTeX delimiters. Anything within this
-environment is fed to the Markdown parser intact. This is why this
-environment is known as the Markdown priority environment.
-
-
-### Unlimited Variants
-
-In the previous two subsections we saw how the Markdown priority
-environment, that is, the `md` environment is used and what it does but
-that is not the entire story. TeXMe provides an unlimited number of
-variants of the `md` environment. In fact, any environment name that
-starts with the string `md` is a Markdown priority enviornment, that is,
-all of `\begin{md*}`, `\begin{md**}`, `\begin{mdfoo}`, `\begin{mdbar}`,
-etc. start Markdown priority environments provided the corresponding
-`\end` commands also exist. The `\end` command for a Markdown priority
-environment must use the exact same environment name as the `\begin`
-delimiter.
-
-The availability of unlimited variants of the Markdown priority
-environment is useful when we have a Markdown code span/block that
-itself contains code with Markdown priority environment in it such as
-perhaps a code example that explains how TeXMe works. Consider the
-following example:
-
-`````html
-<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.9.0"></script><textarea>
-
-# Markdown Priority Environment
-
-Here is an example usage of Markdown priority environment:
-
-\begin{md*}
-````
-\begin{md}
-```
-foo=hello
-echo $foo
-```
-\end{md}
-````
-\end{md*}
-
-The above example shows how to protect \begin{md}`$`\end{md},
-\begin{md*}`\begin{md}`\end{md*}, and \begin{md*}`\end{md}`\end{md*} in
-a Markdown code block.
-`````
-
-Here is the output:
-[texme-code-protected.html](https://spdocs.github.io/texme/examples/texme-code-protected.html).
-
-If we start the Markdown priority environment with `\begin{md}`, then we
-cannot have `\end{md}` anywhere within the environment because the first
-occurrence of it would end the environment. That is why we use
-`\begin{md*}` and `\end{md*}` to create a Markdown priority environment.
-Now we can safely write `\end{md}` within it.
-
-In case you are wondering what the quadruple backticks are doing in the
-above code example, it is a feature defined in the CommonMark
-specification. It creates a code block within which we can safely use
-triple backticks. CommonMark allows us to start a code span/block with
-an arbitrary number of backticks such the code span/block may safely
-contain consecutive backticks. To be precise a code span that starts
-with M backticks can safely contain N consecutive backticks as long as M
-&ne; N. Similarly, a code block that starts with M backticks (M &ge; 3)
-can safely contain N consecutive backticks as long as M > N. All of this
-is standard CommonMark and not something introduced by TeXMe. TeXMe only
-introduces the special purpose `md` environment and its unlimited
-variants.
 
 
 Use TeXMe in Web Pages
@@ -800,6 +550,256 @@ Here is a quick reference for all the supported configuration options:
 
   - `MathJaxURL` (CDN URL of MathJax by default): URL to load MathJax.js
     while running in a web browser.
+
+
+Markdown Priority Environment
+-----------------------------
+
+TeXMe provides a special LaTeX-like environment named `md`. This is the
+*markdown priority environment*. We will see what this term means in the
+next section. Let us first see what this environment does by looking at
+a few examples of when this special environment can be useful.
+
+TeXMe introduces the special purpose `md` environment to protect
+portions of Markdown content from being interpreted as LaTeX. In most
+documents, the use of this environment is *not required*. This
+environment is useful only in a handful of scenarios where a Markdown
+element like code span, code block, link, image, etc. may contain
+content with LaTeX delimiters that may get interpreted as LaTeX by TeXMe
+thereby leading to a broken rendering of the Markdown element. This
+environment protects the content of one or more Markdown elements from
+being interpreted as LaTeX. Let us see a few examples in the next two
+subsections.
+
+
+### Protect Dollar Sign in Code
+
+The `md` environment is useful when Markdown code spans or code blocks
+contain LaTeX delimiters. This environment prevents the content of
+Markdown code spans and code blocks from being interpreted as LaTeX.
+Here is an example:
+
+````html
+<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.9.0"></script><textarea>
+
+# Using Variables
+
+To expand a variable in shell script, prefix the variable name with a
+dollar sign. For example:
+
+```
+foo=hello
+echo $foo
+```
+
+The variable `$foo` is substituted with its value, if any, after the
+expansion. In the above example, `$foo` expands to the string `hello`,
+so the output looks like this:
+
+```
+hello
+```
+````
+
+The above code fails to render as expected because the TeXMe tokenizer
+parses out everything between `$foo` and `` `$ `` (inclusive)
+and interprets it as possible LaTeX code and prevents the Markdown
+parser from seeing it. As a result, the Markdown parser does not see the
+triple backticks (```` ``` ````) just after `echo $foo` and the document
+gets rendered in an unexpected manner. Here is how the output looks:
+[shell-script-unprotected.html](https://spdocs.github.io/texme/examples/shell-script-unprotected.html).
+
+A rendering issue like this can be prevented with the use of the
+markdown priority environment like this:
+
+````html
+<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.9.0"></script><textarea>
+
+# Using Variables
+
+To expand a variable in shell script, prefix the variable name with a
+dollar sign. For example:
+
+\begin{md}
+```
+foo=hello
+echo $foo
+```
+\end{md}
+
+The variable \begin{md}`$foo`\end{md} is substituted with its value, if
+any, after the expansion. In the above example, \begin{md}`$foo`\end{md}
+expands to `hello`, so the output looks like this:
+
+```
+hello
+```
+````
+
+The `\begin{md}` and `\end{md}` delimiters create a markdown priority
+environment that prevents TeXMe from interpreting anything within it as
+LaTeX. Here is how the output looks now:
+[shell-script-protected.html](https://spdocs.github.io/texme/examples/shell-script-protected.html).
+
+
+### Protect Dollar Sign in Image Description
+
+Here is another example that shows how rendering can break when LaTeX
+delimiter is found in a Markdown element such as within image
+description and how the usage of the `md` environment can fix it. Here
+is an example:
+
+```html
+<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.9.0"></script><textarea>
+
+# Metasyntactic Variable
+
+![Screenshot of variable $foo assigned and echoed in shell][1]
+
+The screenshot above shows an example usage of a metasyntactic variable
+named `$foo` in an interactive shell session.
+
+[1]: https://i.imgur.com/iQx46hd.png
+```
+
+The above input fails to render as expected because the TeXMe tokenizer
+parses out everything between the first occurrence of `$foo` within the
+image description and the next occurrence of `` `$ `` (inclusive). As a
+result, the Markdown parser does not see the closing bracket of the
+image description and does not recognize the image element. This leads
+to a broken rendering of the document. Here is how the output looks:
+[img-alt-unprotected.html](https://spdocs.github.io/texme/examples/img-alt-unprotected.html).
+
+The `md` environment can be used to fix the rendering like this:
+
+```html
+<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.9.0"></script><textarea>
+
+# Metasyntactic Variable
+
+\begin{md}
+![Screenshot of variable $foo assigned and echoed in shell][1]
+\end{md}
+
+The screenshot above shows an example usage of a metasyntactic variable
+named \begin{md}`$foo`\end{md} in an interactive shell session.
+
+[1]: https://i.imgur.com/iQx46hd.png
+```
+
+Here is how the output looks now:
+[img-alt-protected.html](https://spdocs.github.io/texme/examples/img-alt-protected.html).
+
+
+### Parsing Precedence
+
+In this subsection, we dive a little deeper into what the `md`
+environment is. First, we need to understand how TeXMe renders a
+document. TeXMe performs the following steps while rendering a document:
+
+ 1. At first, the tokenizer looks for anything that looks like LaTeX and
+    masks them, that is, it substitutes all LaTeX snippets in the
+    content with mask literal. In case you are curious, the mask literal
+    is `::MASK::` but this detail should not matter to you while using
+    TeXMe.
+
+ 2. Then it feeds the masked input to Markdown parser. The Markdown
+    parser cannot see any LaTeX code anymore because they are all
+    masked, so it cannot accidentally render any portion of the LaTeX
+    code accidentally as Markdown. The Markdown parser returns a
+    rendered HTML.
+
+ 3. The rendered HTML is then unmasked, that is, all mask literals in
+    the rendered HTML are subsituted with the original LaTeX snippets.
+
+ 4. At this point, TeXMe rendering is complete. Now TeXMe invokes
+    MathJax to render all LaTeX content in the HTML obtained from
+    the previous step.
+
+It is important to note that TeXMe does not implement a Markdown parser
+of its own. It relies on an existing popular and stable Markdown
+parser that conforms to the CommonMark specification and has stood the
+test of time. TeXMe only parses out content within LaTeX delimiters and
+masks it, so that the Markdown parser cannot see such content. As a
+result of this, step 1 can be a problem when there are LaTeX delimiters
+like `$`, `$$`, etc. within a Markdown code span/block. The TeXMe
+tokenizer interprets the delimiter and the content after it as LaTeX if
+it finds the corresponding closing delimiter too later in the document.
+This can break the Markdown rendering of the code span/block. An example
+of this was discussed in the previous section. This issue occurs because
+TeXMe parses out and masks the LaTeX snippet before invoking the
+Markdown parser. The `md` environment prevents TeXMe from looking for
+LaTeX content within the environment.
+
+The `md` environment ensures that anything within `\begin{md}` and
+`\end{md}` is not searched for LaTeX delimiters. Anything within this
+environment is fed to the Markdown parser intact. This is why this
+environment is known as the Markdown priority environment.
+
+
+### Unlimited Variants
+
+In the previous two subsections we saw how the Markdown priority
+environment, that is, the `md` environment is used and what it does but
+that is not the entire story. TeXMe provides an unlimited number of
+variants of the `md` environment. In fact, any environment name that
+starts with the string `md` is a Markdown priority enviornment, that is,
+all of `\begin{md*}`, `\begin{md**}`, `\begin{mdfoo}`, `\begin{mdbar}`,
+etc. start Markdown priority environments provided the corresponding
+`\end` commands also exist. The `\end` command for a Markdown priority
+environment must use the exact same environment name as the `\begin`
+delimiter.
+
+The availability of unlimited variants of the Markdown priority
+environment is useful when we have a Markdown code span/block that
+itself contains code with Markdown priority environment in it such as
+perhaps a code example that explains how TeXMe works. Consider the
+following example:
+
+`````html
+<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@0.9.0"></script><textarea>
+
+# Markdown Priority Environment
+
+Here is an example usage of Markdown priority environment:
+
+\begin{md*}
+````
+\begin{md}
+```
+foo=hello
+echo $foo
+```
+\end{md}
+````
+\end{md*}
+
+The above example shows how to protect \begin{md}`$`\end{md},
+\begin{md*}`\begin{md}`\end{md*}, and \begin{md*}`\end{md}`\end{md*} in
+a Markdown code block.
+`````
+
+Here is the output:
+[texme-code-protected.html](https://spdocs.github.io/texme/examples/texme-code-protected.html).
+
+If we start the Markdown priority environment with `\begin{md}`, then we
+cannot have `\end{md}` anywhere within the environment because the first
+occurrence of it would end the environment. That is why we use
+`\begin{md*}` and `\end{md*}` to create a Markdown priority environment.
+Now we can safely write `\end{md}` within it.
+
+In case you are wondering what the quadruple backticks are doing in the
+above code example, it is a feature defined in the CommonMark
+specification. It creates a code block within which we can safely use
+triple backticks. CommonMark allows us to start a code span/block with
+an arbitrary number of backticks such the code span/block may safely
+contain consecutive backticks. To be precise a code span that starts
+with M backticks can safely contain N consecutive backticks as long as M
+&ne; N. Similarly, a code block that starts with M backticks (M &ge; 3)
+can safely contain N consecutive backticks as long as M > N. All of this
+is standard CommonMark and not something introduced by TeXMe. TeXMe only
+introduces the special purpose `md` environment and its unlimited
+variants.
 
 
 License
