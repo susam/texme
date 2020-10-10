@@ -89,15 +89,16 @@ There are three simple rules to remember while using TeXMe:
     trailing whitespace and hash (`#`) characters are removed while
     setting the page title.
 
-  - If there is a Markdown code span or code block with LaTeX delimiters
-    in it (e.g., `$`, `$$`, etc.), TeXMe may interpret it as LaTeX which
-    may lead to incorrect rendering of the document. To prevent this
-    issue, put such code span/block within a special purpose `md`
-    environment supported by TeXMe, for example, ``\begin{md}`echo
-    $foo`\end{md}``. If you do not have code spans/blocks with LaTeX
-    delimiters, you may ignore this rule. See the [Markdown Priority
-    Environment](#markdown-priority-environment) section to see more
-    details about this.
+  - If there is a Markdown element such as code span/block or image with
+    LaTeX delimiters in it (e.g., `$`, `$$`, etc.), TeXMe may interpret
+    it as LaTeX which may lead to incorrect rendering of the document.
+    To prevent this issue, put such Markdown element within a special
+    purpose `md` environment supported by TeXMe, for example,
+    ``\begin{md}`echo $foo`\end{md}``. If you do not have such Markdown
+    elements with LaTeX delimiters, you may ignore this rule. See the
+    [Markdown Priority Environment](#markdown-priority-environment)
+    section to see more details about this. Note: For most documents,
+    you don't have to worry about this point.
 
 If you do not like to start your document with HTML tags, you can write
 your content first and add the `<script>` tag in the end but this
