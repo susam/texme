@@ -744,7 +744,7 @@ In the previous two subsections we saw how the Markdown priority
 environment, that is, the `md` environment is used and what it does but
 that is not the entire story. TeXMe provides an unlimited number of
 variants of the `md` environment. In fact, any environment name that
-starts with the string `md` is a Markdown priority enviornment, that is,
+starts with the string `md` is a Markdown priority environment, that is,
 all of `\begin{md*}`, `\begin{md**}`, `\begin{mdfoo}`, `\begin{mdbar}`,
 etc. start Markdown priority environments provided the corresponding
 `\end` commands also exist. The `\end` command for a Markdown priority
