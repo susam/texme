@@ -12,15 +12,15 @@ Markdown + LaTeX documents.
 [![MIT License][License SVG]][L]
 [![Twitter][Twitter SVG]][Twitter URL]
 
-[Demo SVG]: https://img.shields.io/badge/view-demo-brightgreen.svg
+[Demo SVG]: https://img.shields.io/badge/view-demo-brightgreen
 [Demo URL]: https://spdocs.github.io/texme/examples/demo.html
 [Travis CI SVG]: https://travis-ci.com/susam/texme.svg?branch=master
 [Travis CI URL]: https://travis-ci.com/susam/texme
 [Coveralls SVG]: https://coveralls.io/repos/github/susam/texme/badge.svg?branch=master
 [Coveralls URL]: https://coveralls.io/github/susam/texme?branch=master
-[Version SVG]: https://img.shields.io/npm/v/texme.svg
+[Version SVG]: https://img.shields.io/npm/v/texme
 [NPM URL]: https://www.npmjs.com/package/texme
-[License SVG]: https://img.shields.io/badge/license-MIT-blue.svg
+[License SVG]: https://img.shields.io/badge/license-MIT-%233ea639
 [JSDelivr SVG]: https://data.jsdelivr.com/v1/package/npm/texme/badge?style=rounded
 [JSDelivr URL]: https://www.jsdelivr.com/package/npm/texme
 [Twitter SVG]: https://img.shields.io/badge/twitter-%40susam-%231da1f2
