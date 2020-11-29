@@ -10,6 +10,7 @@ Markdown + LaTeX documents.
 [![NPM Version][Version SVG]][NPM URL]
 [![JSDelivr Hits][JSDelivr SVG]][JSDelivr URL]
 [![MIT License][License SVG]][L]
+[![Twitter][Twitter SVG]][Twitter URL]
 
 [Demo SVG]: https://img.shields.io/badge/view-demo-brightgreen.svg
 [Demo URL]: https://spdocs.github.io/texme/examples/demo.html
@@ -22,6 +23,8 @@ Markdown + LaTeX documents.
 [License SVG]: https://img.shields.io/badge/license-MIT-blue.svg
 [JSDelivr SVG]: https://data.jsdelivr.com/v1/package/npm/texme/badge?style=rounded
 [JSDelivr URL]: https://www.jsdelivr.com/package/npm/texme
+[Twitter SVG]: https://img.shields.io/badge/twitter-%40susam-%231da1f2
+[Twitter URL]: https://twitter.com/susam
 
 
 Contents
