@@ -24,8 +24,8 @@ deps:
 TMP_REV = /tmp/rev.txt
 CAT_REV = cat $(TMP_REV)
 GIT_SRC = https://github.com/susam/texme
-GIT_DST = https://github.com/spdocs/texme
-WEB_URL = https://spdocs.github.io/texme/
+GIT_DST = https://github.com/spxy/texme
+WEB_URL = https://spxy.github.io/texme/
 TMP_GIT = /tmp/tmpgit
 README  = docs/README.md
 
