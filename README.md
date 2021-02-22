@@ -710,8 +710,7 @@ document. TeXMe performs the following steps while rendering a document:
  2. Then it feeds the masked input to Markdown parser. The Markdown
     parser cannot see any LaTeX code anymore because they are all
     masked, so it cannot accidentally render any portion of the LaTeX
-    code accidentally as Markdown. The Markdown parser returns a
-    rendered HTML.
+    code as Markdown. The Markdown parser returns a rendered HTML.
 
  3. The rendered HTML is then unmasked, that is, all mask literals in
     the rendered HTML are subsituted with the original LaTeX snippets.
