@@ -35,49 +35,40 @@ $$ P(A \mid B) = \frac{P(B \mid A) \, P(A)}{P(B)}. $$
 Euler's Summation Formula
 -------------------------
 
-**Theorem** (Euler's summation formula). _If $f$ has a continuous
-derivative $f'$ on the interval $[y, x]$, where $0 < y < x$, then_
-
+**Theorem** (Euler's summation formula). _If $ f $ has a continuous
+derivative $ f' $ on the interval $ [y, x], $ where $ 0 < y < x, $
+then_
 \begin{align}
-\sum_{y < n \le x} f(n) = & \int_y^x f(t) dt +
-                            \int_y^x (t - [t]) f'(t) dt \notag \\
-                          & + f(x)([x] - x) - f(y)([y] - y).
-\label{theorem}
+  \sum_{y < n \le x} f(n)
+    = & \int_y^x f(t) \, dt + \int_y^x (t - [t]) f'(t) \, dt \notag \\
+      & + f(x)([x] - x) - f(y)([y] - y). \label{theorem}
 \end{align}
 
-_Proof._ Let $m = [y]$, $k = [x]$. For integers $n$ and $n - 1$
+_Proof._ Let $ m = [y] $, $k = [x].$ For integers $n$ and $n - 1$
 in $[y, x]$ we have
 \begin{align*}
-\int_{n-1}^n [t] f'(t) dt & = \int_{n-1}^n f'(t) dt \\
-                          & = (n - 1) \bigl( f(n) - f(n - 1)
-                                      \bigr) \\
-                          & = \bigl(
-                                n f(n) - (n - 1) f(n - 1)
-                              \bigr) - f(n).
+  \int_{n - 1}^n [t] f'(t) \, dt
+    & = \int_{n - 1}^n (n - 1) f'(t) \, dt \\
+    & = (n - 1) \{ f(n) - f(n - 1) \} \\
+    & = \{n f(n) - (n - 1) f(n - 1)\} - f(n).
 \end{align*}
-Summing from $n = m + 1$ to $n = k$ we find
+Summing from $n = m + 2$ to $n = k$ we find the first sum telescopes,
+hence
 \begin{align*}
-\int_{m}^k [t] f'(t) dt & = \sum_{n = m + 1}^k \bigl(
-                                n f(n) - (n - 1) f(n - 1)
-                            \bigr) - \sum_{y < n \le x} f(n) \\
-                        & = k f(k) - m f(m) -
-                            \sum_{y < n \le x} f(n).
+  \int_{m + 1}^k [t] f'(t) \, dt
+    & = k f(k) - (m + 1) f(m + 1) - \sum_{n = m + 2}^k f(n) \\
+    & = k f(k) - m f(m + 1) - \sum_{y < n \le x} f(n).
 \end{align*}
-Hence,
+Therefore
 \begin{align}
-\sum_{y < n \le x} f(n) & = - \int_{m}^k [t] f'(t) dt +
-                              k f(k) - m f(m) \notag \\
-                        & = - \int_{y}^x [t] f'(t) dt +
-                              k f(x) - m f(y).
-\label{summation}
+  \sum_{y < n \le x} f(n)
+    & = - \int_{m + 1}^k [t] f'(t) \, dt + k f(k) - m f(m + 1) \notag \\
+    & = - \int_y^x [t] f'(t) \, dt + k f(x) - m f(y). \label{summation}
 \end{align}
 Integration by parts gives us
-\begin{equation*}
-\int_y^x f(t) dt = x f(x) - y f(y) - \int_y^x t f'(t) dt.
-\end{equation*}
-When this is combined with \eqref{summation} we obtain
-\eqref{theorem}.
-\[ \tag*{\( \blacksquare \)} \]
+$$ \int_y^x f(t) \, dt = x f(x) - y f(y) - \int_y^x t f'(t) \, dt, $$
+and when this is combined with \eqref{summation} we obtain
+\eqref{theorem}. <span style="float:right">&#8718;</span>
 
 
 Hello World Program
