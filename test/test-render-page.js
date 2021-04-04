@@ -5,7 +5,7 @@ var texme = require('../texme.js')
 
 describe('renderPage', function () {
   before(function () {
-    // Ensure that commonmark is loaded.
+    // Ensure that markdown module is loaded.
     texme.main()
   })
 

@@ -4,6 +4,11 @@ Changelog
 1.0.0 (UNRELEASED)
 ------------------
 
+### Changed
+
+- Switch from `commonmark` to `marked` for rendering Markdown.
+
+
 ### Fixed
 
 - Perform non-greedy match for LaTeX environment name.

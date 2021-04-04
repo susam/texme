@@ -5,7 +5,7 @@ var MASK_LITERAL = texme.tokenLiteral.MASK
 
 describe('render', function () {
   before(function () {
-    // Ensure that commonmark is loaded.
+    // Ensure that markdown module is loaded.
     texme.main()
   })
 
@@ -61,10 +61,10 @@ describe('render', function () {
       '\\[ e^x = \\lim_{n \\to \\infty} ' +
       '\\left( 1+ \\frac{x}{n} \\right)^n \\]\n'
     var expected =
-      '<h2>Binomial Theorem</h2>\n' +
+      '<h2 id="binomial-theorem">Binomial Theorem</h2>\n' +
       '<p>$$ (x + y)^n = \\sum_{k=0}^n {n \\choose k} ' +
       'x^{n - k} y^k $$</p>\n' +
-      '<h2>Exponential Function</h2>\n' +
+      '<h2 id="exponential-function">Exponential Function</h2>\n' +
       '<p>\\[ e^x = \\lim_{n \\to \\infty} ' +
       '\\left( 1+ \\frac{x}{n} \\right)^n \\]</p>\n'
     assert.deepStrictEqual(texme.render(input), expected)

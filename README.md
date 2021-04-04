@@ -549,8 +549,8 @@ Here is a quick reference for all the supported configuration options:
     automatic rendering on load or due to explicit call to this
     function.
 
-  - `commonmarkURL` (CDN URL of minified commonmark.js by default): URL
-    to load commonmark.js while running in a web browser.
+  - `markdownURL` (CDN URL of minified marked.js by default): URL to
+    load marked.js while running in a web browser.
 
   - `MathJaxURL` (CDN URL of MathJax by default): URL to load MathJax.js
     while running in a web browser.

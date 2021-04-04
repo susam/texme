@@ -2,21 +2,21 @@ var assert = require('assert')
 var url = require('url')
 var path = require('path')
 var jsdom = require('jsdom')
-var commonmark = require('commonmark')
+var marked = require('marked')
 var texme = require('../texme.js')
 
 describe('main', function () {
   afterEach(function () {
-    // Reset the internal commonmark variable to the commonmark object
+    // Reset the internal marked variable to the marked object
     // imported with the require() call to ensure that no fake
-    // commonmark object lingers around.
+    // marked object lingers around.
     texme.main()
   })
 
   it('texme definition in browser', function () {
     var html = '<!DOCTYPE html><textarea>Foo'
     global.window = new jsdom.JSDOM(html).window
-    global.window.commonmark = commonmark
+    global.window.marked = marked
     global.window.texme = {
       useMathJax: false,
       onRenderPage: function () {
@@ -28,7 +28,7 @@ describe('main', function () {
     assert.strictEqual(typeof global.window.texme.render, 'function')
   })
 
-  it('commonmark definition in browser', function (done) {
+  it('marked definition in browser', function (done) {
     var html = '<!DOCTYPE html><textarea>Foo'
     var options = {
       url: new url.URL(path.join('file:///', __filename)),
@@ -38,9 +38,9 @@ describe('main', function () {
     global.window = new jsdom.JSDOM(html, options).window
     global.window.texme = {
       useMathJax: false,
-      commonmarkURL: 'aux/fakecommonmark.js',
+      markdownURL: 'aux/fakemarked.js',
       onRenderPage: function () {
-        assert.notStrictEqual(typeof global.window.commonmark, 'undefined')
+        assert.notStrictEqual(typeof global.window.marked, 'undefined')
         delete global.window
         done()
       }
@@ -51,7 +51,7 @@ describe('main', function () {
   it('render on load enabled', function (done) {
     var html = '<!DOCTYPE html><textarea>Foo'
     global.window = new jsdom.JSDOM(html).window
-    global.window.commonmark = commonmark
+    global.window.marked = marked
 
     global.window.texme = {
       useMathJax: false,
@@ -67,7 +67,7 @@ describe('main', function () {
   it('render on load disabled', function (done) {
     var html = '<!DOCTYPE html><textarea>Foo'
     global.window = new jsdom.JSDOM(html).window
-    global.window.commonmark = commonmark
+    global.window.marked = marked
 
     global.window.texme = { renderOnLoad: false }
 

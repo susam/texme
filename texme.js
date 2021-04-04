@@ -36,12 +36,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    */
 
   /**
-   * The commonmark.js module is loaded and assigned to this variable.
+   * The markdown module is loaded and assigned to this variable.
    *
    * @type object
    * @memberof inner
    */
-  var commonmark
+  var markdown
 
   /**
    * Exported module of TeXMe.
@@ -71,8 +71,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     // Update "Configuration Options" section of README.md if any of the
     // following URLs is updated.
-    options.commonmarkURL =
-      'https://cdn.jsdelivr.net/npm/commonmark@0.29.2/dist/commonmark.min.js'
+    options.markdownURL =
+      'https://cdn.jsdelivr.net/npm/marked@2.0.1/marked.min.js'
     options.MathJaxURL =
       'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
   }
@@ -350,10 +350,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    *
    * @returns {string} Rendered HTML.
    */
-  texme.renderCommonMark = function (s) {
-    var parsed = new commonmark.Parser().parse(s)
-    var result = new commonmark.HtmlRenderer().render(parsed)
-    return result
+  texme.renderMarkdown = function (s) {
+    return markdown(s)
   }
 
   /**
@@ -365,10 +363,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    *
    * @returns {string} Rendered HTML.
    */
-  texme.protectMathAndRenderCommonMark = function (s) {
+  texme.protectMathAndRenderMarkdown = function (s) {
     var tokens = texme.tokenize(s)
     var masked = texme.mask(tokens)
-    var rendered = texme.renderCommonMark(masked.text)
+    var rendered = texme.renderMarkdown(masked.text)
     var unmasked = texme.unmask(rendered, masked.tokenValues)
     return unmasked
   }
@@ -382,9 +380,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    */
   texme.render = function (s) {
     if (options.protectMath) {
-      return texme.protectMathAndRenderCommonMark(s)
+      return texme.protectMathAndRenderMarkdown(s)
     } else {
-      return texme.renderCommonMark(s)
+      return texme.renderMarkdown(s)
     }
   }
 
@@ -451,8 +449,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     if (typeof window !== 'undefined') {
       setWindowOptions()
 
-      loadjs(options.commonmarkURL, function () {
-        commonmark = window.commonmark
+      loadjs(options.markdownURL, function () {
+        markdown = window.marked
       })
 
       if (options.useMathJax) {
@@ -472,13 +470,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       }
 
       if (options.renderOnLoad) {
-        // Render CommonMark + LaTeX after the document loads.
+        // Render Markdown + LaTeX after the document loads.
         window.onload = texme.renderPage
       }
 
       window.texme = texme
     } else {
-      commonmark = require('commonmark')
+      markdown = require('marked')
       module.exports = texme
     }
   }
