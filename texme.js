@@ -205,6 +205,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       '}',
       'blockquote *:last-child {',
       '  margin-bottom: 0;',
+      '}',
+      'table {',
+      '  border-collapse: collapse;',
+      '}',
+      'th, td {',
+      '  border: thin solid #999;',
+      '  padding: 0.3em 0.4em;',
+      '  text-align: left;',
       '}'
     ].join('\n'),
 
