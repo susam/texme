@@ -1,6 +1,6 @@
 {
   "name": "texme",
-  "version": "1.0.0-dev",
+  "version": "1.0.0",
   "description": "Self-rendering Markdown + LaTeX documents",
   "main": "texme.js",
   "files": [

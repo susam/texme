@@ -1,12 +1,19 @@
 Changelog
 =========
 
-1.0.0 (UNRELEASED)
+1.0.0 (2021-04-25)
 ------------------
+
+### Added
+
+- Support GitHub Flavored Markdown, a superset of CommonMark.
+- Add stylesheet for table element.
+
 
 ### Changed
 
 - Switch from `commonmark` to `marked` for rendering Markdown.
+- Revert style of links to browser's default style.
 
 
 ### Fixed

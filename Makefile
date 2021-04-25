@@ -26,7 +26,7 @@ site: docs
 	mv docs _site
 	mkdir _site/examples
 	for f in examples/*.html; do \
-		sed 's|\.\./texme.js|https://cdn.jsdelivr.net/npm/texme@0.9.0|' \
+		sed 's|\.\./texme.js|https://cdn.jsdelivr.net/npm/texme@1.0.0|' \
 			"$$f" > _site/examples/"$${f#*/}"; done
 
 pushlive:
