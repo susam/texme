@@ -81,7 +81,7 @@ Open this HTML file with a web browser. It renders itself to look like this:
 [get-started.html](https://susam.github.io/texme/examples/get-started.html).
 Here is a screenshot of the output:
 
-![TeXMe Screenshot](https://i.imgur.com/yPoTiyW.png)
+![TeXMe Screenshot](https://i.imgur.com/hgKoyHJ.png)
 
 There are three simple rules to remember while using TeXMe:
 
