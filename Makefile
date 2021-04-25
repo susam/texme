@@ -30,6 +30,7 @@ site: docs
 			"$$f" > _site/examples/"$${f#*/}"; done
 
 pushlive:
+	pwd | grep live$$ || false
 	git init
 	git config user.name live
 	git config user.email live@localhost
