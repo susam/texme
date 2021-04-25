@@ -21,49 +21,28 @@ docs: FORCE
 deps:
 	npm install
 
-TMP_REV = /tmp/rev.txt
-CAT_REV = cat $(TMP_REV)
-GIT_SRC = https://github.com/susam/texme
-GIT_DST = https://github.com/spxy/texme
-WEB_URL = https://spxy.github.io/texme/
-TMP_GIT = /tmp/tmpgit
-README  = docs/README.md
-
-pushdocs: docs
-	#
-	# Get current commit ID.
-	git rev-parse --short HEAD > $(TMP_REV)
-	#
-	# Copy examples.
-	mkdir docs/examples
+site: docs
+	rm -rf _site
+	mv docs _site
+	mkdir _site/examples
 	for f in examples/*.html; do \
-	    sed 's/...texme.js/https:\/\/cdn.jsdelivr.net\/npm\/texme@0.9.0/' "$$f" > \
-	        docs/examples/"$$(basename "$$f")"; \
-	done
-	#
-	# Create README.
-	echo TeXMe Documentation and Examples >> $(README)
-	echo ================================ >> $(README)
-	echo >> $(README)
-	echo Automatically generated from [susam/texme][GIT_SRC] >> $(README)
-	echo "([$$($(CAT_REV))][GIT_REV])". >> $(README)
-	echo >> $(README)
-	echo Visit $(WEB_URL) to view the documentation. >> $(README)
-	echo >> $(README)
-	echo [GIT_SRC]: $(GIT_SRC) >> $(README)
-	echo [WEB_URL]: $(WEB_URL) >> $(README)
-	echo [GIT_REV]: $(GIT_SRC)/commit/$$($(CAT_REV)) >> $(README)
-	#
-	# Create Git repo and push.
-	rm -rf $(TMP_GIT)
-	mv docs $(TMP_GIT)
-	cd $(TMP_GIT) && git init
-	cd $(TMP_GIT) && git config user.name "Susam Pal"
-	cd $(TMP_GIT) && git config user.email susam@susam.in
-	cd $(TMP_GIT) && git add .
-	cd $(TMP_GIT) && git commit -m "Generated from $(GIT_SRC) - $$($(CAT_REV))"
-	cd $(TMP_GIT) && git remote add origin "$(GIT_DST).git"
-	cd $(TMP_GIT) && git log
-	cd $(TMP_GIT) && git push -f origin master
+		sed 's|\.\./texme.js|https://cdn.jsdelivr.net/npm/texme@0.9.0|' \
+			"$$f" > _site/examples/"$${f#*/}"; done
+
+pushlive:
+	git init
+	git config user.name live
+	git config user.email live@localhost
+	git remote add origin https://github.com/susam/texme.git
+	git checkout -b live
+	git add .
+	git commit -m "Publish live ($$(date -u +"%Y-%m-%d %H:%M:%S"))"
+	git log
+	git push -f origin live
+
+live: site
+	rm -rf /tmp/live
+	mv _site /tmp/live
+	REPO_DIR="$$PWD"; cd /tmp/live && make -f "$$REPO_DIR/Makefile" pushlive
 
 FORCE:
