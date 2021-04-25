@@ -43,6 +43,7 @@ Contents
   * [Install TeXMe](#install-texme)
   * [Render Markdown and LaTeX](#render-markdown-and-latex)
 * [Configuration Options](#configuration-options)
+* [Self-Hosting TeXMe](#self-hosting-texme)
 * [Markdown Priority Environment](#markdown-priority-environment)
   * [Protect Dollar Sign in Code](#protect-dollar-sign-in-code)
   * [Protect Dollar Sign in Image Description](#protect-dollar-sign-in-image-description)
@@ -556,6 +557,64 @@ Here is a quick reference for all the supported configuration options:
     while running in a web browser.
 
 
+Self-Hosting TeXMe
+------------------
+
+Some users of TeXMe want to know if TeXMe can be hosted on one's own
+web server such that TeXMe does not load resources from any other web
+server while rendering a document, i.e., any requests to load
+resources must be made to the same web server from which TeXMe is
+loaded. Yes, it is possible to self-host TeXMe in this manner. Here
+are the steps:
+
+ 1. Clone copies of TeXMe and its dependencies to your own server at a
+    location from where you want to serve the files:
+
+        git clone https://github.com/susam/texme.git
+        git clone https://github.com/markedjs/marked.git
+        git clone https://github.com/mathjax/mathjax.git
+
+ 2. Then create a self-rendering document, say, `euler.html` like
+    this:
+
+        <!DOCTYPE html>
+        <script>
+        window.texme = {
+          markdownURL: 'marked/marked.min.js',
+          MathJaxURL: 'mathjax/es5/tex-mml-chtml.js'
+        }
+        </script>
+        <script src="texme/texme.min.js"></script>
+        <textarea>
+
+        # Euler's Identity
+
+        In mathematics, **Euler's identity** is the equality
+        $$ e^{i \pi} + 1 = 0. $$
+
+        ## Explanation
+
+        Euler's identity is a special case of Euler's formula from complex
+        analysis, which states that for any real number $ x $,
+        $$ e^{ix} = \cos x + i \sin x. $$
+
+        </textarea>
+
+ 3. Now, open `euler.html` with a web browser and it should
+    self-render fine. All resources will be loaded from the local
+    disk.
+
+ 4. Now test `euler.html` by serving it via a web server. Assuming
+    Python 3 is installed, here is one really easy way to test it:
+
+        python3 -m http.server
+
+    Then open `https://localhost:8000/euler.html` using a web server.
+    The network tab in the browser's developer tools should show that
+    all resources are loaded from the same web server and no requests
+    to any other server are made.
+
+
 Markdown Priority Environment
 -----------------------------
 
@@ -713,7 +772,8 @@ document. TeXMe performs the following steps while rendering a document:
     code as Markdown. The Markdown parser returns a rendered HTML.
 
  3. The rendered HTML is then unmasked, that is, all mask literals in
-    the rendered HTML are subsituted with the original LaTeX snippets.
+    the rendered HTML are substituted with the original LaTeX
+    snippets.
 
  4. At this point, TeXMe rendering is complete. Now TeXMe invokes
     MathJax to render all LaTeX content in the HTML obtained from
