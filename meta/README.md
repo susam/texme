@@ -70,7 +70,7 @@ Perform the following tasks for every release:
 
   - Publish documentation and examples.
 
-        make pushdocs
+        make live
 
 
 Post-Release Checklist
