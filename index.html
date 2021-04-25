@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>TeXMe</h1>
+<p>TeXMe is a lightweight JavaScript utility to create self-rendering
+Markdown + LaTeX documents.</p>
+<p><a href="https://susam.github.io/texme/examples/demo.html"><img src="https://img.shields.io/badge/view-demo-brightgreen" alt="View Demo"></a>
+<a href="https://travis-ci.com/susam/texme"><img src="https://travis-ci.com/susam/texme.svg?branch=master" alt="Build Status"></a>
+<a href="https://coveralls.io/github/susam/texme?branch=master"><img src="https://coveralls.io/repos/github/susam/texme/badge.svg?branch=master" alt="Coverage Status"></a>
+<a href="https://www.npmjs.com/package/texme"><img src="https://img.shields.io/npm/v/texme" alt="NPM Version"></a>
+<a href="https://www.jsdelivr.com/package/npm/texme"><img src="https://data.jsdelivr.com/v1/package/npm/texme/badge?style=rounded" alt="JSDelivr Hits"></a>
+<a href="LICENSE.md"><img src="https://img.shields.io/badge/license-MIT-%233ea639" alt="MIT License"></a>
+<a href="https://twitter.com/susam"><img src="https://img.shields.io/badge/twitter-%40susam-%231da1f2" alt="Twitter"></a></p>
+<h2>Contents</h2>
+<ul>
+<li><a href="#get-started">Get Started</a></li>
+<li><a href="#cdn-urls">CDN URLs</a></li>
+<li><a href="#valid-html5">Valid HTML5</a></li>
+<li><a href="#use-texme-in-web-pages">Use TeXMe in Web Pages</a>
+<ul>
+<li><a href="#style">Style</a></li>
+<li><a href="#render-markdown-without-mathjax">Render Markdown Without MathJax</a></li>
+<li><a href="#skip-automatic-rendering-on-load">Skip Automatic Rendering on Load</a></li>
+<li><a href="#set-options-after-loading">Set Options After Loading</a></li>
+<li><a href="#content-in-body">Content in Body</a></li>
+</ul>
+</li>
+<li><a href="#use-texme-as-a-library">Use TeXMe as a Library</a>
+<ul>
+<li><a href="#install-texme">Install TeXMe</a></li>
+<li><a href="#render-markdown-and-latex">Render Markdown and LaTeX</a></li>
+</ul>
+</li>
+<li><a href="#configuration-options">Configuration Options</a></li>
+<li><a href="#markdown-priority-environment">Markdown Priority Environment</a>
+<ul>
+<li><a href="#protect-dollar-sign-in-code">Protect Dollar Sign in Code</a></li>
+<li><a href="#protect-dollar-sign-in-image-description">Protect Dollar Sign in Image Description</a></li>
+<li><a href="#parsing-precedence">Parsing Precedence</a></li>
+<li><a href="#unlimited-variants">Unlimited Variants</a></li>
+</ul>
+</li>
+<li><a href="#license">License</a></li>
+<li><a href="#support">Support</a></li>
+</ul>
+<h2>Get Started</h2>
+<p>Copy and paste the code below into an HTML file with <code>.html</code> as the
+extension name:</p>
+<pre class="prettyprint source lang-html"><code>&lt;!DOCTYPE html>&lt;script src=&quot;https://cdn.jsdelivr.net/npm/texme@1.0.0&quot;>&lt;/script>&lt;textarea>
+
+# Euler's Identity
+
+In mathematics, **Euler's identity** is the equality
+$$ e^{i \pi} + 1 = 0. $$
+
+## Explanation
+
+Euler's identity is a special case of Euler's formula from complex
+analysis, which states that for any real number $ x $,
+$$ e^{ix} = \cos x + i \sin x. $$
+</code></pre>
+<p>This file contains one line of HTML code followed by Markdown + LaTeX
+content.</p>
+<p>Open this HTML file with a web browser. It renders itself to look like this:
+<a href="https://susam.github.io/texme/examples/get-started.html">get-started.html</a>.
+Here is a screenshot of the output:</p>
+<p><img src="https://i.imgur.com/nIUCrhB.png" alt="TeXMe Screenshot"></p>
+<p>There are three simple rules to remember while using TeXMe:</p>
+<ul>
+<li>
+<p>TeXMe removes any leading and trailing whitespace in the content
+before rendering the content to HTML.</p>
+</li>
+<li>
+<p>TeXMe uses the first non-empty line of the content to set the page
+title if no explicit <code>&lt;title&gt;</code> element is specified. Any leading and
+trailing whitespace and hash (<code>#</code>) characters are removed while
+setting the page title.</p>
+</li>
+<li>
+<p>If there is a Markdown element such as code span/block or image with
+LaTeX delimiters in it (e.g., <code>$</code>, <code>$$</code>, etc.), TeXMe may interpret
+it as LaTeX which may lead to incorrect rendering of the document.
+To prevent this issue, put such Markdown element within a special
+purpose <code>md</code> environment supported by TeXMe, for example,
+<code>\begin{md}`echo $foo`\end{md}</code>. If you do not have such Markdown
+elements with LaTeX delimiters, you may ignore this rule. See the
+<a href="#markdown-priority-environment">Markdown Priority Environment</a>
+section to see more details about this. Note: For most documents,
+you don't have to worry about this point.</p>
+</li>
+</ul>
+<p>If you do not like to start your document with HTML tags, you can write
+your content first and add the <code>&lt;script&gt;</code> tag in the end but this
+approach has some limitations. See the <a href="#content-in-body">Content in
+Body</a> section for more details about it.</p>
+<h2>CDN URLs</h2>
+<p>Use the following URL in the <code>&lt;script&gt;</code> tag to load version 1.0.0 (the
+current version at this time) of TeXMe:</p>
+<pre class="prettyprint source"><code>https://cdn.jsdelivr.net/npm/texme@1.0.0
+</code></pre>
+<p>Use the following URL in the <code>&lt;script&gt;</code> tag to always load the latest
+version of TeXMe:</p>
+<pre class="prettyprint source"><code>https://cdn.jsdelivr.net/npm/texme
+</code></pre>
+<p>If you need something really easy to remember, use this URL to load the
+latest version of TeXMe:</p>
+<pre class="prettyprint source"><code>https://unpkg.com/texme
+</code></pre>
+<h2>Valid HTML5</h2>
+<p>The <a href="#get-started">Get Started</a> section earlier shows how we can create
+a self-rendering document with a single line of HTML code but this
+brevity comes at the cost of standard conformance. For example, the
+required <code>&lt;title&gt;</code> element is missing from the code. Further the
+<code>&lt;textarea&gt;</code> element is not closed.</p>
+<p>For the sake of completeness and correctness, here is a minimal but
+complete and valid HTML5 example:</p>
+<pre class="prettyprint source lang-html"><code>&lt;!DOCTYPE html>
+&lt;html lang=&quot;en&quot;>
+&lt;title>Notes on Euler's Identity&lt;/title>
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/texme@1.0.0&quot;>&lt;/script>
+&lt;textarea>
+
+# Euler's Identity
+
+In mathematics, **Euler's identity** is the equality
+$$ e^{i \pi} + 1 = 0. $$
+
+## Explanation
+
+Euler's identity is a special case of Euler's formula from complex
+analysis, which states that for any real number $ x $,
+$$ e^{ix} = \cos x + i \sin x. $$
+
+&lt;/textarea>
+</code></pre>
+<p>Here is the output:
+<a href="https://susam.github.io/texme/examples/valid-html5.html">valid-html5.html</a>.</p>
+<p>It has a few more lines of code to ensure that this HTML5 code validates
+successfully at <a href="https://validator.w3.org/#validate_by_input">validator.w3.org</a>. As a result, this example
+does not look as concise as the one in the previous section.</p>
+<p>In case you are wondering, a valid HTML5 document does not require
+explicit <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code>, or the closing <code>&lt;/html&gt;</code> tags, so they have
+been omitted for the sake of brevity while maintaining completeness and
+correctness.</p>
+<p>In practice though, it is not necessary to write verbose code like this.
+All browsers follow the <a href="https://en.wikipedia.org/wiki/Robustness_principle">robustness principle</a>, so they
+can render the shorter example in the <a href="#get-started">Get Started</a>
+section just fine.</p>
+<h2>Use TeXMe in Web Pages</h2>
+<h3>Style</h3>
+<p>TeXMe renders the document on a white pane against a gray background by
+default. This is due to a configuration option named <code>style</code> that is set
+to <code>'viewer'</code> by default.</p>
+<p>To render the document with a minimal style on a completely plain white
+background, set the <code>style</code> configuration option to <code>'plain'</code>. Here is
+an example:</p>
+<pre class="prettyprint source lang-html"><code>&lt;!DOCTYPE html>
+&lt;script>window.texme = { style: 'plain' }&lt;/script>
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/texme@1.0.0&quot;>&lt;/script>&lt;textarea>
+
+# Euler's Identity
+
+In mathematics, **Euler's identity** is the equality
+$$ e^{i \pi} + 1 = 0. $$
+
+## Explanation
+
+Euler's identity is a special case of Euler's formula from complex
+analysis, which states that for any real number $ x $,
+$$ e^{ix} = \cos x + i \sin x. $$
+</code></pre>
+<p>Here is the output:
+<a href="https://susam.github.io/texme/examples/style-plain.html">style-plain.html</a>.</p>
+<p>To render the document with absolutely no style, set <code>style</code> to
+<code>'none'</code>. The <code>'none'</code> style option is useful to disable the default
+<code>'viewer'</code> style set by TeXMe before defining a custom style with
+regular CSS code. Here is an example:</p>
+<pre class="prettyprint source lang-html"><code>&lt;!DOCTYPE html>
+&lt;script>window.texme = { style: 'none' }&lt;/script>
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/texme@1.0.0&quot;>&lt;/script>
+&lt;style>
+body {
+  background: lightcyan;
+}
+main {
+  max-width: 20em;
+  padding: 1em;
+  border: medium double gray;
+  margin: 2em auto;
+  background: lightyellow;
+}
+&lt;/style>
+&lt;textarea>
+
+# Euler's Identity
+
+In mathematics, **Euler's identity** is the equality
+$$ e^{i \pi} + 1 = 0. $$
+
+## Explanation
+
+Euler's identity is a special case of Euler's formula from complex
+analysis, which states that for any real number $ x $,
+$$ e^{ix} = \cos x + i \sin x. $$
+</code></pre>
+<p>Here is the output:
+<a href="https://susam.github.io/texme/examples/style-custom.html">style-custom.html</a>.</p>
+<p>Note that the rendered content is displayed within a <code>&lt;main&gt;</code> element
+inside the <code>&lt;body&gt;</code>. That is why these elements are being styled in the
+above example.</p>
+<h3>Render Markdown Without MathJax</h3>
+<p>To render Markdown-only content without any mathematical content at all,
+set <code>useMathJax</code> and <code>protectMath</code> options to <code>false</code>:</p>
+<pre class="prettyprint source lang-html"><code>&lt;!DOCTYPE html>
+&lt;script>window.texme = { useMathJax: false, protectMath: false }&lt;/script>
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/texme@1.0.0&quot;>&lt;/script>&lt;textarea>
+
+# Atomic Theory
+
+**Atomic theory** is a scientific theory of the nature of matter, which
+states that matter is composed of discrete units called *atoms*. It
+began as a philosophical concept in ancient Greece and entered the
+scientific mainstream in the early 19th century when discoveries in the
+field of chemistry showed that matter did indeed behave as if it were
+made up of atoms.
+</code></pre>
+<p>Here is the output:
+<a href="https://susam.github.io/texme/examples/markdown-only.html">markdown-only.html</a>.</p>
+<h3>Skip Automatic Rendering on Load</h3>
+<p>When TeXMe loads, it begins rendering the document automatically. This
+automatic rendering may be skipped by setting <code>renderOnLoad</code> option to
+<code>false</code>. Here is an example that disables automatic rendering and then
+invokes rendering later on the click of a button by using the
+<code>texme.renderPage()</code> function from the TeXMe API:</p>
+<pre class="prettyprint source lang-html"><code>&lt;!DOCTYPE html>
+&lt;script>window.texme = { renderOnLoad: false }&lt;/script>
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/texme@1.0.0&quot;>&lt;/script>
+&lt;script>
+window.onload = function () {
+  var button = document.getElementById('button')
+  button.onclick = function () {
+    button.remove()
+    texme.renderPage()
+  }
+}
+&lt;/script>
+&lt;textarea>
+
+# Euler's Identity
+
+In mathematics, **Euler's identity** is the equality
+$$ e^{i \pi} + 1 = 0. $$
+
+## Explanation
+
+Euler's identity is a special case of Euler's formula from complex
+analysis, which states that for any real number $ x $,
+$$ e^{ix} = \cos x + i \sin x. $$
+
+&lt;/textarea>
+&lt;div>&lt;button id=&quot;button&quot;>Render&lt;/button>&lt;/div>
+</code></pre>
+<p>Here is the output:
+<a href="https://susam.github.io/texme/examples/skip-render.html">skip-render.html</a>.</p>
+<h3>Set Options After Loading</h3>
+<p>When we load TeXMe with the <code>&lt;script&gt;</code> tag, it begins rendering the
+document as soon as it loads. Therefore in the above examples, we define
+the configuration options prior to loading TeXMe. We do this by defining
+an object named <code>window.texme</code> with the configuration options defined as
+properties in this project.</p>
+<p>However if we set the <code>renderOnLoad</code> option to <code>false</code>, we prevent TeXMe
+from rendering the document after it loads. We now have the control to
+invoke the rendering at a later time, e.g., on the click of a button. In
+this case, it is possible to set configuration options after loading
+TeXMe with the <code>texme.setOption()</code> function. This function takes two
+parameters: option name as a string and option value.</p>
+<p>Here is an example that skips automatic rendering on load and sets the
+style to <code>'plain'</code> using this function:</p>
+<pre class="prettyprint source lang-html"><code>&lt;!DOCTYPE html>
+&lt;script>window.texme = { renderOnLoad: false }&lt;/script>
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/texme@1.0.0&quot;>&lt;/script>
+&lt;script>
+window.onload = function () {
+  var button = document.getElementById('button')
+  button.onclick = function () {
+    button.remove()
+    texme.setOption('style', 'plain')
+    texme.renderPage()
+  }
+}
+&lt;/script>
+&lt;textarea>
+
+# Euler's Identity
+
+In mathematics, **Euler's identity** is the equality
+$$ e^{i \pi} + 1 = 0. $$
+
+## Explanation
+
+Euler's identity is a special case of Euler's formula from complex
+analysis, which states that for any real number $ x $,
+$$ e^{ix} = \cos x + i \sin x. $$
+
+&lt;/textarea>
+&lt;div>&lt;button id=&quot;button&quot;>Render&lt;/button>&lt;/div>
+</code></pre>
+<p>Here is the output:
+<a href="https://susam.github.io/texme/examples/set-options.html">set-options.html</a>.</p>
+<h3>Content in Body</h3>
+<p>If you do not like to start your document with HTML tags, you can
+write your content first and add the <code>&lt;script&gt;</code> tag in the end like
+this:</p>
+<pre class="prettyprint source lang-html"><code># Euler's Identity
+
+In mathematics, **Euler's identity** is the equality
+$$ e^{i \pi} + 1 = 0. $$
+
+## Explanation
+
+Euler's identity is a special case of Euler's formula from complex
+analysis, which states that for any real number $ x $,
+$$ e^{ix} = \cos x + i \sin x. $$
+
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/texme@1.0.0&quot;>&lt;/script>
+</code></pre>
+<p>Here is the output:
+<a href="https://susam.github.io/texme/examples/content-in-body.html">content-in-body.html</a>.</p>
+<p>Although, the code looks neater in this example, there is a limitation
+associated with this form of writing content: Since the content is part
+of the HTML <code>&lt;body&gt;</code> element (there is no <code>&lt;textarea&gt;</code> element in this
+code), the content should be written carefully, so that it does not have
+any HTML syntax error.</p>
+<h4>Caveats</h4>
+<p>While using the content-in-body method of using TeXMe, an HTML syntax
+error in the content can produced mangled output. For example, the
+following input is not rendered as expected because the content is in
+the <code>&lt;body&gt;</code> element, so the browser interprets this content as HTML and
+encounters the beginning of a start tag that is not closed properly:</p>
+<pre class="prettyprint source lang-html"><code>Here is some unusual code:
+
+```
+print('unusual &lt;string')
+```
+
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/texme@1.0.0&quot;>&lt;/script>
+</code></pre>
+<p>Here is the broken output:
+<a href="https://susam.github.io/texme/examples/unusual-code-body.html">unusual-code-body.html</a>.</p>
+<p>The <code>&lt;string</code> part of the code is interpreted as the opening of a start
+tag by the browser. What looks like a fragment of Python code to a human
+ends up being parsed as an HTML tag by the browser that looks like this:</p>
+<pre class="prettyprint source lang-html"><code>&lt;string') ```=&quot;&quot; &lt;script=&quot;&quot; src=&quot;https://cdn.jsdelivr.net/npm/texme@1.0.0&quot;>
+</code></pre>
+<p>This mangled form of the input is then rendered leading to unexpected
+results. To resolve this, put the content within a <code>&lt;textarea&gt;</code> element
+(as shown in the very first example in this document). The following
+input is fine because the content is put inside a <code>&lt;textarea&gt;</code> element.</p>
+<pre class="prettyprint source lang-html"><code>&lt;!DOCTYPE html>&lt;script src=&quot;https://cdn.jsdelivr.net/npm/texme@1.0.0&quot;>&lt;/script>&lt;textarea>
+
+Here is some unusual code:
+
+```
+print('unusual &lt;string')
+```
+</code></pre>
+<p>Here is the output:
+<a href="https://susam.github.io/texme/examples/unusual-code-textarea.html">unusual-code-textarea.html</a>.</p>
+<p>Since the content occurs within the <code>&lt;textarea&gt;</code> element, the browser
+does not parse it as HTML and therefore does not mangle it.</p>
+<h2>Use TeXMe as a Library</h2>
+<p>The examples so far use TeXMe as a utility. The previous examples load
+TeXMe in a web page and then TeXMe automatically picks the <code>&lt;textarea&gt;</code>
+element containing Markdown + LaTeX code and renders it as HTML.</p>
+<p>In this section, we see how to use TeXMe as a library and invoke its
+functions. These examples would run as is on Node.js.</p>
+<h3>Install TeXMe</h3>
+<p>Enter the following command to install TeXMe:</p>
+<pre class="prettyprint source lang-shell"><code>npm install texme
+</code></pre>
+<h3>Render Markdown and LaTeX</h3>
+<p>Markdown + LaTeX content can be rendered to HTML by simply invoking the
+<code>texme.render()</code> function. It accepts the Markdown + LaTeX content as
+a string and returns the rendered HTML as a string. Here is an example:</p>
+<pre class="prettyprint source lang-javascript"><code>var texme = require('texme')
+var input = '**Foo** $$ {a}_{1} {a}_{2} $$'
+var output = texme.render(input)
+console.log(output)
+</code></pre>
+<p>The above example produces the following output:</p>
+<pre class="prettyprint source lang-html"><code>&lt;p>&lt;strong>Foo&lt;/strong> $$ {a}_{1} {a}_{2} $$&lt;/p>
+</code></pre>
+<h2>Configuration Options</h2>
+<p>Here is a quick reference for all the supported configuration options:</p>
+<ul>
+<li>
+<p><code>useMathJax</code> (<code>true</code> by default): Load MathJax and run it to render
+LaTeX when set to <code>true</code>. Do not load or run MathJax when set to
+<code>false</code>.</p>
+</li>
+<li>
+<p><code>protectMath</code> (<code>true</code> by default): Prevent Markdown renderer from
+seeing LaTeX code when set to <code>true</code>. Therefore LaTeX content
+that may contain text that could be interpreted as Markdown
+(e.g., <code>$$ {a}_{1} {a}_{2} $$</code>) remains intact as LaTeX when set to
+<code>true</code>. Let Markdown renderer look for Markdown text within LaTeX
+code and render it when set to <code>false</code>. For example,
+<code>$$ {a}_{1} {a}_{2} $$</code> is rendered as
+<code>&lt;p&gt;$$ {a}&lt;em&gt;{1} {a}&lt;/em&gt;{2} $$&lt;/p&gt;</code> when this option is set to
+<code>false</code>.</p>
+</li>
+<li>
+<p><code>style</code> (<code>'viewer'</code> by default): Three values are supported:
+<code>'viewer'</code>, <code>'plain'</code>, and <code>'none'</code>. The viewer style displays
+the rendered document on a white pane against a gray background. The
+plain style displays the content with a very minimal style that does
+not change the background style. If set to <code>'none'</code>, no style
+whatsoever is applied and the document is displayed with the
+browser's default style.</p>
+</li>
+<li>
+<p><code>renderOnLoad</code> (<code>true</code> by default): Begins rendering the document
+automatically on load when set to <code>true</code>. Skips rendering
+automatically when set to <code>false</code>.</p>
+</li>
+<li>
+<p><code>onRenderPage</code> (<code>undefined</code> by default): A callback function that is
+automatically invoked after TeXMe completes rendering the page. It
+is guaranteed that TeXMe has completed rendering the page before
+invoking this callback. If <code>useMathJax</code> option is <code>true</code>, it is also
+guaranteed that TeXMe has invoked typesetting LaTeX with MathJax
+before invoking this callback. However it is not guaranteed that
+MathJax has completed typesetting the page before this callback is
+invoked. MathJax typesetting occurs asynchronously and may complete
+after this callback is invoked. This callback runs only when the
+<code>texme.renderPage()</code> function runs in web browser either due to
+automatic rendering on load or due to explicit call to this
+function.</p>
+</li>
+<li>
+<p><code>markdownURL</code> (CDN URL of minified marked.js by default): URL to
+load marked.js while running in a web browser.</p>
+</li>
+<li>
+<p><code>MathJaxURL</code> (CDN URL of MathJax by default): URL to load MathJax
+while running in a web browser.</p>
+</li>
+</ul>
+<h2>Markdown Priority Environment</h2>
+<p>TeXMe provides a special LaTeX-like environment named <code>md</code>. This is the
+<em>markdown priority environment</em>. We will see what this term means in the
+next section. Let us first see what this environment does by looking at
+a few examples of when this special environment can be useful.</p>
+<p>TeXMe introduces the special purpose <code>md</code> environment to protect
+portions of Markdown content from being interpreted as LaTeX. In most
+documents, the use of this environment is <em>not required</em>. This
+environment is useful only in a handful of scenarios where a Markdown
+element like code span, code block, link, image, etc. may contain
+content with LaTeX delimiters that may get interpreted as LaTeX by TeXMe
+thereby leading to a broken rendering of the Markdown element. This
+environment protects the content of one or more Markdown elements from
+being interpreted as LaTeX. Let us see a few examples in the next two
+subsections.</p>
+<h3>Protect Dollar Sign in Code</h3>
+<p>The <code>md</code> environment is useful when Markdown code spans or code blocks
+contain LaTeX delimiters. This environment prevents the content of
+Markdown code spans and code blocks from being interpreted as LaTeX.
+Here is an example:</p>
+<pre class="prettyprint source lang-html"><code>&lt;!DOCTYPE html>&lt;script src=&quot;https://cdn.jsdelivr.net/npm/texme@1.0.0&quot;>&lt;/script>&lt;textarea>
+
+# Using Variables
+
+To expand a variable in shell script, prefix the variable name with a
+dollar sign. For example:
+
+```
+foo=hello
+echo $foo
+```
+
+The variable `$foo` is substituted with its value, if any, after the
+expansion. In the above example, `$foo` expands to the string `hello`,
+so the output looks like this:
+
+```
+hello
+```
+</code></pre>
+<p>The above code fails to render as expected because the TeXMe tokenizer
+parses out everything between <code>$foo</code> and <code>`$</code> (inclusive)
+and interprets it as possible LaTeX code and prevents the Markdown
+parser from seeing it. As a result, the Markdown parser does not see the
+triple backticks (<code>```</code>) just after <code>echo $foo</code> and the document
+gets rendered in an unexpected manner. Here is how the output looks:
+<a href="https://susam.github.io/texme/examples/shell-script-unprotected.html">shell-script-unprotected.html</a>.</p>
+<p>A rendering issue like this can be prevented with the use of the
+markdown priority environment like this:</p>
+<pre class="prettyprint source lang-html"><code>&lt;!DOCTYPE html>&lt;script src=&quot;https://cdn.jsdelivr.net/npm/texme@1.0.0&quot;>&lt;/script>&lt;textarea>
+
+# Using Variables
+
+To expand a variable in shell script, prefix the variable name with a
+dollar sign. For example:
+
+\begin{md}
+```
+foo=hello
+echo $foo
+```
+\end{md}
+
+The variable \begin{md}`$foo`\end{md} is substituted with its value, if
+any, after the expansion. In the above example, \begin{md}`$foo`\end{md}
+expands to `hello`, so the output looks like this:
+
+```
+hello
+```
+</code></pre>
+<p>The <code>\begin{md}</code> and <code>\end{md}</code> delimiters create a markdown priority
+environment that prevents TeXMe from interpreting anything within it as
+LaTeX. Here is how the output looks now:
+<a href="https://susam.github.io/texme/examples/shell-script-protected.html">shell-script-protected.html</a>.</p>
+<h3>Protect Dollar Sign in Image Description</h3>
+<p>Here is another example that shows how rendering can break when LaTeX
+delimiter is found in a Markdown element such as within image
+description and how the usage of the <code>md</code> environment can fix it. Here
+is an example:</p>
+<pre class="prettyprint source lang-html"><code>&lt;!DOCTYPE html>&lt;script src=&quot;https://cdn.jsdelivr.net/npm/texme@1.0.0&quot;>&lt;/script>&lt;textarea>
+
+# Metasyntactic Variable
+
+![Screenshot of variable $foo assigned and echoed in shell][1]
+
+The screenshot above shows an example usage of a metasyntactic variable
+`$foo` in an interactive shell session.
+
+[1]: https://i.imgur.com/iQx46hd.png
+</code></pre>
+<p>The above input fails to render as expected because the TeXMe tokenizer
+parses out everything between the first occurrence of <code>$foo</code> within the
+image description and the next occurrence of <code>`$</code> (inclusive). As a
+result, the Markdown parser does not see the closing bracket of the
+image description and does not recognize the image element. This leads
+to a broken rendering of the document. Here is how the output looks:
+<a href="https://susam.github.io/texme/examples/img-alt-unprotected.html">img-alt-unprotected.html</a>.</p>
+<p>The <code>md</code> environment can be used to fix the rendering like this:</p>
+<pre class="prettyprint source lang-html"><code>&lt;!DOCTYPE html>&lt;script src=&quot;https://cdn.jsdelivr.net/npm/texme@1.0.0&quot;>&lt;/script>&lt;textarea>
+
+# Metasyntactic Variable
+
+\begin{md}
+![Screenshot of variable $foo assigned and echoed in shell][1]
+\end{md}
+
+The screenshot above shows an example usage of a metasyntactic variable
+\begin{md}`$foo`\end{md} in an interactive shell session.
+
+[1]: https://i.imgur.com/iQx46hd.png
+</code></pre>
+<p>Here is how the output looks now:
+<a href="https://susam.github.io/texme/examples/img-alt-protected.html">img-alt-protected.html</a>.</p>
+<h3>Parsing Precedence</h3>
+<p>In this subsection, we dive a little deeper into what the <code>md</code>
+environment is. First, we need to understand how TeXMe renders a
+document. TeXMe performs the following steps while rendering a document:</p>
+<ol>
+<li>
+<p>At first, the tokenizer looks for anything that looks like LaTeX and
+masks them, that is, it substitutes all LaTeX snippets in the
+content with mask literal. In case you are curious, the mask literal
+is <code>::MASK::</code> but this detail should not matter to you while using
+TeXMe.</p>
+</li>
+<li>
+<p>Then it feeds the masked input to Markdown parser. The Markdown
+parser cannot see any LaTeX code anymore because they are all
+masked, so it cannot accidentally render any portion of the LaTeX
+code as Markdown. The Markdown parser returns a rendered HTML.</p>
+</li>
+<li>
+<p>The rendered HTML is then unmasked, that is, all mask literals in
+the rendered HTML are subsituted with the original LaTeX snippets.</p>
+</li>
+<li>
+<p>At this point, TeXMe rendering is complete. Now TeXMe invokes
+MathJax to render all LaTeX content in the HTML obtained from
+the previous step.</p>
+</li>
+</ol>
+<p>It is important to note that TeXMe does not implement a Markdown parser
+of its own. It relies on an existing popular and stable Markdown
+parser that conforms to the CommonMark specification and has stood the
+test of time. TeXMe only parses out content within LaTeX delimiters and
+masks it, so that the Markdown parser cannot see such content. As a
+result of this, step 1 can be a problem when there are LaTeX delimiters
+like <code>$</code>, <code>$$</code>, etc. within a Markdown code span/block. The TeXMe
+tokenizer interprets the delimiter and the content after it as LaTeX if
+it finds the corresponding closing delimiter too later in the document.
+This can break the Markdown rendering of the code span/block. An example
+of this was discussed in the previous section. This issue occurs because
+TeXMe parses out and masks the LaTeX snippet before invoking the
+Markdown parser. The <code>md</code> environment prevents TeXMe from looking for
+LaTeX content within the environment.</p>
+<p>The <code>md</code> environment ensures that anything within <code>\begin{md}</code> and
+<code>\end{md}</code> is not searched for LaTeX delimiters. Anything within this
+environment is fed to the Markdown parser intact. This is why this
+environment is known as the Markdown priority environment.</p>
+<h3>Unlimited Variants</h3>
+<p>In the previous two subsections we saw how the Markdown priority
+environment, that is, the <code>md</code> environment is used and what it does but
+that is not the entire story. TeXMe provides an unlimited number of
+variants of the <code>md</code> environment. In fact, any environment name that
+starts with the string <code>md</code> is a Markdown priority environment, that is,
+all of <code>\begin{md*}</code>, <code>\begin{md**}</code>, <code>\begin{mdfoo}</code>, <code>\begin{mdbar}</code>,
+etc. start Markdown priority environments provided the corresponding
+<code>\end</code> commands also exist. The <code>\end</code> command for a Markdown priority
+environment must use the exact same environment name as the <code>\begin</code>
+delimiter.</p>
+<p>The availability of unlimited variants of the Markdown priority
+environment is useful when we have a Markdown code span/block that
+itself contains code with Markdown priority environment in it such as
+perhaps a code example that explains how TeXMe works. Consider the
+following example:</p>
+<pre class="prettyprint source lang-html"><code>&lt;!DOCTYPE html>&lt;script src=&quot;https://cdn.jsdelivr.net/npm/texme@1.0.0&quot;>&lt;/script>&lt;textarea>
+
+# Markdown Priority Environment
+
+Here is an example usage of Markdown priority environment:
+
+\begin{md*}
+````
+\begin{md}
+```
+foo=hello
+echo $foo
+```
+\end{md}
+````
+\end{md*}
+
+The above example shows how to protect \begin{md}`$`\end{md},
+\begin{md*}`\begin{md}`\end{md*}, and \begin{md*}`\end{md}`\end{md*} in
+a Markdown code block.
+</code></pre>
+<p>Here is the output:
+<a href="https://susam.github.io/texme/examples/texme-code-protected.html">texme-code-protected.html</a>.</p>
+<p>If we start the Markdown priority environment with <code>\begin{md}</code>, then we
+cannot have <code>\end{md}</code> anywhere within the environment because the first
+occurrence of it would end the environment. That is why we use
+<code>\begin{md*}</code> and <code>\end{md*}</code> to create a Markdown priority environment.
+Now we can safely write <code>\end{md}</code> within it.</p>
+<p>In case you are wondering what the quadruple backticks are doing in the
+above code example, it is a feature defined in the CommonMark
+specification. It creates a code block within which we can safely use
+triple backticks. CommonMark allows us to start a code span/block with
+an arbitrary number of backticks such the code span/block may safely
+contain consecutive backticks. To be precise a code span that starts
+with M backticks can safely contain N consecutive backticks as long as M
+≠ N. Similarly, a code block that starts with M backticks (M ≥ 3)
+can safely contain N consecutive backticks as long as M &gt; N. All of this
+is standard CommonMark and not something introduced by TeXMe. TeXMe only
+introduces the special purpose <code>md</code> environment and its unlimited
+variants.</p>
+<h2>License</h2>
+<p>This is free and open source software. You can use, copy, modify,
+merge, publish, distribute, sublicense, and/or sell copies of it,
+under the terms of the MIT License. See <a href="LICENSE.md">LICENSE.md</a> for details.</p>
+<p>This software is provided &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
+express or implied. See <a href="LICENSE.md">LICENSE.md</a> for details.</p>
+<h2>Support</h2>
+<p>To report bugs, suggest improvements, or ask questions,
+<a href="https://github.com/susam/texme/issues">create issues</a>.</p></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-texme.html">texme</a></li></ul><h3>Namespaces</h3><ul><li><a href="inner.html">inner</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun Apr 25 2021 13:00:25 GMT+0530 (India Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
