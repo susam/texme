@@ -2,6 +2,7 @@
 *.sw?
 
 # Ignore generated files and directories.
+/_site/
 /package-lock.json
 /yarn.lock
 /node_modules/
