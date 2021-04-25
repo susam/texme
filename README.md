@@ -13,7 +13,7 @@ Markdown + LaTeX documents.
 [![Twitter][Twitter SVG]][Twitter URL]
 
 [Demo SVG]: https://img.shields.io/badge/view-demo-brightgreen
-[Demo URL]: https://spxy.github.io/texme/examples/demo.html
+[Demo URL]: https://susam.github.io/texme/examples/demo.html
 [Travis CI SVG]: https://travis-ci.com/susam/texme.svg?branch=master
 [Travis CI URL]: https://travis-ci.com/susam/texme
 [Coveralls SVG]: https://coveralls.io/repos/github/susam/texme/badge.svg?branch=master
@@ -77,7 +77,7 @@ This file contains one line of HTML code followed by Markdown + LaTeX
 content.
 
 Open this HTML file with a web browser. It renders itself to look like this:
-[get-started.html](https://spxy.github.io/texme/examples/get-started.html).
+[get-started.html](https://susam.github.io/texme/examples/get-started.html).
 Here is a screenshot of the output:
 
 ![TeXMe Screenshot](https://i.imgur.com/nIUCrhB.png)
@@ -168,7 +168,7 @@ $$ e^{ix} = \cos x + i \sin x. $$
 ```
 
 Here is the output:
-[valid-html5.html](https://spxy.github.io/texme/examples/valid-html5.html).
+[valid-html5.html](https://susam.github.io/texme/examples/valid-html5.html).
 
 It has a few more lines of code to ensure that this HTML5 code validates
 successfully at [validator.w3.org][VALIDATOR]. As a result, this example
@@ -219,7 +219,7 @@ $$ e^{ix} = \cos x + i \sin x. $$
 ```
 
 Here is the output:
-[style-plain.html](https://spxy.github.io/texme/examples/style-plain.html).
+[style-plain.html](https://susam.github.io/texme/examples/style-plain.html).
 
 To render the document with absolutely no style, set `style` to
 `'none'`. The `'none'` style option is useful to disable the default
@@ -257,7 +257,7 @@ $$ e^{ix} = \cos x + i \sin x. $$
 ```
 
 Here is the output:
-[style-custom.html](https://spxy.github.io/texme/examples/style-custom.html).
+[style-custom.html](https://susam.github.io/texme/examples/style-custom.html).
 
 Note that the rendered content is displayed within a `<main>` element
 inside the `<body>`. That is why these elements are being styled in the
@@ -285,7 +285,7 @@ made up of atoms.
 ```
 
 Here is the output:
-[markdown-only.html](https://spxy.github.io/texme/examples/markdown-only.html).
+[markdown-only.html](https://susam.github.io/texme/examples/markdown-only.html).
 
 
 ### Skip Automatic Rendering on Load
@@ -326,7 +326,7 @@ $$ e^{ix} = \cos x + i \sin x. $$
 ```
 
 Here is the output:
-[skip-render.html](https://spxy.github.io/texme/examples/skip-render.html).
+[skip-render.html](https://susam.github.io/texme/examples/skip-render.html).
 
 
 ### Set Options After Loading
@@ -379,7 +379,7 @@ $$ e^{ix} = \cos x + i \sin x. $$
 ```
 
 Here is the output:
-[set-options.html](https://spxy.github.io/texme/examples/set-options.html).
+[set-options.html](https://susam.github.io/texme/examples/set-options.html).
 
 
 ### Content in Body
@@ -404,7 +404,7 @@ $$ e^{ix} = \cos x + i \sin x. $$
 ```
 
 Here is the output:
-[content-in-body.html](https://spxy.github.io/texme/examples/content-in-body.html).
+[content-in-body.html](https://susam.github.io/texme/examples/content-in-body.html).
 
 Although, the code looks neater in this example, there is a limitation
 associated with this form of writing content: Since the content is part
@@ -432,7 +432,7 @@ print('unusual <string')
 ````
 
 Here is the broken output:
-[unusual-code-body.html](https://spxy.github.io/texme/examples/unusual-code-body.html).
+[unusual-code-body.html](https://susam.github.io/texme/examples/unusual-code-body.html).
 
 The `<string` part of the code is interpreted as the opening of a start
 tag by the browser. What looks like a fragment of Python code to a human
@@ -459,7 +459,7 @@ print('unusual <string')
 ````
 
 Here is the output:
-[unusual-code-textarea.html](https://spxy.github.io/texme/examples/unusual-code-textarea.html).
+[unusual-code-textarea.html](https://susam.github.io/texme/examples/unusual-code-textarea.html).
 
 Since the content occurs within the `<textarea>` element, the browser
 does not parse it as HTML and therefore does not mangle it.
@@ -611,7 +611,7 @@ and interprets it as possible LaTeX code and prevents the Markdown
 parser from seeing it. As a result, the Markdown parser does not see the
 triple backticks (```` ``` ````) just after `echo $foo` and the document
 gets rendered in an unexpected manner. Here is how the output looks:
-[shell-script-unprotected.html](https://spxy.github.io/texme/examples/shell-script-unprotected.html).
+[shell-script-unprotected.html](https://susam.github.io/texme/examples/shell-script-unprotected.html).
 
 A rendering issue like this can be prevented with the use of the
 markdown priority environment like this:
@@ -643,7 +643,7 @@ hello
 The `\begin{md}` and `\end{md}` delimiters create a markdown priority
 environment that prevents TeXMe from interpreting anything within it as
 LaTeX. Here is how the output looks now:
-[shell-script-protected.html](https://spxy.github.io/texme/examples/shell-script-protected.html).
+[shell-script-protected.html](https://susam.github.io/texme/examples/shell-script-protected.html).
 
 
 ### Protect Dollar Sign in Image Description
@@ -672,7 +672,7 @@ image description and the next occurrence of `` `$ `` (inclusive). As a
 result, the Markdown parser does not see the closing bracket of the
 image description and does not recognize the image element. This leads
 to a broken rendering of the document. Here is how the output looks:
-[img-alt-unprotected.html](https://spxy.github.io/texme/examples/img-alt-unprotected.html).
+[img-alt-unprotected.html](https://susam.github.io/texme/examples/img-alt-unprotected.html).
 
 The `md` environment can be used to fix the rendering like this:
 
@@ -692,7 +692,7 @@ The screenshot above shows an example usage of a metasyntactic variable
 ```
 
 Here is how the output looks now:
-[img-alt-protected.html](https://spxy.github.io/texme/examples/img-alt-protected.html).
+[img-alt-protected.html](https://susam.github.io/texme/examples/img-alt-protected.html).
 
 
 ### Parsing Precedence
@@ -783,7 +783,7 @@ a Markdown code block.
 `````
 
 Here is the output:
-[texme-code-protected.html](https://spxy.github.io/texme/examples/texme-code-protected.html).
+[texme-code-protected.html](https://susam.github.io/texme/examples/texme-code-protected.html).
 
 If we start the Markdown priority environment with `\begin{md}`, then we
 cannot have `\end{md}` anywhere within the environment because the first
