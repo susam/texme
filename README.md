@@ -779,20 +779,22 @@ document. TeXMe performs the following steps while rendering a document:
     MathJax to render all LaTeX content in the HTML obtained from
     the previous step.
 
-It is important to note that TeXMe does not implement a Markdown parser
-of its own. It relies on an existing popular and stable Markdown
-parser that conforms to the CommonMark specification and has stood the
-test of time. TeXMe only parses out content within LaTeX delimiters and
-masks it, so that the Markdown parser cannot see such content. As a
-result of this, step 1 can be a problem when there are LaTeX delimiters
-like `$`, `$$`, etc. within a Markdown code span/block. The TeXMe
-tokenizer interprets the delimiter and the content after it as LaTeX if
-it finds the corresponding closing delimiter too later in the document.
-This can break the Markdown rendering of the code span/block. An example
-of this was discussed in the previous section. This issue occurs because
-TeXMe parses out and masks the LaTeX snippet before invoking the
-Markdown parser. The `md` environment prevents TeXMe from looking for
-LaTeX content within the environment.
+It is important to note that TeXMe does not implement a Markdown
+parser of its own. It relies on an existing popular and stable
+Markdown parser that conforms to the GitHub Flavored Markdown (GFM)
+specification and has stood the test of time. Note that GFM is a
+strict superset of CommonMark. TeXMe only parses out content within
+LaTeX delimiters and masks it, so that the Markdown parser cannot see
+such content. As a result of this, step 1 can be a problem when there
+are LaTeX delimiters like `$`, `$$`, etc. within a Markdown code
+span/block. The TeXMe tokenizer interprets the delimiter and the
+content after it as LaTeX if it finds the corresponding closing
+delimiter too later in the document.  This can break the Markdown
+rendering of the code span/block. An example of this was discussed in
+the previous section. This issue occurs because TeXMe parses out and
+masks the LaTeX snippet before invoking the Markdown parser. The `md`
+environment prevents TeXMe from looking for LaTeX content within the
+environment.
 
 The `md` environment ensures that anything within `\begin{md}` and
 `\end{md}` is not searched for LaTeX delimiters. Anything within this
