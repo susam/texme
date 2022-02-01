@@ -21,13 +21,24 @@ docs: FORCE
 deps:
 	npm install
 
-site: docs
-	rm -rf _site
-	mv docs _site
-	mkdir _site/examples
+site:
+	# Clone packages.
+	rm -rf _site/ && mkdir -p _site/examples/
+	git -C _site/ clone -b v2.0.1 --depth 1 https://github.com/markedjs/marked.git
+	git -C _site/ clone -b 3.2.0 --depth 1 https://github.com/mathjax/mathjax.git
+	rm -rf _site/markedjs/.git/
+	rm -rf _site/mathjax/.git/
+	# Create examples directory.
+	sed -e 's|https:.*marked.min.js|../marked/marked.min.js|' \
+	    -e 's|https:.*chtml.js|../mathjax/es5/tex-mml-chtml.js|' \
+	    texme.js > _site/examples/texme.js
 	for f in examples/*.html; do \
-		sed 's|\.\./texme.js|https://cdn.jsdelivr.net/npm/texme@1.0.0|' \
-			"$$f" > _site/examples/"$${f#*/}"; done
+	    sed 's|\.\./texme.js|texme.js|' "$$f" > _site/examples/"$${f#*/}"; done
+	# Create home page.
+	sed -e 's|https:.*marked.min.js|marked/marked.min.js|' \
+	    -e 's|https:.*chtml.js|mathjax/es5/tex-mml-chtml.js|' \
+	    texme.js > _site/texme.js
+	cp _site/examples/demo.html _site/index.html
 
 pushlive:
 	pwd | grep live$$ || false

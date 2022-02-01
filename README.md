@@ -11,7 +11,7 @@ Markdown + LaTeX documents.
 [![Twitter][Twitter SVG]][Twitter URL]
 
 [Demo SVG]: https://img.shields.io/badge/view-demo-brightgreen
-[Demo URL]: https://susam.github.io/texme/examples/demo.html
+[Demo URL]: https://susam.github.io/texme/
 [Version SVG]: https://img.shields.io/npm/v/texme
 [NPM URL]: https://www.npmjs.com/package/texme
 [License SVG]: https://img.shields.io/badge/license-MIT-%233ea639
