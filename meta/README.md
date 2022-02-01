@@ -61,7 +61,7 @@ Perform the following tasks for every release:
 
         git commit -em "Set version to $VERSION"
         git tag $VERSION -m "TeXMe $VERSION"
-        git push origin master $VERSION 
+        git push origin main $VERSION
 
   - Publish package.
 
@@ -89,4 +89,4 @@ Perform the following tasks after every release:
         echo VERSION: $VERSION
 
         git commit -em "Set version to $VERSION"
-        git push origin master
+        git push origin main
