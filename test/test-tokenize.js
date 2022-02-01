@@ -1,50 +1,50 @@
-var assert = require('assert')
-var texme = require('../texme.js')
+const assert = require('assert')
+const texme = require('../texme.js')
 
-var MARK = texme.tokenType.MARK
-var MASK = texme.tokenType.MASK
-var MASK_LITERAL = texme.tokenLiteral.MASK
+const MARK = texme.tokenType.MARK
+const MASK = texme.tokenType.MASK
+const MASK_LITERAL = texme.tokenLiteral.MASK
 
 describe('tokenize', function () {
   it('plain text', function () {
-    var input = 'Foo'
-    var expected = [[MARK, input]]
+    const input = 'Foo'
+    const expected = [[MARK, input]]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('math with single dollar', function () {
-    var input = '$ 1 + 1 = 2 $'
-    var expected = [[MASK, input]]
+    const input = '$ 1 + 1 = 2 $'
+    const expected = [[MASK, input]]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('math with double dollars', function () {
-    var input = '$$ 1 + 1 = 2 $$'
-    var expected = [[MASK, input]]
+    const input = '$$ 1 + 1 = 2 $$'
+    const expected = [[MASK, input]]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('escaped dollar in the begining', function () {
-    var input = '\\$ 1 + 1 = 2 $'
-    var expected = [[MASK, '\\$'], [MARK, ' 1 + 1 = 2 $']]
+    const input = '\\$ 1 + 1 = 2 $'
+    const expected = [[MASK, '\\$'], [MARK, ' 1 + 1 = 2 $']]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('escaped dollar in the end', function () {
-    var input = '$ 1 + 1 = 2 \\$'
-    var expected = [[MARK, '$ 1 + 1 = 2 '], [MASK, '\\$']]
+    const input = '$ 1 + 1 = 2 \\$'
+    const expected = [[MARK, '$ 1 + 1 = 2 '], [MASK, '\\$']]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('escaped dollar followed by dollar in the beginning', function () {
-    var input = '\\$$ 1 + 1 = 2 $$'
-    var expected = [[MASK, '\\$'], [MASK, '$ 1 + 1 = 2 $'], [MARK, '$']]
+    const input = '\\$$ 1 + 1 = 2 $$'
+    const expected = [[MASK, '\\$'], [MASK, '$ 1 + 1 = 2 $'], [MARK, '$']]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('escaped dollar followed by dollar in the end', function () {
-    var input = '$$ 1 + 1 = 2 \\$$'
-    var expected = [[MARK, '$'], [MASK, '$ 1 + 1 = 2 \\$$']]
+    const input = '$$ 1 + 1 = 2 \\$$'
+    const expected = [[MARK, '$'], [MASK, '$ 1 + 1 = 2 \\$$']]
     assert.deepStrictEqual(texme.tokenize(input), expected)
 
     // The above expected output shows a deviation from MathJax behaviour.
@@ -68,50 +68,50 @@ describe('tokenize', function () {
   })
 
   it('escaped dollar in inline math', function () {
-    var input = '$ \\$1 $'
-    var expected = [[MASK, '$ \\$1 $']]
+    const input = '$ \\$1 $'
+    const expected = [[MASK, '$ \\$1 $']]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('escaped dollar in displayed math', function () {
-    var input = '$$ \\$1 $$'
-    var expected = [[MASK, '$$ \\$1 $$']]
+    const input = '$$ \\$1 $$'
+    const expected = [[MASK, '$$ \\$1 $$']]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('math with parentheses', function () {
-    var input = '\\( 1 + 1 = 2 \\)'
-    var expected = [[MASK, input]]
+    const input = '\\( 1 + 1 = 2 \\)'
+    const expected = [[MASK, input]]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('math with brackets', function () {
-    var input = '\\[ 1 + 1 = 2 \\]'
-    var expected = [[MASK, input]]
+    const input = '\\[ 1 + 1 = 2 \\]'
+    const expected = [[MASK, input]]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('math environment', function () {
-    var input = '\\begin{align} 1 + 1 & = 2 \\\\ 2 + 2 & = 4 \\end{align}'
-    var expected = [[MASK, input]]
+    const input = '\\begin{align} 1 + 1 & = 2 \\\\ 2 + 2 & = 4 \\end{align}'
+    const expected = [[MASK, input]]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('invalid environment', function () {
-    var input = '\\begin{junk} 1 + 1 & = 2 \\\\ 2 + 2 & = 4 \\end{junk}'
-    var expected = [[MASK, input]]
+    const input = '\\begin{junk} 1 + 1 & = 2 \\\\ 2 + 2 & = 4 \\end{junk}'
+    const expected = [[MASK, input]]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('mask literal', function () {
-    var input = MASK_LITERAL
-    var expected = [[MASK, input]]
+    const input = MASK_LITERAL
+    const expected = [[MASK, input]]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('adjacent math', function () {
-    var input = '$ 1 + 1 = 2 $$$ 2 + 2 = 4 $$\\begin{align} 3 + 3 = 6 \\end{align}'
-    var expected = [
+    const input = '$ 1 + 1 = 2 $$$ 2 + 2 = 4 $$\\begin{align} 3 + 3 = 6 \\end{align}'
+    const expected = [
       [MASK, '$ 1 + 1 = 2 $'], [MASK, '$$ 2 + 2 = 4 $$'],
       [MASK, '\\begin{align} 3 + 3 = 6 \\end{align}']
     ]
@@ -119,71 +119,71 @@ describe('tokenize', function () {
   })
 
   it('single dollars in double dollars', function () {
-    var input = '$$ $ 1 + 1 = 2 $ $$'
-    var expected = [[MASK, input]]
+    const input = '$$ $ 1 + 1 = 2 $ $$'
+    const expected = [[MASK, input]]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('single dollars in brackets', function () {
-    var input = '\\[ $ 1 + 1 = 2 $ \\]'
-    var expected = [[MASK, input]]
+    const input = '\\[ $ 1 + 1 = 2 $ \\]'
+    const expected = [[MASK, input]]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('parentheses in brackets', function () {
-    var input = '\\[ \\( 1 + 1 = 2 \\) \\]'
-    var expected = [[MASK, input]]
+    const input = '\\[ \\( 1 + 1 = 2 \\) \\]'
+    const expected = [[MASK, input]]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('dollars in environment', function () {
-    var input = '\\begin{align} $ 1 + 1 & = 2 $ \\\\ $$ 2 + 2 & = 4 $$ \\end{align}'
-    var expected = [[MASK, input]]
+    const input = '\\begin{align} $ 1 + 1 & = 2 $ \\\\ $$ 2 + 2 & = 4 $$ \\end{align}'
+    const expected = [[MASK, input]]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('parentheses and brackets in environment', function () {
-    var input = '\\begin{align} \\( 1 + 1 & = 2 \\) \\\\ \\[ 2 + 2 & = 4 \\] \\end{align}'
-    var expected = [[MASK, input]]
+    const input = '\\begin{align} \\( 1 + 1 & = 2 \\) \\\\ \\[ 2 + 2 & = 4 \\] \\end{align}'
+    const expected = [[MASK, input]]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('dollars in invalid environment', function () {
-    var input = '\\begin{align} $ 1 + 1 & = 2 $ \\\\ $$ 2 + 2 & = 4 $$ \\end{align}'
-    var expected = [[MASK, input]]
+    const input = '\\begin{align} $ 1 + 1 & = 2 $ \\\\ $$ 2 + 2 & = 4 $$ \\end{align}'
+    const expected = [[MASK, input]]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('mask in inline math', function () {
-    var input = '$' + MASK_LITERAL + '$'
-    var expected = [[MASK, input]]
+    const input = '$' + MASK_LITERAL + '$'
+    const expected = [[MASK, input]]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('mask in displayed math', function () {
-    var input = '$$' + MASK_LITERAL + '$$'
-    var expected = [[MASK, input]]
+    const input = '$$' + MASK_LITERAL + '$$'
+    const expected = [[MASK, input]]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('mask in environment', function () {
-    var input = '\\begin{align} ' + MASK_LITERAL + ' \\end{align}'
-    var expected = [[MASK, input]]
+    const input = '\\begin{align} ' + MASK_LITERAL + ' \\end{align}'
+    const expected = [[MASK, input]]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('multiple lines', function () {
-    var l1 = 'Binomial theorem:\n'
-    var l2 = '$$ (x + y)^n = \\sum_{k=0}^n {n \\choose k} x^{n - k} y^k $$'
-    var l3 = '\nExponential function:\n'
-    var l4 = '\\[ e^x = \\lim_{n \\to \\infty} ' +
+    const l1 = 'Binomial theorem:\n'
+    const l2 = '$$ (x + y)^n = \\sum_{k=0}^n {n \\choose k} x^{n - k} y^k $$'
+    const l3 = '\nExponential function:\n'
+    const l4 = '\\[ e^x = \\lim_{n \\to \\infty} ' +
              '\\left( 1+ \\frac{x}{n} \\right)^n \\]'
-    var expected = [[MARK, l1], [MASK, l2], [MARK, l3], [MASK, l4]]
+    const expected = [[MARK, l1], [MASK, l2], [MARK, l3], [MASK, l4]]
     assert.deepStrictEqual(texme.tokenize(l1 + l2 + l3 + l4), expected)
   })
 
   it('nested environment', function () {
-    var input = [
+    const input = [
       '\\begin{align*}',
       'A & = \\begin{bmatrix}',
       '        1 & 0 \\\\',
@@ -192,13 +192,13 @@ describe('tokenize', function () {
       '{a}_{i} & = {b}_{i}',
       '\\end{align*}'
     ].join('\n')
-    var expected = [[MASK, input]]
+    const expected = [[MASK, input]]
     assert.deepStrictEqual(texme.tokenize(input), expected)
   })
 
   it('dollar in unprotected inline code', function () {
-    var input = '`foo = $bar` hello $ 1 + 1 = 2 $'
-    var expected = [
+    const input = '`foo = $bar` hello $ 1 + 1 = 2 $'
+    const expected = [
       [MARK, '`foo = '],
       [MASK, '$bar` hello $'],
       [MARK, ' 1 + 1 = 2 $']
@@ -207,14 +207,14 @@ describe('tokenize', function () {
   })
 
   it('dollar in unprotected code block', function () {
-    var input = [
+    const input = [
       '```',
       'foo = $bar',
       '```',
       'hello',
       '$ 1 + 1 = 2 $'
     ].join('\n')
-    var expected = [
+    const expected = [
       [MARK, '```\nfoo = '],
       [MASK, '$bar\n```\nhello\n$'],
       [MARK, ' 1 + 1 = 2 $']
@@ -223,8 +223,8 @@ describe('tokenize', function () {
   })
 
   it('dollar in protected inline code', function () {
-    var input = '\\begin{md}`foo = $bar`\\end{md} hello $ 1 + 1 = 2 $'
-    var expected = [
+    const input = '\\begin{md}`foo = $bar`\\end{md} hello $ 1 + 1 = 2 $'
+    const expected = [
       [MARK, '`foo = $bar`'],
       [MARK, ' hello '],
       [MASK, '$ 1 + 1 = 2 $']
@@ -233,7 +233,7 @@ describe('tokenize', function () {
   })
 
   it('dollar in protected code block', function () {
-    var input = [
+    const input = [
       '\\begin{md}',
       '```',
       'foo = $bar',
@@ -242,7 +242,7 @@ describe('tokenize', function () {
       'hello',
       '$ 1 + 1 = 2 $'
     ].join('\n')
-    var expected = [
+    const expected = [
       [MARK, '\n```\nfoo = $bar\n```\n'],
       [MARK, '\nhello\n'],
       [MASK, '$ 1 + 1 = 2 $']
@@ -251,8 +251,8 @@ describe('tokenize', function () {
   })
 
   it('unprotected nested code block', function () {
-    var input = '\\begin{md}`\\begin{md}x\\end{md} a = $b`\\end{md} $ 0 $'
-    var expected = [
+    const input = '\\begin{md}`\\begin{md}x\\end{md} a = $b`\\end{md} $ 0 $'
+    const expected = [
       [MARK, '`\\begin{md}x'],
       [MARK, ' a = '],
       [MASK, '$b`\\end{md} $'],
@@ -262,8 +262,8 @@ describe('tokenize', function () {
   })
 
   it('protected nested code block', function () {
-    var input = '\\begin{md*}`\\begin{md}x\\end{md} a = $b`\\end{md*} $ 0 $'
-    var expected = [
+    const input = '\\begin{md*}`\\begin{md}x\\end{md} a = $b`\\end{md*} $ 0 $'
+    const expected = [
       [MARK, '`\\begin{md}x\\end{md} a = $b`'],
       [MARK, ' '],
       [MASK, '$ 0 $']
@@ -272,8 +272,8 @@ describe('tokenize', function () {
   })
 
   it('non-greedy environment name', function () {
-    var input = '\\begin{equation} *{x}* = *{y}* \\end{equation} *{x}*'
-    var expected = [
+    const input = '\\begin{equation} *{x}* = *{y}* \\end{equation} *{x}*'
+    const expected = [
       [MASK, '\\begin{equation} *{x}* = *{y}* \\end{equation}'],
       [MARK, ' *{x}*']
     ]

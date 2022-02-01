@@ -26,7 +26,7 @@ site:
 	rm -rf _site/ && mkdir -p _site/examples/
 	git -C _site/ clone -b v4.0.12 --depth 1 https://github.com/markedjs/marked.git
 	git -C _site/ clone -b 3.2.0 --depth 1 https://github.com/mathjax/mathjax.git
-	rm -rf _site/markedjs/.git/
+	rm -rf _site/marked/.git/
 	rm -rf _site/mathjax/.git/
 	# Create examples directory.
 	sed -e 's|https:.*marked.min.js|../marked/marked.min.js|' \

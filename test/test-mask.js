@@ -1,39 +1,39 @@
-var assert = require('assert')
-var texme = require('../texme.js')
+const assert = require('assert')
+const texme = require('../texme.js')
 
-var MARK = texme.tokenType.MARK
-var MASK = texme.tokenType.MASK
-var MASK_LITERAL = texme.tokenLiteral.MASK
+const MARK = texme.tokenType.MARK
+const MASK = texme.tokenType.MASK
+const MASK_LITERAL = texme.tokenLiteral.MASK
 
 describe('mask', function () {
   it('markdown', function () {
-    var tokens = [[MARK, 'Foo']]
-    var expected = { text: 'Foo', tokenValues: [] }
+    const tokens = [[MARK, 'Foo']]
+    const expected = { text: 'Foo', tokenValues: [] }
     assert.deepStrictEqual(texme.mask(tokens), expected)
   })
 
   it('math', function () {
-    var input = '$ 1 + 1 = 2 $'
-    var tokens = [[MASK, input]]
-    var expected = { text: MASK_LITERAL, tokenValues: [input] }
+    const input = '$ 1 + 1 = 2 $'
+    const tokens = [[MASK, input]]
+    const expected = { text: MASK_LITERAL, tokenValues: [input] }
     assert.deepStrictEqual(texme.mask(tokens), expected)
   })
 
   it('mask literal', function () {
-    var input = MASK_LITERAL
-    var tokens = [[MASK, input]]
-    var expected = { text: MASK_LITERAL, tokenValues: [input] }
+    const input = MASK_LITERAL
+    const tokens = [[MASK, input]]
+    const expected = { text: MASK_LITERAL, tokenValues: [input] }
     assert.deepStrictEqual(texme.mask(tokens), expected)
   })
 
   it('mixed', function () {
-    var tokens = [
+    const tokens = [
       [MARK, 'Foo'],
       [MASK, '$ 1 $'],
       [MASK, MASK_LITERAL],
       [MARK, 'Bar']]
 
-    var expected = {
+    const expected = {
       text: 'Foo' + MASK_LITERAL + MASK_LITERAL + 'Bar',
       tokenValues: ['$ 1 $', MASK_LITERAL]
     }

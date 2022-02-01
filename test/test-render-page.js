@@ -1,7 +1,7 @@
-var assert = require('assert')
-var jsdom = require('jsdom')
-var sinon = require('sinon')
-var texme = require('../texme.js')
+const assert = require('assert')
+const jsdom = require('jsdom')
+const sinon = require('sinon')
+const texme = require('../texme.js')
 
 describe('renderPage', function () {
   before(function () {
@@ -10,7 +10,7 @@ describe('renderPage', function () {
   })
 
   it('content in textarea', function () {
-    var html = '<textarea>Foo'
+    const html = '<textarea>Foo'
 
     global.window = new jsdom.JSDOM(html).window
     global.window.MathJax = { typeset: sinon.fake() }
@@ -23,7 +23,7 @@ describe('renderPage', function () {
   })
 
   it('content in body', function () {
-    var html = 'Foo'
+    const html = 'Foo'
 
     global.window = new jsdom.JSDOM(html).window
     global.window.MathJax = { typeset: sinon.fake() }
@@ -36,8 +36,8 @@ describe('renderPage', function () {
   })
 
   it('mathjax typeset', function () {
-    var html = '<!DOCTYPE html><textarea>Foo'
-    var fakeTypesetFunction = sinon.fake()
+    const html = '<!DOCTYPE html><textarea>Foo'
+    const fakeTypesetFunction = sinon.fake()
 
     global.window = new jsdom.JSDOM(html).window
     global.window.MathJax = { typeset: fakeTypesetFunction }
@@ -49,7 +49,7 @@ describe('renderPage', function () {
   })
 
   it('implicit title from content', function () {
-    var html = '<!DOCTYPE html><textarea>Foo\nBar\nBaz'
+    const html = '<!DOCTYPE html><textarea>Foo\nBar\nBaz'
 
     global.window = new jsdom.JSDOM(html).window
     global.window.MathJax = { typeset: sinon.fake() }
@@ -61,7 +61,7 @@ describe('renderPage', function () {
   })
 
   it('remove leading and trailing spaces in implicit title', function () {
-    var html = '<!DOCTYPE html><textarea> \n \tFoo\t \nBar\nBaz'
+    const html = '<!DOCTYPE html><textarea> \n \tFoo\t \nBar\nBaz'
 
     global.window = new jsdom.JSDOM(html).window
     global.window.MathJax = { typeset: sinon.fake() }
@@ -73,7 +73,7 @@ describe('renderPage', function () {
   })
 
   it('remove leading and trailing hashes in implicit title', function () {
-    var html = '<!DOCTYPE html><textarea>### Foo ###\nBar\nBaz'
+    const html = '<!DOCTYPE html><textarea>### Foo ###\nBar\nBaz'
 
     global.window = new jsdom.JSDOM(html).window
     global.window.MathJax = { typeset: sinon.fake() }
@@ -85,7 +85,7 @@ describe('renderPage', function () {
   })
 
   it('explicit title intact', function () {
-    var html = '<!DOCTYPE html><title>Qux</title><textarea>Foo\nBar\nBaz'
+    const html = '<!DOCTYPE html><title>Qux</title><textarea>Foo\nBar\nBaz'
 
     global.window = new jsdom.JSDOM(html).window
     global.window.MathJax = { typeset: sinon.fake() }
@@ -97,7 +97,7 @@ describe('renderPage', function () {
   })
 
   it('spaces and hashes intact in explicit title', function () {
-    var html = '<!DOCTYPE html><title>### Qux ###</title><textarea>Foo'
+    const html = '<!DOCTYPE html><title>### Qux ###</title><textarea>Foo'
 
     global.window = new jsdom.JSDOM(html).window
     global.window.MathJax = { typeset: sinon.fake() }
@@ -109,7 +109,7 @@ describe('renderPage', function () {
   })
 
   it('explicit title intact', function () {
-    var html = '<!DOCTYPE html><title>Qux</title><textarea>Foo\nBar\nBaz'
+    const html = '<!DOCTYPE html><title>Qux</title><textarea>Foo\nBar\nBaz'
 
     global.window = new jsdom.JSDOM(html).window
     global.window.MathJax = { typeset: sinon.fake() }

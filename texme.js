@@ -41,14 +41,14 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    * @type object
    * @memberof inner
    */
-  var markdown
+  let markdown
 
   /**
    * Exported module of TeXMe.
    *
    * @exports texme
    */
-  var texme = {}
+  const texme = {}
 
   /**
    * Configuration options object. Each configuration option is set as a
@@ -57,7 +57,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    * @type object
    * @memberof inner
    */
-  var options = {}
+  const options = {}
 
   /**
    * Set default configuration options.
@@ -83,9 +83,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    *
    * @memberof inner
    */
-  var setWindowOptions = function () {
-    var key
-    for (key in options) {
+  const setWindowOptions = function () {
+    for (const key in options) {
       if (typeof window !== 'undefined' &&
           typeof window.texme !== 'undefined' &&
           typeof window.texme[key] !== 'undefined') {
@@ -111,8 +110,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    * @param {function} callback - Callback to invoke after script loads.
    * @memberof inner
    */
-  var loadjs = function (url, callback) {
-    var script = window.document.createElement('script')
+  const loadjs = function (url, callback) {
+    const script = window.document.createElement('script')
     script.src = url
     script.onload = callback
     window.document.head.appendChild(script)
@@ -154,7 +153,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    * @enum {string}
    * @memberof inner
    */
-  var styles = {
+  const styles = {
     /** Plain white background */
     plain: [
       'body {',
@@ -236,7 +235,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    *   value (string).
    */
   texme.tokenize = function (s) {
-    var pattern = [
+    const pattern = [
       '\\\\begin{(.*?)}([\\s\\S]*?)\\\\end{\\1}', // \begin{..}..\end{..}
       '\\\\\\[[\\s\\S]*?\\\\\\]', // \[..\]
       '\\\\\\([\\s\\S]*?\\\\\\)', // \(..\)
@@ -245,12 +244,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       '\\$(?:[^$\\\\]|\\\\.)+?\\$', // $..$
       texme.tokenLiteral.MASK // ::MASK::
     ].join('|')
-    var re = new RegExp(pattern, 'g')
+    const re = new RegExp(pattern, 'g')
 
-    var result
-    var mdText
-    var tokens = []
-    var nextIndex = 0
+    let result
+    let mdText
+    const tokens = []
+    let nextIndex = 0
 
     while ((result = re.exec(s)) !== null) {
       // Markdown text
@@ -297,11 +296,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    * that were replaced with masks in the masked string.
    */
   texme.mask = function (tokens) {
-    var maskedText = []
-    var maskedTokenValues = []
-    var tokenType
-    var tokenValue
-    var i
+    const maskedText = []
+    const maskedTokenValues = []
+    let tokenType
+    let tokenValue
+    let i
 
     for (i = 0; i < tokens.length; i++) {
       tokenType = tokens[i][0]
@@ -334,8 +333,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    * with the original token values.
    */
   texme.unmask = function (s, tokens) {
-    var re = new RegExp(texme.tokenLiteral.MASK, 'g')
-    var i = 0
+    const re = new RegExp(texme.tokenLiteral.MASK, 'g')
+    let i = 0
     return s.replace(re, function () { return tokens[i++] })
   }
 
@@ -360,10 +359,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    * @returns {string} Rendered HTML.
    */
   texme.protectMathAndRenderMarkdown = function (s) {
-    var tokens = texme.tokenize(s)
-    var masked = texme.mask(tokens)
-    var rendered = texme.renderMarkdown(masked.text)
-    var unmasked = texme.unmask(rendered, masked.tokenValues)
+    const tokens = texme.tokenize(s)
+    const masked = texme.mask(tokens)
+    const rendered = texme.renderMarkdown(masked.text)
+    const unmasked = texme.unmask(rendered, masked.tokenValues)
     return unmasked
   }
 
@@ -386,10 +385,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    * Set page to display the rendered content as HTML.
    */
   texme.renderPage = function () {
-    var textareaElements = window.document.getElementsByTagName('textarea')
-    var outputElement = window.document.createElement('main')
-    var inputText
-    var title
+    const textareaElements = window.document.getElementsByTagName('textarea')
+    const outputElement = window.document.createElement('main')
+    let inputText
+    let title
 
     // Remove input from page after reading it into a local variable.
     if (textareaElements.length > 0) {
@@ -411,13 +410,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     window.document.body.appendChild(outputElement)
 
     // Set stylesheet.
-    var styleElement = window.document.createElement('style')
-    var css = styles[options.style]
+    const styleElement = window.document.createElement('style')
+    const css = styles[options.style]
     styleElement.appendChild(window.document.createTextNode(css))
     window.document.head.appendChild(styleElement)
 
     // Set meta element.
-    var metaElement = window.document.createElement('meta')
+    const metaElement = window.document.createElement('meta')
     metaElement.name = 'viewport'
     metaElement.content = 'width=device-width; initial-scale=1.0'
     window.document.head.appendChild(metaElement)

@@ -1,9 +1,9 @@
-var assert = require('assert')
-var url = require('url')
-var path = require('path')
-var jsdom = require('jsdom')
-var marked = require('marked')
-var texme = require('../texme.js')
+const assert = require('assert')
+const url = require('url')
+const path = require('path')
+const jsdom = require('jsdom')
+const marked = require('marked')
+const texme = require('../texme.js')
 
 describe('main', function () {
   afterEach(function () {
@@ -14,7 +14,7 @@ describe('main', function () {
   })
 
   it('texme definition in browser', function () {
-    var html = '<!DOCTYPE html><textarea>Foo'
+    const html = '<!DOCTYPE html><textarea>Foo'
     global.window = new jsdom.JSDOM(html).window
     global.window.marked = marked
     global.window.texme = {
@@ -29,8 +29,8 @@ describe('main', function () {
   })
 
   it('marked definition in browser', function (done) {
-    var html = '<!DOCTYPE html><textarea>Foo'
-    var options = {
+    const html = '<!DOCTYPE html><textarea>Foo'
+    const options = {
       url: new url.URL(path.join('file:///', __filename)),
       runScripts: 'dangerously',
       resources: 'usable'
@@ -49,7 +49,7 @@ describe('main', function () {
   })
 
   it('render on load enabled', function (done) {
-    var html = '<!DOCTYPE html><textarea>Foo'
+    const html = '<!DOCTYPE html><textarea>Foo'
     global.window = new jsdom.JSDOM(html).window
     global.window.marked = marked
 
@@ -65,7 +65,7 @@ describe('main', function () {
   })
 
   it('render on load disabled', function (done) {
-    var html = '<!DOCTYPE html><textarea>Foo'
+    const html = '<!DOCTYPE html><textarea>Foo'
     global.window = new jsdom.JSDOM(html).window
     global.window.marked = marked
 
