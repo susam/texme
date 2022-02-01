@@ -1,3 +1,5 @@
-window.marked = function () {
-  return 'foo'
+window.marked = {
+  parse: function () {
+    return 'foo'
+  }
 }

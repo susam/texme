@@ -1,6 +1,14 @@
 Changelog
 =========
 
+1.0.1 (UNRELEASED)
+------------------
+
+### Changed
+
+- Upgrade Marked to version 4.0.12.
+
+
 1.0.0 (2021-04-25)
 ------------------
 

@@ -6,7 +6,7 @@ help:
 	@echo '  coverage  Run test coverage.'
 	@echo '  docs      Generate documentation.'
 	@echo '  deps      Install development dependencies.'
-	@echo '  pushdocs  Publish documentation with GitHub Pages'
+	@echo '  live      Push examples to GitHub pages.'
 
 test: FORCE
 	npm test
@@ -24,7 +24,7 @@ deps:
 site:
 	# Clone packages.
 	rm -rf _site/ && mkdir -p _site/examples/
-	git -C _site/ clone -b v2.0.1 --depth 1 https://github.com/markedjs/marked.git
+	git -C _site/ clone -b v4.0.12 --depth 1 https://github.com/markedjs/marked.git
 	git -C _site/ clone -b 3.2.0 --depth 1 https://github.com/mathjax/mathjax.git
 	rm -rf _site/markedjs/.git/
 	rm -rf _site/mathjax/.git/

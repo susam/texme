@@ -72,7 +72,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     // Update "Configuration Options" section of README.md if any of the
     // following URLs is updated.
     options.markdownURL =
-      'https://cdn.jsdelivr.net/npm/marked@2.0.1/marked.min.js'
+      'https://cdn.jsdelivr.net/npm/marked@4.0.12/marked.min.js'
     options.MathJaxURL =
       'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
   }
@@ -446,7 +446,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       setWindowOptions()
 
       loadjs(options.markdownURL, function () {
-        markdown = window.marked
+        markdown = window.marked.parse
       })
 
       if (options.useMathJax) {
@@ -472,7 +472,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
       window.texme = texme
     } else {
-      markdown = require('marked')
+      markdown = require('marked').parse
       module.exports = texme
     }
   }
