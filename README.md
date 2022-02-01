@@ -5,8 +5,6 @@ TeXMe is a lightweight JavaScript utility to create self-rendering
 Markdown + LaTeX documents.
 
 [![View Demo][Demo SVG]][Demo URL]
-[![Build Status][Travis CI SVG]][Travis CI URL]
-[![Coverage Status][Coveralls SVG]][Coveralls URL]
 [![NPM Version][Version SVG]][NPM URL]
 [![JSDelivr Hits][JSDelivr SVG]][JSDelivr URL]
 [![MIT License][License SVG]][L]
@@ -14,10 +12,6 @@ Markdown + LaTeX documents.
 
 [Demo SVG]: https://img.shields.io/badge/view-demo-brightgreen
 [Demo URL]: https://susam.github.io/texme/examples/demo.html
-[Travis CI SVG]: https://travis-ci.com/susam/texme.svg?branch=master
-[Travis CI URL]: https://travis-ci.com/susam/texme
-[Coveralls SVG]: https://coveralls.io/repos/github/susam/texme/badge.svg?branch=master
-[Coveralls URL]: https://coveralls.io/github/susam/texme?branch=master
 [Version SVG]: https://img.shields.io/npm/v/texme
 [NPM URL]: https://www.npmjs.com/package/texme
 [License SVG]: https://img.shields.io/badge/license-MIT-%233ea639
