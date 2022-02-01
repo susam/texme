@@ -47,7 +47,6 @@ Perform the following tasks for every release:
 
   - Update version in README.md.
   - Update version in package.json.
-  - Update version in Makefile.
   - Update copyright notice in LICENSE.md.
   - Update copyright notice in texme.js.
   - Update CHANGES.md.
@@ -58,6 +57,13 @@ Perform the following tasks for every release:
   - Update minified script.
 
         npm run min
+
+  - Push demo and examples.
+
+        make live
+
+  - Optional: Wait for website to update and take screenshot in light
+    mode. Upload it to Imgur. Then replace Imgur URL in README.md
 
   - Commit changes.
 
@@ -77,7 +83,7 @@ Perform the following tasks for every release:
         npm login
         npm publish
 
-  - Publish documentation and examples.
+  - Publish examples.
 
         make live
 

@@ -39,6 +39,9 @@ site:
 	    -e 's|https:.*chtml.js|mathjax/es5/tex-mml-chtml.js|' \
 	    texme.js > _site/texme.js
 	cp _site/examples/demo.html _site/index.html
+	# Minify JS.
+	npx uglifyjs _site/texme.js --compress --mangle --output _site/texme.min.js
+	npx uglifyjs _site/examples/texme.js --compress --mangle --output _site/examples/texme.min.js
 
 pushlive:
 	pwd | grep live$$ || false
