@@ -37,6 +37,7 @@ Dependency Upgrade Checklist
   - Update Markdown renderer version in texme.js.
   - Update Markdown renderer version in Makefile.
   - Update Markdown renderer version in package.json.
+  - Update MathJax version in texme.js.
   - Update MathJax version in Makefile.
 
 

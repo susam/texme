@@ -22,26 +22,20 @@ deps:
 	npm install
 
 site:
-	# Clone packages.
+	# Clone external packages.
 	rm -rf _site/ && mkdir -p _site/examples/
 	git -C _site/ clone -b v4.0.12 --depth 1 https://github.com/markedjs/marked.git
 	git -C _site/ clone -b 3.2.0 --depth 1 https://github.com/mathjax/mathjax.git
 	rm -rf _site/marked/.git/
 	rm -rf _site/mathjax/.git/
-	# Create examples directory.
-	sed -e 's|https:.*marked.min.js|../marked/marked.min.js|' \
-	    -e 's|https:.*chtml.js|../mathjax/es5/tex-mml-chtml.js|' \
-	    texme.js > _site/examples/texme.js
-	for f in examples/*.html; do \
-	    sed 's|\.\./texme.js|texme.js|' "$$f" > _site/examples/"$${f#*/}"; done
-	# Create home page.
-	sed -e 's|https:.*marked.min.js|marked/marked.min.js|' \
-	    -e 's|https:.*chtml.js|mathjax/es5/tex-mml-chtml.js|' \
+	# Create texme.js that loads external packages from same domain.
+	sed -e 's|https:.*marked.min.js|https://susam.github.io/texme/marked/marked.min.js|' \
+	    -e 's|https:.*chtml.js|https://susam.github.io/texme/mathjax/es5/tex-mml-chtml.js|' \
 	    texme.js > _site/texme.js
-	cp _site/examples/demo.html _site/index.html
-	# Minify JS.
 	npx uglifyjs _site/texme.js --compress --mangle --output _site/texme.min.js
-	npx uglifyjs _site/examples/texme.js --compress --mangle --output _site/examples/texme.min.js
+	# Copy examples and create home page.
+	cp examples/*.html _site/examples/
+	sed 's|\.\./texme.js|texme.js|' examples/demo.html > _site/index.html
 
 pushlive:
 	pwd | grep live$$ || false
