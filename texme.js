@@ -74,7 +74,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     options.markdownURL =
       'https://cdn.jsdelivr.net/npm/marked@4.0.12/marked.min.js'
     options.MathJaxURL =
-      'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+      'https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js'
   }
 
   /**

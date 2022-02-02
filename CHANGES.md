@@ -1,6 +1,14 @@
 Changelog
 =========
 
+1.2.0 (UNRELEASED)
+------------------
+
+### Changed
+
+- Set MathJax to version 3.2.0.
+
+
 1.1.0 (2022-02-01)
 ------------------
 
