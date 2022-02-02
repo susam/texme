@@ -84,10 +84,6 @@ Perform the following tasks for every release:
         npm login
         npm publish
 
-  - Publish examples.
-
-        make live
-
 
 Post-Release Checklist
 ----------------------
