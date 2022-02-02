@@ -107,11 +107,11 @@ Body](#content-in-body) section for more details about it.
 CDN URLs
 --------
 
-Use the following URL in the `<script>` tag to load version 1.1.0 (the
+Use the following URL in the `<script>` tag to load version 1.2.0 (the
 current version at this time) of TeXMe:
 
 ```
-https://cdn.jsdelivr.net/npm/texme@1.1.0
+https://cdn.jsdelivr.net/npm/texme@1.2.0
 ```
 
 Use the following URL in the `<script>` tag to always load the latest
@@ -145,7 +145,7 @@ complete and valid HTML5 example:
 <!DOCTYPE html>
 <html lang="en">
 <title>Notes on Euler's Identity</title>
-<script src="https://cdn.jsdelivr.net/npm/texme@1.1.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/texme@1.2.0"></script>
 <textarea>
 
 # Euler's Identity
@@ -199,7 +199,7 @@ an example:
 ```html
 <!DOCTYPE html>
 <script>window.texme = { style: 'plain' }</script>
-<script src="https://cdn.jsdelivr.net/npm/texme@1.1.0"></script><textarea>
+<script src="https://cdn.jsdelivr.net/npm/texme@1.2.0"></script><textarea>
 
 # Euler's Identity
 
@@ -224,7 +224,7 @@ regular CSS code. Here is an example:
 ```html
 <!DOCTYPE html>
 <script>window.texme = { style: 'none' }</script>
-<script src="https://cdn.jsdelivr.net/npm/texme@1.1.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/texme@1.2.0"></script>
 <style>
 body {
   background: lightcyan;
@@ -267,7 +267,7 @@ set `useMathJax` and `protectMath` options to `false`:
 ```html
 <!DOCTYPE html>
 <script>window.texme = { useMathJax: false, protectMath: false }</script>
-<script src="https://cdn.jsdelivr.net/npm/texme@1.1.0"></script><textarea>
+<script src="https://cdn.jsdelivr.net/npm/texme@1.2.0"></script><textarea>
 
 # Atomic Theory
 
@@ -293,7 +293,7 @@ invokes rendering later on the click of a button by using the
 ```html
 <!DOCTYPE html>
 <script>window.texme = { renderOnLoad: false }</script>
-<script src="https://cdn.jsdelivr.net/npm/texme@1.1.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/texme@1.2.0"></script>
 <script>
 window.onload = function () {
   var button = document.getElementById('button')
@@ -345,7 +345,7 @@ style to `'plain'` using this function:
 ```html
 <!DOCTYPE html>
 <script>window.texme = { renderOnLoad: false }</script>
-<script src="https://cdn.jsdelivr.net/npm/texme@1.1.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/texme@1.2.0"></script>
 <script>
 window.onload = function () {
   var button = document.getElementById('button')
@@ -395,7 +395,7 @@ Euler's identity is a special case of Euler's formula from complex
 analysis, which states that for any real number $ x $,
 $$ e^{ix} = \cos x + i \sin x. $$
 
-<script src="https://cdn.jsdelivr.net/npm/texme@1.1.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/texme@1.2.0"></script>
 ```
 
 Here is the output:
@@ -423,7 +423,7 @@ Here is some unusual code:
 print('unusual <string')
 ```
 
-<script src="https://cdn.jsdelivr.net/npm/texme@1.1.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/texme@1.2.0"></script>
 ````
 
 Here is the broken output:
@@ -435,7 +435,7 @@ ends up being parsed as an HTML tag by the browser that looks like this:
 
 
 ````html
-<string') ```="" <script="" src="https://cdn.jsdelivr.net/npm/texme@1.1.0">
+<string') ```="" <script="" src="https://cdn.jsdelivr.net/npm/texme@1.2.0">
 ````
 
 This mangled form of the input is then rendered leading to unexpected
@@ -444,7 +444,7 @@ results. To resolve this, put the content within a `<textarea>` element
 input is fine because the content is put inside a `<textarea>` element.
 
 ````html
-<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@1.1.0"></script><textarea>
+<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@1.2.0"></script><textarea>
 
 Here is some unusual code:
 
@@ -637,7 +637,7 @@ Markdown code spans and code blocks from being interpreted as LaTeX.
 Here is an example:
 
 ````html
-<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@1.1.0"></script><textarea>
+<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@1.2.0"></script><textarea>
 
 # Using Variables
 
@@ -670,7 +670,7 @@ A rendering issue like this can be prevented with the use of the
 markdown priority environment like this:
 
 ````html
-<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@1.1.0"></script><textarea>
+<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@1.2.0"></script><textarea>
 
 # Using Variables
 
@@ -707,7 +707,7 @@ description and how the usage of the `md` environment can fix it. Here
 is an example:
 
 ```html
-<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@1.1.0"></script><textarea>
+<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@1.2.0"></script><textarea>
 
 # Metasyntactic Variable
 
@@ -730,7 +730,7 @@ to a broken rendering of the document. Here is how the output looks:
 The `md` environment can be used to fix the rendering like this:
 
 ```html
-<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@1.1.0"></script><textarea>
+<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@1.2.0"></script><textarea>
 
 # Metasyntactic Variable
 
@@ -816,7 +816,7 @@ perhaps a code example that explains how TeXMe works. Consider the
 following example:
 
 `````html
-<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@1.1.0"></script><textarea>
+<!DOCTYPE html><script src="https://cdn.jsdelivr.net/npm/texme@1.2.0"></script><textarea>
 
 # Markdown Priority Environment
 
