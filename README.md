@@ -45,6 +45,7 @@ Contents
   * [Unlimited Variants](#unlimited-variants)
 * [License](#license)
 * [Support](#support)
+* [More](#more)
 
 
 Get Started
@@ -881,3 +882,10 @@ To report bugs, suggest improvements, or ask questions,
 [create issues][ISSUES].
 
 [ISSUES]: https://github.com/susam/texme/issues
+
+
+More
+----
+
+See [Muboard](https://github.com/susam/muboard), a self-rendering and
+distributable chalkboard built using TeXMe.
