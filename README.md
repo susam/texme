@@ -887,5 +887,9 @@ To report bugs, suggest improvements, or ask questions,
 More
 ----
 
+See [MathB](https://github.com/susam/mathb), a mathematics pastebin
+built using TeXMe. This is the oldest mathematics pastebin that is
+still alive on the web and serving its community of users.
+
 See [Muboard](https://github.com/susam/muboard), a self-rendering and
 distributable chalkboard built using TeXMe.
