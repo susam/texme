@@ -15,7 +15,8 @@
       var output = texme.render(input.value)
       html.value = output
       preview.innerHTML = output
-      window.MathJax.Hub.Queue(['Typeset', window.MathJax.Hub, preview])
+      window.MathJax.texReset()
+      window.MathJax.typesetPromise()
     }
 
     clear.onclick = function () {

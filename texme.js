@@ -426,7 +426,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
     // Typeset LaTeX.
     if (options.useMathJax) {
-      window.MathJax.typeset()
+      window.MathJax.typesetPromise()
     }
 
     // Invoke onRenderPage callback (if configured).
