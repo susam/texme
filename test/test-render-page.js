@@ -13,7 +13,7 @@ describe('renderPage', function () {
     const html = '<textarea>Foo'
 
     global.window = new jsdom.JSDOM(html).window
-    global.window.MathJax = { typeset: sinon.fake() }
+    global.window.MathJax = { typesetPromise: sinon.fake() }
 
     texme.renderPage()
     assert.strictEqual(global.window.document.body.innerHTML,
@@ -26,7 +26,7 @@ describe('renderPage', function () {
     const html = 'Foo'
 
     global.window = new jsdom.JSDOM(html).window
-    global.window.MathJax = { typeset: sinon.fake() }
+    global.window.MathJax = { typesetPromise: sinon.fake() }
 
     texme.renderPage()
     assert.strictEqual(global.window.document.body.innerHTML,
@@ -40,7 +40,7 @@ describe('renderPage', function () {
     const fakeTypesetFunction = sinon.fake()
 
     global.window = new jsdom.JSDOM(html).window
-    global.window.MathJax = { typeset: fakeTypesetFunction }
+    global.window.MathJax = { typesetPromise: fakeTypesetFunction }
 
     texme.renderPage()
     assert(fakeTypesetFunction.called)
@@ -52,7 +52,7 @@ describe('renderPage', function () {
     const html = '<!DOCTYPE html><textarea>Foo\nBar\nBaz'
 
     global.window = new jsdom.JSDOM(html).window
-    global.window.MathJax = { typeset: sinon.fake() }
+    global.window.MathJax = { typesetPromise: sinon.fake() }
 
     texme.renderPage()
     assert.strictEqual(global.window.document.title, 'Foo')
@@ -64,7 +64,7 @@ describe('renderPage', function () {
     const html = '<!DOCTYPE html><textarea> \n \tFoo\t \nBar\nBaz'
 
     global.window = new jsdom.JSDOM(html).window
-    global.window.MathJax = { typeset: sinon.fake() }
+    global.window.MathJax = { typesetPromise: sinon.fake() }
 
     texme.renderPage()
     assert.strictEqual(global.window.document.title, 'Foo')
@@ -76,7 +76,7 @@ describe('renderPage', function () {
     const html = '<!DOCTYPE html><textarea>### Foo ###\nBar\nBaz'
 
     global.window = new jsdom.JSDOM(html).window
-    global.window.MathJax = { typeset: sinon.fake() }
+    global.window.MathJax = { typesetPromise: sinon.fake() }
 
     texme.renderPage()
     assert.strictEqual(global.window.document.title, 'Foo')
@@ -88,7 +88,7 @@ describe('renderPage', function () {
     const html = '<!DOCTYPE html><title>Qux</title><textarea>Foo\nBar\nBaz'
 
     global.window = new jsdom.JSDOM(html).window
-    global.window.MathJax = { typeset: sinon.fake() }
+    global.window.MathJax = { typesetPromise: sinon.fake() }
 
     texme.renderPage()
     assert.strictEqual(global.window.document.title, 'Qux')
@@ -100,7 +100,7 @@ describe('renderPage', function () {
     const html = '<!DOCTYPE html><title>### Qux ###</title><textarea>Foo'
 
     global.window = new jsdom.JSDOM(html).window
-    global.window.MathJax = { typeset: sinon.fake() }
+    global.window.MathJax = { typesetPromise: sinon.fake() }
 
     texme.renderPage()
     assert.strictEqual(global.window.document.title, '### Qux ###')
@@ -112,7 +112,7 @@ describe('renderPage', function () {
     const html = '<!DOCTYPE html><title>Qux</title><textarea>Foo\nBar\nBaz'
 
     global.window = new jsdom.JSDOM(html).window
-    global.window.MathJax = { typeset: sinon.fake() }
+    global.window.MathJax = { typesetPromise: sinon.fake() }
 
     texme.renderPage()
     assert.strictEqual(global.window.document.title, 'Qux')

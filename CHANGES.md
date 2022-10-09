@@ -1,6 +1,15 @@
 Changelog
 =========
 
+1.2.1 (2022-10-09)
+------------------
+
+### Fixed
+
+- Rendering error when the input contains commands that require
+  additional MathJax extensions.
+
+
 1.2.0 (2022-02-02)
 ------------------
 
