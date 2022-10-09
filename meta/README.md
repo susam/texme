@@ -100,5 +100,6 @@ Perform the following tasks after every release:
         VERSION=$(sed -n 's/.*version.*: "\(.*\)",/\1/p' package.json)
         echo VERSION: $VERSION
 
+        git add -p
         git commit -em "Set version to $VERSION"
         git push origin main
