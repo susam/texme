@@ -45,6 +45,7 @@ Contents
   * [Unlimited Variants](#unlimited-variants)
 * [License](#license)
 * [Support](#support)
+* [Channels](#channels)
 * [More](#more)
 
 
@@ -882,6 +883,22 @@ To report bugs, suggest improvements, or ask questions,
 [create issues][ISSUES].
 
 [ISSUES]: https://github.com/susam/texme/issues
+
+
+Channels
+--------
+
+The author of this project hangs out at the following places online:
+
+- Website: [susam.net](https://susam.net)
+- Twitter: [@susam](https://twitter.com/susam)
+- GitHub: [@susam](https://github.com/susam)
+- Matrix: [#susam:matrix.org](https://app.element.io/#/room/#susam:matrix.org)
+- IRC: [#susam:libera.chat](https://web.libera.chat/#susam)
+
+You are welcome to subscribe to, follow, or join one or more of the
+above channels to receive updates from the author or ask questions
+about this project.
 
 
 More
