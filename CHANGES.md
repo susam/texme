@@ -1,6 +1,14 @@
 Changelog
 =========
 
+1.2.2 (2022-12-03)
+------------------
+
+### Fixed
+
+- Incorrect key-value separator in meta element.
+
+
 1.2.1 (2022-10-09)
 ------------------
 

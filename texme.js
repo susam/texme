@@ -418,7 +418,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     // Set meta element.
     const metaElement = window.document.createElement('meta')
     metaElement.name = 'viewport'
-    metaElement.content = 'width=device-width; initial-scale=1.0'
+    metaElement.content = 'width=device-width, initial-scale=1.0'
     window.document.head.appendChild(metaElement)
 
     // Render the output.
