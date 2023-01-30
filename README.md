@@ -9,6 +9,7 @@ Markdown + LaTeX documents.
 [![JSDelivr Hits][JSDelivr SVG]][JSDelivr URL]
 [![MIT License][License SVG]][L]
 [![Twitter][Twitter SVG]][Twitter URL]
+[![Mastodon][Mastodon SVG]][Mastodon URL]
 
 [Demo SVG]: https://img.shields.io/badge/view-demo-brightgreen
 [Demo URL]: https://susam.github.io/texme/
@@ -17,8 +18,10 @@ Markdown + LaTeX documents.
 [License SVG]: https://img.shields.io/badge/license-MIT-%233ea639
 [JSDelivr SVG]: https://data.jsdelivr.com/v1/package/npm/texme/badge?style=rounded
 [JSDelivr URL]: https://www.jsdelivr.com/package/npm/texme
-[Twitter SVG]: https://img.shields.io/badge/twitter-%40susam-%231da1f2
+[Twitter SVG]: https://img.shields.io/badge/twitter-%40susam-%231d9bf0
 [Twitter URL]: https://twitter.com/susam
+[Mastodon SVG]: https://img.shields.io/badge/mastodon-%40susam-%236364ff
+[Mastodon URL]: https://mastodon.social/@susam
 
 
 Contents
@@ -556,54 +559,57 @@ Here is a quick reference for all the supported configuration options:
 Self-Hosting TeXMe
 ------------------
 
-Some users of TeXMe want to know if TeXMe can be hosted on one's own
-web server such that TeXMe does not load resources from any other web
-server while rendering a document, i.e., any requests to load
-resources must be made to the same web server from which TeXMe is
-loaded. Yes, it is possible to self-host TeXMe in this manner. Here
-are the steps:
+TeXMe can be saved on a local disk or hosted on one's own web server
+such that TeXMe does not load resources from any other web server
+while rendering a document. Here are the steps to set up TeXMe on a
+local disk or on one's own web server:
 
- 1. Clone copies of TeXMe and its dependencies to your own server at a
-    location from where you want to serve the files:
+ 1. Clone copies of TeXMe and its dependencies to your own system or
+    server at a location from where you want to serve the files:
 
-        git clone https://github.com/susam/texme.git
-        git clone https://github.com/markedjs/marked.git
-        git clone https://github.com/mathjax/mathjax.git
+    ```sh
+    git clone https://github.com/susam/texme.git
+    git clone https://github.com/markedjs/marked.git
+    git clone https://github.com/mathjax/mathjax.git
+    ```
 
  2. Then create a self-rendering document, say, `euler.html` like
     this:
 
-        <!DOCTYPE html>
-        <script>
-        window.texme = {
-          markdownURL: 'marked/marked.min.js',
-          MathJaxURL: 'mathjax/es5/tex-mml-chtml.js'
-        }
-        </script>
-        <script src="texme/texme.min.js"></script>
-        <textarea>
+    ```html
+    <!DOCTYPE html>
+    <script>
+    window.texme = {
+      markdownURL: 'marked/marked.min.js',
+      MathJaxURL: 'mathjax/es5/tex-mml-chtml.js'
+    }
+    </script>
+    <script src="texme/texme.min.js"></script>
+    <textarea>
 
-        # Euler's Identity
+    # Euler's Identity
 
-        In mathematics, **Euler's identity** is the equality
-        $$ e^{i \pi} + 1 = 0. $$
+    In mathematics, **Euler's identity** is the equality
+    $$ e^{i \pi} + 1 = 0. $$
 
-        ## Explanation
+    ## Explanation
 
-        Euler's identity is a special case of Euler's formula from complex
-        analysis, which states that for any real number $ x $,
-        $$ e^{ix} = \cos x + i \sin x. $$
+    Euler's identity is a special case of Euler's formula from complex
+    analysis, which states that for any real number $ x $,
+    $$ e^{ix} = \cos x + i \sin x. $$
 
-        </textarea>
+    </textarea>
+    ```
 
- 3. Now, open `euler.html` with a web browser and it should
-    self-render fine. All resources will be loaded from the local
-    disk.
+ 3. Now open `euler.html` with a web browser and it should self-render
+    fine. All resources will be loaded from the local disk.
 
  4. Now test `euler.html` by serving it via a web server. Assuming
     Python 3 is installed, here is one really easy way to test it:
 
-        python3 -m http.server
+    ```sh
+    python3 -m http.server
+    ```
 
     Then open `https://localhost:8000/euler.html` using a web server.
     The network tab in the browser's developer tools should show that
@@ -892,6 +898,7 @@ The author of this project hangs out at the following places online:
 
 - Website: [susam.net](https://susam.net)
 - Twitter: [@susam](https://twitter.com/susam)
+- Mastodon: [@susam@mastodon.social](https://mastodon.social/@susam)
 - GitHub: [@susam](https://github.com/susam)
 - Matrix: [#susam:matrix.org](https://app.element.io/#/room/#susam:matrix.org)
 - IRC: [#susam:libera.chat](https://web.libera.chat/#susam)
