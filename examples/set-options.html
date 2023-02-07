@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<script>window.texme = { renderOnLoad: false }</script>
+<script src="../texme.js"></script>
+<script>
+window.onload = function () {
+  var button = document.getElementById('button')
+  button.onclick = function () {
+    button.remove()
+    texme.setOption('style', 'plain')
+    texme.renderPage()
+  }
+}
+</script>
+<textarea>
+
+# Euler's Identity
+
+In mathematics, **Euler's identity** is the equality
+$$ e^{i \pi} + 1 = 0. $$
+
+## Explanation
+
+Euler's identity is a special case of Euler's formula from complex
+analysis, which states that for any real number $ x $,
+$$ e^{ix} = \cos x + i \sin x. $$
+
+</textarea>
+<div><button id="button">Render</button></div>

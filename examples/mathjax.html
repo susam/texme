@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Plain HTML and MathJax Example</title>
+<script>
+window.MathJax = {
+  tex2jax: {
+    // Enable $...$ as delimiter for inline math.
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    processEscapes: true
+  }
+}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<style>
+body {
+  max-width: 40em;
+  margin: 2em auto;
+}
+</style>
+
+<h1>Euler's Identity</h1>
+<p>
+In mathematics, <strong>Euler's identity</strong> is the equality
+$$ e^{i \pi} + 1 = 0. $$
+</p>
+
+<h1>Explanation</h1>
+<p>
+Euler's identity is a special case of Euler's formula from complex
+analysis, which states that for any real number $ x $,
+$$ e^{ix} = \cos x + i \sin x. $$
+</p>

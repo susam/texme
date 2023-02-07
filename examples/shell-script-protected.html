@@ -1,0 +1,21 @@
+<!DOCTYPE html><script src="../texme.js"></script><textarea>
+
+# Using Variables
+
+To expand a variable in shell script, prefix the variable name with a
+dollar sign. For example:
+
+\begin{md}
+```
+foo=hello
+echo $foo
+```
+\end{md}
+
+The variable \begin{md}`$foo`\end{md} is substituted with its value, if
+any, after the expansion. In the above example, \begin{md}`$foo`\end{md}
+expands to `hello`, so the output looks like this:
+
+```
+hello
+```

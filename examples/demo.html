@@ -1,0 +1,131 @@
+<!DOCTYPE html><script src="../texme.js"></script><textarea>
+
+TeXMe Demo
+==========
+
+
+Binomial Theorem
+----------------
+
+$$ (x+y)^n = \sum_{k=0}^n {n \choose k} x^{n - k} y^k. $$
+
+
+Exponential Function
+--------------------
+
+$$ e^x = \lim_{n \to \infty} \left( 1+ \frac{x}{n} \right)^n. $$
+
+
+Cauchy-Schwarz Inequality
+-------------------------
+
+$$
+  \left( \sum_{k=1}^n a_k b_k \right)^2 \leq
+  \left( \sum_{k=1}^n a_k^2 \right)
+  \left( \sum_{k=1}^n b_k^2 \right).
+$$
+
+
+Bayes' Theorem
+--------------
+
+$$ P(A \mid B) = \frac{P(B \mid A) \, P(A)}{P(B)}. $$
+
+
+Euler's Summation Formula
+-------------------------
+
+**Theorem** (Euler's summation formula). _If $ f $ has a continuous
+derivative $ f' $ on the interval $ [y, x], $ where $ 0 < y < x, $
+then_
+\begin{align}
+  \sum_{y < n \le x} f(n)
+    = & \int_y^x f(t) \, dt + \int_y^x (t - [t]) f'(t) \, dt \notag \\
+      & + f(x)([x] - x) - f(y)([y] - y). \label{theorem}
+\end{align}
+
+_Proof._ Let $ m = [y] $, $k = [x].$ For integers $n$ and $n - 1$
+in $[y, x]$ we have
+\begin{align*}
+  \int_{n - 1}^n [t] f'(t) \, dt
+    & = \int_{n - 1}^n (n - 1) f'(t) \, dt \\
+    & = (n - 1) \{ f(n) - f(n - 1) \} \\
+    & = \{n f(n) - (n - 1) f(n - 1)\} - f(n).
+\end{align*}
+Summing from $n = m + 2$ to $n = k$ we find the first sum telescopes,
+hence
+\begin{align*}
+  \int_{m + 1}^k [t] f'(t) \, dt
+    & = k f(k) - (m + 1) f(m + 1) - \sum_{n = m + 2}^k f(n) \\
+    & = k f(k) - m f(m + 1) - \sum_{y < n \le x} f(n).
+\end{align*}
+Therefore
+\begin{align}
+  \sum_{y < n \le x} f(n)
+    & = - \int_{m + 1}^k [t] f'(t) \, dt + k f(k) - m f(m + 1) \notag \\
+    & = - \int_y^x [t] f'(t) \, dt + k f(x) - m f(y). \label{summation}
+\end{align}
+Integration by parts gives us
+$$ \int_y^x f(t) \, dt = x f(x) - y f(y) - \int_y^x t f'(t) \, dt, $$
+and when this is combined with \eqref{summation} we obtain
+\eqref{theorem}. <span style="float:right">&#8718;</span>
+
+
+Hello World Program
+-------------------
+
+Here is an example of `"hello, world"` program written in the C
+programming language:
+
+```
+#include <stdio.h>
+
+int main()
+{
+    printf("hello, world\n");
+    return 0;
+}
+```
+
+
+Issac Newton Quotes
+-------------------
+
+Issac Newton was relatively modest about his achievements, writing in a
+letter to Robert Hooke in February 1676:
+
+> If I have seen further it is by standing on the shoulders of giants.
+
+In a later memoir, Newton wrote:
+
+> I do not know what I may appear to the world, but to myself I seem to
+> have been only like a boy playing on the sea-shore, and diverting
+> myself in now and then finding a smoother pebble or a prettier shell
+> than ordinary, whilst the great ocean of truth lay all undiscovered
+> before me.
+
+To read more about Newton, see the [Wikipedia entry on Issac Newton][1].
+
+[1]: https://en.wikipedia.org/wiki/Isaac_Newton
+
+
+Table of Number Theory Functions
+--------------------------------
+
+The following table shows information about a few important functions
+in number theory.
+
+| Name                     | Notation       | First few values                      | Multiplicative property   |
+| ------------------------ | -------------- | ------------------------------------- | ------------------------- |
+| Möbius function          | $ \mu(n) $     | $ 1, -1, -1, 0, -1 $                  | Multiplicative            |
+| Euler's totient function | $ \varphi(n) $ | $ 1, 1, 2, 2, 4 $                     | Multiplicative            |
+| Mangoldt function        | $ \Lambda(n) $ | $ 0, \log 2, \log 3, \log 2, \log 5 $ | Not multiplicative        |
+| Liouville's function     | $ \lambda(n) $ | $ 1, -1, -1, 1, -1 $                  | Completely multiplicative |
+
+
+About This Demo
+---------------
+
+This is a demo of a self-rendering Markdown + LaTeX document rendered
+with TeXMe. To learn more about what TeXMe is and how to use it, visit
+<a href="https://github.com/susam/texme#texme">github.com/susam/texme</a>.
