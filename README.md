@@ -39,6 +39,7 @@ Contents
 * [Use TeXMe as a Library](#use-texme-as-a-library)
   * [Install TeXMe](#install-texme)
   * [Render Markdown and LaTeX](#render-markdown-and-latex)
+* [TeXMe API Documentation](#texme-api-documentation)
 * [Configuration Options](#configuration-options)
 * [Self-Hosting TeXMe](#self-hosting-texme)
 * [Markdown Priority Environment](#markdown-priority-environment)
@@ -503,6 +504,18 @@ The above example produces the following output:
 ```html
 <p><strong>Foo</strong> $$ {a}_{1} {a}_{2} $$</p>
 ```
+
+
+TeXMe API Documentation
+-----------------------
+
+The previous two sections introduced a few TeXMe API functions such as
+`texme.render()`, `texme.renderPage()`, and `texme.setOptions()`.
+TeXMe exposes several more functions that could be useful to invoke
+parts of TeXMe's rendering operations in your code. Visit [TeXMe module
+documentation][API Doc] to see the documentation of TeXMe API.
+
+[API Doc]: https://susam.github.io/texme/doc/module-texme.html
 
 
 Configuration Options

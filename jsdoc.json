@@ -3,8 +3,8 @@
         "include": "texme.js"
     },
     "opts": {
-        "destination": "docs",
-        "readme": "README.md"
+        "destination": "doc",
+        "readme": "meta/doc.md"
     },
     "plugins": [
         "plugins/markdown"

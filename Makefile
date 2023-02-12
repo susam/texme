@@ -14,14 +14,14 @@ test: FORCE
 coverage: FORCE
 	npm run coverage
 
-docs: FORCE
-	rm -rf docs
-	npm run docs
+doc: FORCE
+	rm -rf doc
+	npm run doc
 
 deps:
 	npm install
 
-site:
+site: doc
 	# Clone external packages.
 	rm -rf _site/ && mkdir -p _site/examples/
 	git -C _site/ clone -b v4.0.12 --depth 1 https://github.com/markedjs/marked.git
@@ -36,6 +36,8 @@ site:
 	# Copy examples and create home page.
 	cp examples/*.html _site/examples/
 	sed 's|\.\./texme.js|texme.js|' examples/demo.html > _site/index.html
+	# Copy documentation.
+	mv doc/ _site/
 
 pushlive:
 	pwd | grep live$$ || false

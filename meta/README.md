@@ -59,7 +59,7 @@ Perform the following tasks for every release:
 
         npm run min
 
-  - Push demo and examples.
+  - Push demo, examples, and documentation.
 
         make live
 

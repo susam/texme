@@ -350,11 +350,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
   }
 
   /**
-   * Render Markdown content while being careful that LaTeX content is
-   * not interpreted and rendered as Markdown.
+   * Render Markdown content while ensuring that LaTeX content is not
+   * interpreted and rendered as Markdown.
    *
    * @param {string} s - Markdown + LaTeX content.
-   *
    *
    * @returns {string} Rendered HTML.
    */
@@ -372,6 +371,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
    * If the configuration option `protectMath` is `true` (the default),
    * then LaTeX content is protected from Markdown renderer. Otherwise,
    * the entire content is rendered as Markdown.
+   *
+   * @param {string} s - Markdown + LaTeX content.
    */
   texme.render = function (s) {
     if (options.protectMath) {
